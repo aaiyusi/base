@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.platform.pm.dao.TPlatformPmSystemMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.platform.pm.bean.entity.TPlatformPmSystem" >
+    <id column="system_id" property="systemId" jdbcType="BIGINT" />
+    <result column="system_code" property="systemCode" jdbcType="VARCHAR" />
+    <result column="system_name" property="systemName" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="domain" property="domain" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    system_id, system_code, system_name, ip, domain, create_user_id, create_user_name, 
+    create_date, modify_user_id, modify_user_name, modify_date, last_modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from platform.t_platform_pm_system
+    where system_id = #{systemId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from platform.t_platform_pm_system
+    where system_id = #{systemId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.platform.pm.bean.entity.TPlatformPmSystem" >
+    insert into platform.t_platform_pm_system (system_id, system_code, system_name, 
+      ip, domain, create_user_id, 
+      create_user_name, create_date, modify_user_id, 
+      modify_user_name, modify_date, last_modify_date
+      )
+    values (#{systemId,jdbcType=BIGINT}, #{systemCode,jdbcType=VARCHAR}, #{systemName,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{domain,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=BIGINT}, 
+      #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.platform.pm.bean.entity.TPlatformPmSystem" >
+    insert into platform.t_platform_pm_system
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemId != null" >
+        system_id,
+      </if>
+      <if test="systemCode != null" >
+        system_code,
+      </if>
+      <if test="systemName != null" >
+        system_name,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="domain != null" >
+        domain,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemId != null" >
+        #{systemId,jdbcType=BIGINT},
+      </if>
+      <if test="systemCode != null" >
+        #{systemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="systemName != null" >
+        #{systemName,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null" >
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.platform.pm.bean.entity.TPlatformPmSystem" >
+    update platform.t_platform_pm_system
+    <set >
+      <if test="systemCode != null" >
+        system_code = #{systemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="systemName != null" >
+        system_name = #{systemName,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null" >
+        domain = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where system_id = #{systemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.platform.pm.bean.entity.TPlatformPmSystem" >
+    update platform.t_platform_pm_system
+    set system_code = #{systemCode,jdbcType=VARCHAR},
+      system_name = #{systemName,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      domain = #{domain,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where system_id = #{systemId,jdbcType=BIGINT}
+  </update>
+</mapper>

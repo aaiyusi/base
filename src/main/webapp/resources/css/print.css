@@ -1,0 +1,13 @@
+body {font-size:12px;}
+ul{padding:0px;	 margin:0px; }
+li{ list-style-type:none;}
+.text-center{ text-align:center !important;}
+.text-right{ text-align:right !important;}
+.text-left{ text-align:left !important;}
+.printlist-table{ width:100%; border-collapse:collapse;}
+.printlist-table th, .skulist-table td{ padding:0 5px; line-height:20px; height:40px; vertical-align:middle; text-align:left; border:1px solid #ccc;}
+.printlist-table th{ height:30px;}
+.printlist-table td.photo{ width:40px; text-align:center; padding:0;}
+.printlist-table td.photo img{ max-height:40px; max-width:40px; vertical-align:middle;}
+.printlist-table th.head{ font-size:20px;}
+.printlist-table thead tr:last-child th{ border-bottom-width:3px;}

@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.warehouse.dao.TErpWarehouseMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.warehouse.bean.entity.TErpWarehouse" >
+    <id column="whouse_id" property="whouseId" jdbcType="BIGINT" />
+    <result column="whouse_name" property="whouseName" jdbcType="VARCHAR" />
+    <result column="whouse_code" property="whouseCode" jdbcType="INTEGER" />
+    <result column="is_default" property="isDefault" jdbcType="SMALLINT" />
+    <result column="property" property="property" jdbcType="SMALLINT" />
+    <result column="shelf_count" property="shelfCount" jdbcType="INTEGER" />
+    <result column="sku_count" property="skuCount" jdbcType="INTEGER" />
+    <result column="inventory_count" property="inventoryCount" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    whouse_id, whouse_name, whouse_code, is_default, property, shelf_count, sku_count, 
+    inventory_count, state, enterprise_id, contact_name, contact_phone, address, create_user_id, 
+    create_user_name, create_date, modify_user_id, modify_user_name, modify_date, last_modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_warehouse
+    where whouse_id = #{whouseId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_warehouse
+    where whouse_id = #{whouseId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpWarehouse" >
+    insert into public.t_erp_warehouse (whouse_id, whouse_name, whouse_code, 
+      is_default, property, shelf_count, 
+      sku_count, inventory_count, state, 
+      enterprise_id, contact_name, contact_phone, 
+      address, create_user_id, create_user_name, 
+      create_date, modify_user_id, modify_user_name, 
+      modify_date, last_modify_date)
+    values (#{whouseId,jdbcType=BIGINT}, #{whouseName,jdbcType=VARCHAR}, #{whouseCode,jdbcType=INTEGER}, 
+      #{isDefault,jdbcType=SMALLINT}, #{property,jdbcType=SMALLINT}, #{shelfCount,jdbcType=INTEGER}, 
+      #{skuCount,jdbcType=INTEGER}, #{inventoryCount,jdbcType=INTEGER}, #{state,jdbcType=SMALLINT}, 
+      #{enterpriseId,jdbcType=BIGINT}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=BIGINT}, #{modifyUserName,jdbcType=VARCHAR}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpWarehouse"  useGeneratedKeys="true"  keyProperty="whouseId" >
+    insert into public.t_erp_warehouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="whouseId != null" >
+        whouse_id,
+      </if>
+      <if test="whouseName != null" >
+        whouse_name,
+      </if>
+      <if test="whouseCode != null" >
+        whouse_code,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="shelfCount != null" >
+        shelf_count,
+      </if>
+      <if test="skuCount != null" >
+        sku_count,
+      </if>
+      <if test="inventoryCount != null" >
+        inventory_count,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="whouseId != null" >
+        #{whouseId,jdbcType=BIGINT},
+      </if>
+      <if test="whouseName != null" >
+        #{whouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="whouseCode != null" >
+        #{whouseCode,jdbcType=INTEGER},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=SMALLINT},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=SMALLINT},
+      </if>
+      <if test="shelfCount != null" >
+        #{shelfCount,jdbcType=INTEGER},
+      </if>
+      <if test="skuCount != null" >
+        #{skuCount,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryCount != null" >
+        #{inventoryCount,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpWarehouse" >
+    update public.t_erp_warehouse
+    <set >
+      <if test="whouseName != null" >
+        whouse_name = #{whouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="whouseCode != null" >
+        whouse_code = #{whouseCode,jdbcType=INTEGER},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=SMALLINT},
+      </if>
+      <if test="property != null" >
+        property = #{property,jdbcType=SMALLINT},
+      </if>
+      <if test="shelfCount != null" >
+        shelf_count = #{shelfCount,jdbcType=INTEGER},
+      </if>
+      <if test="skuCount != null" >
+        sku_count = #{skuCount,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryCount != null" >
+        inventory_count = #{inventoryCount,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where whouse_id = #{whouseId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpWarehouse" >
+    update public.t_erp_warehouse
+    set whouse_name = #{whouseName,jdbcType=VARCHAR},
+      whouse_code = #{whouseCode,jdbcType=INTEGER},
+      is_default = #{isDefault,jdbcType=SMALLINT},
+      property = #{property,jdbcType=SMALLINT},
+      shelf_count = #{shelfCount,jdbcType=INTEGER},
+      sku_count = #{skuCount,jdbcType=INTEGER},
+      inventory_count = #{inventoryCount,jdbcType=INTEGER},
+      state = #{state,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where whouse_id = #{whouseId,jdbcType=BIGINT}
+  </update>
+
+  
+   <select id="selectIdNameByAll" resultType="java.util.HashMap" >
+    select 
+   w.whouse_id, w.whouse_name
+    from public.t_erp_warehouse w inner join  public.t_erp_warehouse_user u on w.whouse_id = u.whouse_id
+    where  w.state = 1 and w.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and u.state = 1 and u.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and  u.user_id = #{createUserId,jdbcType=BIGINT}
+  </select> 
+  
+     <select id="selectIdNameByAllNoContant" resultType="java.util.HashMap" >
+    select 
+   whouse_id, whouse_name
+    from public.t_erp_warehouse 
+    where  state = 1 and enterprise_id = #{enterpriseId,jdbcType=BIGINT} and state = 1 and enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+  </select> 
+
+  
+  <select id="getErpWarehouseByProperty"  resultMap="BaseResultMap" >
+  	select 
+        w.whouse_id, w.whouse_name,w.whouse_code, w.is_default, w.property, w.shelf_count, w.sku_count, 
+    w.inventory_count, w.state, w.enterprise_id, w.contact_name, w.contact_phone, w.address, w.create_user_id, 
+    w.create_user_name, w.create_date, w.modify_user_id, w.modify_user_name, w.modify_date, w.last_modify_date
+    from public.t_erp_warehouse w inner join  public.t_erp_warehouse_user u on w.whouse_id = u.whouse_id
+    where w.property = #{property,jdbcType=SMALLINT} and w.state>0 and w.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and  u.user_id = #{createUserId,jdbcType=BIGINT} and u.state = 1 and u.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  </select>
+  
+    <select id="getErpWarehouseByPropertyNoContant"  resultMap="BaseResultMap" >
+  	select 
+        w.whouse_id, w.whouse_name,w.whouse_code, w.is_default, w.property, w.shelf_count, w.sku_count, 
+    w.inventory_count, w.state, w.enterprise_id, w.contact_name, w.contact_phone, w.address, w.create_user_id, 
+    w.create_user_name, w.create_date, w.modify_user_id, w.modify_user_name, w.modify_date, w.last_modify_date
+    from public.t_erp_warehouse w
+    where w.property = #{property,jdbcType=SMALLINT} and w.state>0 and w.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectSpaceByWhouse" resultType="java.util.HashMap" parameterType="java.lang.Long">
+    select 
+   w.whouse_id,  s.space_id,s.space_code
+    from public.t_erp_warehouse w left join public.t_erp_shelf f on w.whouse_id = f.whouse_id left join  public.t_erp_space s on f.shelf_id = s.shelf_id 
+    where f.state != 0 and w.state != 0 and s.state !=0 and w.whouse_id = #{whouseId,jdbcType=BIGINT} order by s.space_id 
+  </select> 
+  <select id="getAllWhouse" resultMap="BaseResultMap" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpWarehouse" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM public.t_erp_warehouse
+    WHERE  state = #{state,jdbcType=SMALLINT}
+    AND property = #{property,jdbcType=SMALLINT}
+    <!-- AND create_user_id = #{createUserId,jdbcType=BIGINT} -->
+    AND enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  </select>
+
+<select id="selectSpaceByWhouseName" resultMap="BaseResultMap"    >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_warehouse
+    where whouse_name = #{whouseName,jdbcType=VARCHAR} and state = 1  and enterprise_id = #{enterpriseId,jdbcType=BIGINT} limit 1
+  </select>
+
+
+<select id="selectWhouseCanStop" resultType="java.lang.Integer"    >
+    select 
+    count(g.inventory_count)
+    from public.t_erp_goods_storage s left join public.t_erp_goods g on s.goods_id = g.goods_id
+    where s.state = 1  and s.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and s.whouse_id = #{whouseId,jdbcType=BIGINT} and g.state = 1  and g.enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+  </select>
+  
+  <select id="selectWhouseCanSKUStop" resultType="java.lang.Integer"    >
+    select 
+   	count(*)
+    from public.t_erp_orders_detail d left join public.t_erp_orders o  on o.orders_id = d.order_id left join public.t_erp_goods_storage s on d.goods_id = s.goods_id  where d.state = 1  and d.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+    and  s.whouse_id = #{whouseId,jdbcType=BIGINT} and (o.order_state = 1 or o.order_state = 2)
+  </select>
+  
+</mapper>

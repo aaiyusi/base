@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.orders.dao.OrderGoodsVoMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.orders.bean.entity.vo.OrderGoodsVo" >
+   <id column="orders_id" property="ordersId" jdbcType="BIGINT" />
+	    <result column="order_type" property="orderType" jdbcType="SMALLINT" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="orders_date" property="ordersDate" jdbcType="TIMESTAMP" />
+	    <result column="deal_num" property="dealNum" jdbcType="VARCHAR" />
+	    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+	    <result column="customs_code" property="customsCode" jdbcType="NUMERIC" />
+	    <result column="insurance" property="insurance" jdbcType="NUMERIC" />
+	    <result column="cost" property="cost" jdbcType="NUMERIC" />
+	    <result column="gathering_account" property="gatheringAccount" jdbcType="VARCHAR" />
+	    <result column="currency" property="currency" jdbcType="BIGINT" />
+	    <result column="message" property="message" jdbcType="VARCHAR" />
+	    <result column="message_state" property="messageState" jdbcType="SMALLINT" />
+	    <result column="reply_content" property="replyContent" jdbcType="VARCHAR" />
+	    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+	    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+	    <result column="phone1" property="phone1" jdbcType="VARCHAR" />
+	    <result column="phone2" property="phone2" jdbcType="VARCHAR" />
+	    <result column="email" property="email" jdbcType="VARCHAR" />
+	    <result column="country" property="country" jdbcType="VARCHAR" />
+	    <result column="province" property="province" jdbcType="VARCHAR" />
+	    <result column="postal_code" property="postalCode" jdbcType="VARCHAR" />
+	    <result column="address" property="address" jdbcType="VARCHAR" />
+	    <result column="spare_address" property="spareAddress" jdbcType="VARCHAR" />
+	    <result column="city" property="city" jdbcType="VARCHAR" />
+	    <result column="cust_logistics" property="custLogistics" jdbcType="VARCHAR" />
+	    <result column="logistics_id" property="logisticsId" jdbcType="BIGINT" />
+	    <result column="bills" property="bills" jdbcType="VARCHAR" />
+	    <result column="interior_bills" property="interiorBills" jdbcType="VARCHAR" />
+	    <result column="fast_picking" property="fastPicking" jdbcType="SMALLINT" />
+	    <result column="antcipated_freight" property="antcipatedFreight" jdbcType="NUMERIC" />
+	    <result column="actual_freight" property="actualFreight" jdbcType="NUMERIC" />
+	    <result column="weight" property="weight" jdbcType="NUMERIC" />
+	    <result column="packing_id" property="packingId" jdbcType="BIGINT" />
+	    <result column="is_print" property="isPrint" jdbcType="SMALLINT" />
+	    <result column="order_state" property="orderState" jdbcType="SMALLINT" />
+	    <result column="state" property="state" jdbcType="SMALLINT" />
+	    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+	    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+	    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+	    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+	    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+	    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+	    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+	    <result column="payment" property="payment" jdbcType="NUMERIC" />
+	    <result column="detail_id" property="detailId" jdbcType="BIGINT" />
+	    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+	    <result column="count" property="count" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="e_name" property="eName" jdbcType="VARCHAR" />
+	    <result column="sale_image" property="saleImage" jdbcType="VARCHAR" />
+	    <result column="storget_image" property="storgetImage" jdbcType="VARCHAR" />
+	    <result column="sku" property="sku" jdbcType="VARCHAR" />
+	    <result column="check_status" property="checkStatus" jdbcType="VARCHAR" />
+	    <result column="wait_count" property="waitCount" jdbcType="INTEGER" />
+	    <result column="weight" property="weight" jdbcType="NUMERIC" />
+	    <result column="pack_name" property="packName" jdbcType="INTEGER" />
+	    <result column="price" property="price" jdbcType="NUMERIC" />
+	    <result column="customs_code" property="whouseId" jdbcType="BIGINT" />
+	    <result column="space_id" property="spaceId" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <select id="findOrderGoods" resultMap="BaseResultMap">
+  	select od.detail_id,od.order_id,od.goods_id,od.count,g.name,g.e_name,g.sale_image,g.storget_image,g.sku,'待验货' as check_status,
+  	od.count as wait_count,od.weight,p.name as pack_name,od.price,od.customs_code,od.space_id
+	from t_erp_orders_detail od
+	inner join t_erp_goods g on od.goods_id = g.goods_id and od.enterprise_id = g.enterprise_id and g.state = 1
+	left join t_erp_goods_packing p on g.packing_id = p.packing_id and p.enterprise_id = g.enterprise_id and p.state = 1
+	where od.order_id = #{orderId,jdbcType=BIGINT} and od.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and od.state = 1
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.sys.dao.TErpSysEnterpriseMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.sys.bean.entity.TErpSysEnterprise" >
+    <id column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="enterprise_code" property="enterpriseCode" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_tel" property="companyTel" jdbcType="VARCHAR" />
+    <result column="company_qq" property="companyQq" jdbcType="VARCHAR" />
+    <result column="company_url" property="companyUrl" jdbcType="VARCHAR" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="contact_mobile" property="contactMobile" jdbcType="VARCHAR" />
+    <result column="contact_tel" property="contactTel" jdbcType="VARCHAR" />
+    <result column="contact_qq" property="contactQq" jdbcType="VARCHAR" />
+    <result column="contact_email" property="contactEmail" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapVo" type="com.samton.erp.api.sys.bean.entity.vo.TErpSysEnterpriseVo" >
+    <id column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="enterprise_code" property="enterpriseCode" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_tel" property="companyTel" jdbcType="VARCHAR" />
+    <result column="company_qq" property="companyQq" jdbcType="VARCHAR" />
+    <result column="company_url" property="companyUrl" jdbcType="VARCHAR" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="contact_mobile" property="contactMobile" jdbcType="VARCHAR" />
+    <result column="contact_tel" property="contactTel" jdbcType="VARCHAR" />
+    <result column="contact_qq" property="contactQq" jdbcType="VARCHAR" />
+    <result column="contact_email" property="contactEmail" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="manager_name" property="managerName" jdbcType="VARCHAR" />
+    <result column="manager_id" property="managerId" jdbcType="BIGINT" />
+    <result column="user_count" property="userCount" jdbcType="INTEGER" />
+    <result column="use_user_count" property="useUserCount" jdbcType="INTEGER" />
+    <result column="registe_account" property="registeAccount" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    enterprise_id, enterprise_code, company_name, company_tel, company_qq, company_url, 
+    postcode, address, legal_person, contact_mobile, contact_tel, contact_qq, contact_email, 
+    state, create_user_id, create_user_name, create_date, modify_user_id, modify_user_name, 
+    modify_date, last_modify_date
+  </sql>
+   <sql id="Base_Column_List_Vo" >
+    sys.enterprise_id, sys.enterprise_code, sys.company_name, sys.company_tel, sys.company_qq, sys.company_url, 
+    sys.postcode, sys.address, sys.legal_person, sys.contact_mobile, sys.contact_tel, sys.contact_qq, sys.contact_email, 
+    sys.state,  sys.create_user_id,  sys.create_user_name,  sys.create_date, sys. modify_user_id,  sys.modify_user_name, 
+    sys.modify_date,  sys.last_modify_date , us.user_name as manager_name, us.user_id as manager_id,us.login_name as registe_account
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sys_enterprise
+    where enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_sys_enterprise
+    where enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysEnterprise" >
+    insert into public.t_erp_sys_enterprise (enterprise_id, enterprise_code, company_name, 
+      company_tel, company_qq, company_url, 
+      postcode, address, legal_person, 
+      contact_mobile, contact_tel, contact_qq, 
+      contact_email, state, create_user_id, 
+      create_user_name, create_date, modify_user_id, 
+      modify_user_name, modify_date, last_modify_date
+      )
+    values (#{enterpriseId,jdbcType=BIGINT}, #{enterpriseCode,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyTel,jdbcType=VARCHAR}, #{companyQq,jdbcType=VARCHAR}, #{companyUrl,jdbcType=VARCHAR}, 
+      #{postcode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, 
+      #{contactMobile,jdbcType=VARCHAR}, #{contactTel,jdbcType=VARCHAR}, #{contactQq,jdbcType=VARCHAR}, 
+      #{contactEmail,jdbcType=VARCHAR}, #{state,jdbcType=SMALLINT}, #{createUserId,jdbcType=BIGINT}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=BIGINT}, 
+      #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysEnterprise"  useGeneratedKeys="true"  keyProperty="enterpriseId" >
+    insert into public.t_erp_sys_enterprise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="enterpriseCode != null" >
+        enterprise_code,
+      </if>
+       <if test="enterpriseCode == null" >
+        enterprise_code,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyTel != null" >
+        company_tel,
+      </if>
+      <if test="companyQq != null" >
+        company_qq,
+      </if>
+      <if test="companyUrl != null" >
+        company_url,
+      </if>
+      <if test="postcode != null" >
+        postcode,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="contactMobile != null" >
+        contact_mobile,
+      </if>
+      <if test="contactTel != null" >
+        contact_tel,
+      </if>
+      <if test="contactQq != null" >
+        contact_qq,
+      </if>
+      <if test="contactEmail != null" >
+        contact_email,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseCode != null" >
+        #{enterpriseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseCode == null" >
+         (9600000 + currval('t_erp_sys_enterprise_seq'::regclass))::character varying,
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null" >
+        #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyQq != null" >
+        #{companyQq,jdbcType=VARCHAR},
+      </if>
+      <if test="companyUrl != null" >
+        #{companyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null" >
+        #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysEnterprise" >
+    update public.t_erp_sys_enterprise
+    <set >
+      <if test="enterpriseCode != null" >
+        enterprise_code = #{enterpriseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null" >
+        company_tel = #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyQq != null" >
+        company_qq = #{companyQq,jdbcType=VARCHAR},
+      </if>
+      <if test="companyUrl != null" >
+        company_url = #{companyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        contact_tel = #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        contact_qq = #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null" >
+        contact_email = #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysEnterprise" >
+    update public.t_erp_sys_enterprise
+    set enterprise_code = #{enterpriseCode,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_tel = #{companyTel,jdbcType=VARCHAR},
+      company_qq = #{companyQq,jdbcType=VARCHAR},
+      company_url = #{companyUrl,jdbcType=VARCHAR},
+      postcode = #{postcode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      contact_tel = #{contactTel,jdbcType=VARCHAR},
+      contact_qq = #{contactQq,jdbcType=VARCHAR},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      state = #{state,jdbcType=SMALLINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByPrimaryKeyVo" resultMap="BaseResultMapVo" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List_Vo" />
+    from public.t_erp_sys_enterprise sys left join platform.t_platform_pm_user us on us.enterprise_id = sys.enterprise_id and us.state > 0 and us.is_manager = 1
+    where sys.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+    and sys.state = 1
+    order by sys.create_date desc
+  </select>
+  
+  <select id="getEnterpriseList" resultMap="BaseResultMapVo" parameterType="com.samton.platform.common.bean.param.JqParamBean" >
+    select 
+    <include refid="Base_Column_List_Vo" />,se.user_count,se.use_user_count 
+    from public.t_erp_sys_enterprise sys 
+    left join platform.t_platform_pm_user us on us.enterprise_id = sys.enterprise_id and us.state > 0 and us.is_manager = 1
+    left join t_erp_sys_enterprise_set se on se.enterprise_id = sys.enterprise_id and se.state = 1
+    <if test= "search.companyName != null and search.companyName != '' "  >
+        where sys.company_name like ( '%'||#{search.companyName,jdbcType=VARCHAR}||'%' )
+    </if>
+    and sys.state = 1
+	order by sys.create_date desc
+  </select>
+  
+</mapper>

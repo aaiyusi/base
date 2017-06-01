@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.warehouse.dao.TErpWarehouseUserMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.warehouse.bean.entity.TErpWarehouseUser" >
+    <id column="wh_user_id" property="whUserId" jdbcType="BIGINT" />
+    <result column="whouse_id" property="whouseId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wh_user_id, whouse_id, user_id, state, enterprise_id, contact_name, contact_phone, 
+    address, create_user_id, create_user_name, create_date, modify_user_id, modify_user_name, 
+    modify_date, last_modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_warehouse_user
+    where wh_user_id = #{whUserId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_warehouse_user
+    where wh_user_id = #{whUserId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpWarehouseUser" >
+    insert into public.t_erp_warehouse_user (wh_user_id, whouse_id, user_id, 
+      state, enterprise_id, contact_name, 
+      contact_phone, address, create_user_id, 
+      create_user_name, create_date, modify_user_id, 
+      modify_user_name, modify_date, last_modify_date
+      )
+    values (#{whUserId,jdbcType=BIGINT}, #{whouseId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{state,jdbcType=SMALLINT}, #{enterpriseId,jdbcType=BIGINT}, #{contactName,jdbcType=VARCHAR}, 
+      #{contactPhone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=BIGINT}, 
+      #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpWarehouseUser" >
+    insert into public.t_erp_warehouse_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="whUserId != null" >
+        wh_user_id,
+      </if>
+      <if test="whouseId != null" >
+        whouse_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="whUserId != null" >
+        #{whUserId,jdbcType=BIGINT},
+      </if>
+      <if test="whouseId != null" >
+        #{whouseId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpWarehouseUser" >
+    update public.t_erp_warehouse_user
+    <set >
+      <if test="whouseId != null" >
+        whouse_id = #{whouseId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where wh_user_id = #{whUserId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpWarehouseUser" >
+    update public.t_erp_warehouse_user
+    set whouse_id = #{whouseId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      state = #{state,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where wh_user_id = #{whUserId,jdbcType=BIGINT}
+  </update>
+  
+  <insert id="batchInsertWareHouse" parameterType="java.util.List">
+	  insert into public.t_erp_warehouse_user (whouse_id, user_id, 
+	      state, enterprise_id, contact_name, 
+	      contact_phone, address, create_user_id, 
+	      create_user_name, create_date, modify_user_id, 
+	      modify_user_name, modify_date, last_modify_date
+	      ) values
+  		<foreach collection="list" item="item" index="index" separator=",">    
+		      (#{item.whouseId,jdbcType=BIGINT}, #{item.userId,jdbcType=BIGINT}, 
+		      #{item.state,jdbcType=SMALLINT}, #{item.enterpriseId,jdbcType=BIGINT}, #{item.contactName,jdbcType=VARCHAR}, 
+		      #{item.contactPhone,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR}, #{item.createUserId,jdbcType=BIGINT}, 
+		      #{item.createUserName,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP}, #{item.modifyUserId,jdbcType=BIGINT}, 
+		      #{item.modifyUserName,jdbcType=VARCHAR}, #{item.modifyDate,jdbcType=TIMESTAMP}, #{item.lastModifyDate,jdbcType=TIMESTAMP}
+		      )
+		</foreach>
+  </insert>
+  
+  <select id="getWareHourseByUser" resultType="java.util.HashMap" >
+	select 
+    a.whouse_id,a.whouse_name,esu.user_id as checked
+    from t_erp_warehouse a
+    left join t_erp_warehouse_user esu on esu.whouse_id = a.whouse_id and esu.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and esu.state = 1 
+    <if test="userId != null">
+		and esu.user_id = #{userId,jdbcType=BIGINT}
+    </if>  
+    <if test="userId == null">
+		and esu.user_id = 0
+    </if>
+    where a.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and a.state = 1
+    order by a.whouse_id asc
+  </select>
+  
+  	<select id="getUserWhouses" resultMap="BaseResultMap" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from t_erp_warehouse_user
+	    where user_id = #{userId,jdbcType=BIGINT} and enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+	</select>
+	
+	<update id="batchUpdateByPrimaryKey" parameterType="com.samton.erp.api.shop.bean.entity.TErpShopUser" >
+		<foreach collection="list" item="item" index="index"  open="" close=""  separator=";">
+	   		 update t_erp_warehouse_user
+		    	<set>
+			      state = #{item.state,jdbcType=SMALLINT},
+			      modify_user_id = #{item.modifyUserId,jdbcType=BIGINT},
+			      modify_user_name = #{item.modifyUserName,jdbcType=VARCHAR},
+			      modify_date = #{item.modifyDate,jdbcType=TIMESTAMP},
+			      last_modify_date = #{item.lastModifyDate,jdbcType=TIMESTAMP}
+			      </set>
+    		 where wh_user_id = #{item.whUserId,jdbcType=BIGINT}
+	    </foreach>
+   </update>
+</mapper>

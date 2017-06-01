@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.packing.dao.TErpGoodsPackingMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.packing.bean.entity.TErpGoodsPacking" >
+    <id column="packing_id" property="packingId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="SMALLINT" />
+    <result column="length" property="length" jdbcType="NUMERIC" />
+    <result column="width" property="width" jdbcType="NUMERIC" />
+    <result column="height" property="height" jdbcType="NUMERIC" />
+    <result column="weight" property="weight" jdbcType="NUMERIC" />
+    <result column="price" property="price" jdbcType="NUMERIC" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap type="com.samton.erp.api.packing.bean.entity.TErpGoodsPackingExpand" extends="BaseResultMap" id="ExpandResultMap">
+  <result column="goods_id" property="goodsId" jdbcType="BIGINT"/> 
+  </resultMap>
+  <sql id="Base_Column_List" >
+    packing_id, name, remark, level, length, width, height, weight, price, state, enterprise_id, 
+    create_user_id, create_user_name, create_date, modify_user_id, modify_user_name, 
+    modify_date, last_modify_date
+  </sql>
+ <select id="selectPackingList" resultMap="ExpandResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean"> 
+   select 
+   <include refid="Base_Column_List"/>
+    from t_erp_goods_packing where state=1
+    and enterprise_id=#{search,jdbcType=BIGINT}
+    order by packing_id desc
+  </select>
+  <select id="selectPackingById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_goods_packing
+    where packing_id = #{packingId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_goods_packing
+    where packing_id = #{packingId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertPackingInfo" parameterType="com.samton.erp.api.packing.bean.entity.TErpGoodsPacking" >
+    insert into public.t_erp_goods_packing ( name, remark, 
+      level, length, width, 
+      height, weight, price, 
+      state, enterprise_id, create_user_id, 
+      create_user_name, create_date 
+      )
+    values ( #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{level,jdbcType=SMALLINT}, #{length,jdbcType=NUMERIC}, #{width,jdbcType=NUMERIC}, 
+      #{height,jdbcType=NUMERIC}, #{weight,jdbcType=NUMERIC}, #{price,jdbcType=NUMERIC}, 
+      #{state,jdbcType=SMALLINT}, #{enterpriseId,jdbcType=BIGINT}, #{createUserId,jdbcType=BIGINT}, 
+      #{createUserName,jdbcType=VARCHAR}, now() 
+      
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.packing.bean.entity.TErpGoodsPacking" >
+    insert into public.t_erp_goods_packing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="packingId != null" >
+        packing_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="length != null" >
+        length,
+      </if>
+      <if test="width != null" >
+        width,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="packingId != null" >
+        #{packingId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=SMALLINT},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=NUMERIC},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=NUMERIC},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=NUMERIC},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=NUMERIC},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.packing.bean.entity.TErpGoodsPacking" >
+    update public.t_erp_goods_packing
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=SMALLINT},
+      </if>
+      <if test="length != null" >
+        length = #{length,jdbcType=NUMERIC},
+      </if>
+      <if test="width != null" >
+        width = #{width,jdbcType=NUMERIC},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=NUMERIC},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=NUMERIC},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where packing_id = #{packingId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPackingInfo" parameterType="com.samton.erp.api.packing.bean.entity.TErpGoodsPacking" >
+    update public.t_erp_goods_packing
+    set name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      level = #{level,jdbcType=SMALLINT},
+      length = #{length,jdbcType=NUMERIC},
+      width = #{width,jdbcType=NUMERIC},
+      height = #{height,jdbcType=NUMERIC},
+      weight = #{weight,jdbcType=NUMERIC},
+      price = #{price,jdbcType=NUMERIC},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = now(),
+      last_modify_date = now()
+    where packing_id = #{packingId,jdbcType=BIGINT}
+  </update>
+  <update id="deletePacking">
+    update public.t_erp_goods_packing set state=0,last_modify_date=now()
+     where packing_id=#{packingId,jdbcType=BIGINT}
+     </update>
+  <select id="getPackingListNoPage" resultMap="BaseResultMap">
+  	select 
+	<include refid="Base_Column_List"/>
+  	from t_erp_goods_packing
+  	where state = 1 and enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  	order by create_date desc
+  </select>
+  <select id="selectGoodsByPId" parameterType="java.lang.Long" resultMap="ExpandResultMap">
+    select  goods_id from public.t_erp_goods where  packing_id=#{packingId,jdbcType=BIGINT} and state=1
+  </select>
+</mapper>

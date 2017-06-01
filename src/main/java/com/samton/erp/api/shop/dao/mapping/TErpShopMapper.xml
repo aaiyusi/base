@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.shop.dao.TErpShopMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.shop.bean.entity.TErpShop" >
+    <id column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="platform_type" property="platformType" jdbcType="INTEGER" />
+    <result column="platform_account" property="platformAccount" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="shop_manager_user_id" property="shopManagerUserId" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="is_use" property="isUse" jdbcType="SMALLINT" />
+    <result column="main_account" property="mainAccount" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="SMALLINT" />
+    <result column="refresh_token_timeout" property="refreshTokenTimeout" jdbcType="VARCHAR" />
+    <result column="resource_owner" property="resourceOwner" jdbcType="VARCHAR" />
+    <result column="refresh_token" property="refreshToken" jdbcType="VARCHAR" />
+    <result column="access_token" property="accessToken" jdbcType="VARCHAR" />
+    <result column="expires_in" property="expiresIn" jdbcType="BIGINT" />
+    <result column="token_create_date" property="tokenCreateDate" jdbcType="TIMESTAMP" />
+    <result column="aliid" property="aliid" jdbcType="VARCHAR" />
+    <result column="merchant_user_id" property="merchantUserId" jdbcType="VARCHAR" />
+    <result column="last_sync_date" property="lastSyncDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapVo" type="com.samton.erp.api.shop.bean.vo.TErpShopVo" >
+    <id column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="platform_type" property="platformType" jdbcType="INTEGER" />
+    <result column="platform_account" property="platformAccount" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="shop_manager_user_id" property="shopManagerUserId" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="is_use" property="isUse" jdbcType="SMALLINT" />
+    <result column="main_account" property="mainAccount" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="SMALLINT" />
+    <result column="shop_manager_user_name" property="shopManagerUserName" jdbcType="VARCHAR" />
+    <result column="refresh_token_timeout" property="refreshTokenTimeout" jdbcType="VARCHAR" />
+    <result column="resource_owner" property="resourceOwner" jdbcType="VARCHAR" />
+    <result column="refresh_token" property="refreshToken" jdbcType="VARCHAR" />
+    <result column="access_token" property="accessToken" jdbcType="VARCHAR" />
+    <result column="expires_in" property="expiresIn" jdbcType="BIGINT" />
+    <result column="token_create_date" property="tokenCreateDate" jdbcType="TIMESTAMP" />
+    <result column="aliid" property="aliid" jdbcType="VARCHAR" />
+    <result column="merchant_user_id" property="merchantUserId" jdbcType="VARCHAR" />
+    <result column="last_sync_date" property="lastSyncDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    shop_id, shop_name, platform_type, platform_account, token, shop_manager_user_id, 
+    state, enterprise_id, create_user_id, create_user_name, create_date, modify_user_id, 
+    modify_user_name, modify_date, last_modify_date,is_use,main_account,account_type,
+    refresh_token_timeout,resource_owner,refresh_token,access_token,expires_in,token_create_date,aliid,merchant_user_id,last_sync_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_shop
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_shop
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.shop.bean.entity.TErpShop" >
+    insert into public.t_erp_shop (shop_id, shop_name, platform_type, 
+      platform_account, token, shop_manager_user_id, 
+      state, enterprise_id, create_user_id, 
+      create_user_name, create_date, modify_user_id, 
+      modify_user_name, modify_date, last_modify_date,is_use,main_account,account_type,last_sync_date
+      )
+    values (#{shopId,jdbcType=BIGINT}, #{shopName,jdbcType=VARCHAR}, #{platformType,jdbcType=VARCHAR}, 
+      #{platformAccount,jdbcType=SMALLINT}, #{token,jdbcType=VARCHAR}, #{shopManagerUserId,jdbcType=BIGINT}, 
+      #{state,jdbcType=SMALLINT}, #{enterpriseId,jdbcType=BIGINT}, #{createUserId,jdbcType=BIGINT}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=BIGINT}, 
+      #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP},#{isUse,jdbcType=SMALLINT},
+      #{mainAccount,jdbcType=VARCHAR},#{accountType,jdbcType=SMALLINT}, #{lastSyncDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.shop.bean.entity.TErpShop" useGeneratedKeys="true" keyProperty="shopId" >
+    insert into public.t_erp_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="platformType != null" >
+        platform_type,
+      </if>
+      <if test="platformAccount != null" >
+        platform_account,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="shopManagerUserId != null" >
+        shop_manager_user_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+      <if test="isUse != null" >
+        is_use,
+      </if>
+      <if test="mainAccount != null" >
+        main_account,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="lastSyncDate != null" >
+        last_sync_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="platformAccount != null" >
+        #{platformAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="shopManagerUserId != null" >
+        #{shopManagerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=SMALLINT},
+      </if>
+      <if test="mainAccount != null" >
+       #{mainAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+       #{accountType,jdbcType=SMALLINT},
+      </if>
+      <if test="lastSyncDate != null" >
+         #{lastSyncDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.shop.bean.entity.TErpShop" >
+    update public.t_erp_shop
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="platformType != null" >
+        platform_type = #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="platformAccount != null" >
+        platform_account = #{platformAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="shopManagerUserId != null" >
+        shop_manager_user_id = #{shopManagerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUse != null" >
+        is_use = #{isUse,jdbcType=SMALLINT},
+      </if>
+       <if test="mainAccount != null" >
+        main_account = #{mainAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=SMALLINT},
+      </if>
+      
+      <if test="refreshTokenTimeout != null" >
+        refresh_token_timeout = #{refreshTokenTimeout,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceOwner != null" >
+        resource_owner = #{resourceOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshToken != null" >
+        refresh_token = #{refreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="accessToken != null" >
+        access_token = #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="expiresIn != null" >
+        expires_in = #{expiresIn,jdbcType=BIGINT},
+      </if>
+      <if test="tokenCreateDate != null" >
+        token_create_date = #{tokenCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aliid != null" >
+        aliid = #{aliid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUserId != null" >
+        merchant_user_id = #{merchantUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSyncDate != null" >
+        last_sync_date = #{lastSyncDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.shop.bean.entity.TErpShop" >
+    update public.t_erp_shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      platform_type = #{platformType,jdbcType=INTEGER},
+      platform_account = #{platformAccount,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      shop_manager_user_id = #{shopManagerUserId,jdbcType=BIGINT},
+      state = #{state,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      is_use = #{isUse,jdbcType=SMALLINT},
+      main_account = #{mainAccount,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=SMALLINT},
+      last_sync_date = #{lastSyncDate,jdbcType=TIMESTAMP}
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getAllShopsByEnterpriseId" resultType="java.util.HashMap">
+  	select a.shop_id,a.platform_type,a.platform_account,a.token,a.shop_manager_user_id,a.is_use,case when a.is_use = 1 then a.shop_name else a.shop_name || '(停)' end as shop_name
+	from t_erp_shop a
+	<if test="isAdmin == 0 and isManager == 0">
+		inner join t_erp_shop_user b on a.shop_id = b.shop_id and a.enterprise_id = b.enterprise_id and b.user_id = #{userId,jdbcType=BIGINT} and b.state = 1
+	</if>
+	where a.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+	 <if test="isUse != null" >
+        and a.is_use = #{isUse,jdbcType=SMALLINT}
+      </if>
+      <if test="platformType != null">
+      	and a.platform_type = #{platformType,jdbcType=INTEGER}
+      </if>
+	order by a.platform_type desc,a.create_date desc
+  </select>
+  
+  <select id="getShopList" resultMap="BaseResultMapVo" parameterType="com.samton.platform.common.bean.param.JqParamBean" >
+    select 
+    sh.shop_id, sh.shop_name, sh.platform_type, sh.platform_account, sh.token, sh.shop_manager_user_id, 
+    sh.state, sh.enterprise_id, sh.create_user_id, sh.create_user_name, sh.create_date, sh.modify_user_id, 
+    sh.modify_user_name,sh. modify_date, sh.last_modify_date,sh.is_use,sh.main_account,sh.account_type,us.user_name as shop_manager_user_name
+    from public.t_erp_shop sh left join platform.t_platform_pm_user us on us.user_id = sh.shop_manager_user_id and sh.enterprise_id = us.enterprise_id
+    where sh.enterprise_id =  #{enterpriseId,jdbcType=BIGINT}
+    <if test= "search.shopName != null and search.shopName != '' "  >
+        and sh.shop_name like ( '%'||#{search.shopName,jdbcType=VARCHAR}||'%' )
+    </if>
+	order by create_date desc
+  </select>
+  
+  <select id="getShopByShopName" resultMap="BaseResultMapVo">
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_shop
+    where enterprise_id =  #{enterpriseId,jdbcType=BIGINT}
+    and shop_name  =  #{shopName,jdbcType=VARCHAR}
+    limit 1
+  </select>
+  
+  <select id="getShopByPlatformAccount" resultMap="BaseResultMapVo">
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_shop
+    where enterprise_id =  #{enterpriseId,jdbcType=BIGINT}
+    and platform_account  =  #{platformAccount,jdbcType=VARCHAR}
+    <if test="platformType != null " >
+         and platform_type = #{platformType,jdbcType=INTEGER} 
+    </if>
+    limit 1
+  </select>
+  
+  <select id="getShopById" resultMap="BaseResultMapVo">
+    select 
+    sh.shop_id, sh.shop_name, sh.platform_type, sh.platform_account, sh.token, sh.shop_manager_user_id, 
+    sh.state, sh.enterprise_id, sh.create_user_id, sh.create_user_name, sh.create_date, sh.modify_user_id, 
+    sh.refresh_token_timeout,sh.resource_owner,sh.refresh_token,sh.access_token,sh.expires_in,sh.token_create_date,sh.aliid,sh.merchant_user_id,
+    sh.modify_user_name,sh.modify_date, sh.last_modify_date,sh.is_use,sh.main_account,sh.account_type,us.user_name as shop_manager_user_name
+    from public.t_erp_shop sh left join platform.t_platform_pm_user us on us.user_id = sh.shop_manager_user_id and sh.enterprise_id = us.enterprise_id
+    where sh.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+    and sh.shop_id  =  #{shopId,jdbcType=BIGINT}
+  </select>
+  
+   <select id="getShopByResourceOwnerId" resultMap="BaseResultMapVo">
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_shop
+    where platform_type = #{platformType,jdbcType=INTEGER}
+    and is_use = 1 
+    <if test="platformType == 1" >
+        and aliid  = #{resourceOwnerId,jdbcType=VARCHAR}
+    </if>
+    <if test="platformType == 2" >
+        and merchant_user_id  = #{resourceOwnerId,jdbcType=VARCHAR}
+    </if>
+    <if test="enterpriseId != null" >
+        and enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+    </if>
+    limit 1;
+  </select>
+  
+  <select id="getAllAuthShopList" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_shop
+    where state = 1 and platform_type != 0 and is_use = 1
+    <if test="enterpriseId != null and enterpriseId != 0">
+    	and enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+    </if>
+  </select>
+  
+  <select id="queryShopListById" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_shop
+    where shop_id in
+    <foreach item="idItem" collection="idList" open="(" separator="," close=")"> 
+		#{idItem}
+	</foreach>
+  </select>
+</mapper>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.orders.dao.TErpSyncMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.orders.bean.entity.TErpSync" >
+    <id column="sync_id" property="syncId" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="sync_date" property="syncDate" jdbcType="TIMESTAMP" />
+    <result column="data" property="data" jdbcType="VARCHAR" />
+    <result column="data_type" property="dataType" jdbcType="SMALLINT" />
+    <result column="platform_type" property="platformType" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="sync_state" property="syncState" jdbcType="SMALLINT" />
+    <result column="data_id" property="dataId" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sync_id, shop_id, sync_date, data, data_type, platform_type, enterprise_id, sync_state, 
+    data_id, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sync
+    where sync_id = #{syncId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_sync
+    where sync_id = #{syncId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.orders.bean.entity.TErpSync" >
+    insert into public.t_erp_sync (sync_id, shop_id, sync_date, 
+      data, data_type, platform_type, 
+      enterprise_id, sync_state, data_id, 
+      create_date)
+    values (#{syncId,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT}, #{syncDate,jdbcType=TIMESTAMP}, 
+      #{data,jdbcType=VARCHAR}, #{dataType,jdbcType=SMALLINT}, #{platformType,jdbcType=SMALLINT}, 
+      #{enterpriseId,jdbcType=BIGINT}, #{syncState,jdbcType=SMALLINT}, #{dataId,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.orders.bean.entity.TErpSync" >
+    insert into public.t_erp_sync
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="syncId != null" >
+        sync_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="syncDate != null" >
+        sync_date,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+      <if test="platformType != null" >
+        platform_type,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="syncState != null" >
+        sync_state,
+      </if>
+      <if test="dataId != null" >
+        data_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="syncId != null" >
+        #{syncId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="syncDate != null" >
+        #{syncDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=SMALLINT},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="syncState != null" >
+        #{syncState,jdbcType=SMALLINT},
+      </if>
+      <if test="dataId != null" >
+        #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.orders.bean.entity.TErpSync" >
+    update public.t_erp_sync
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="syncDate != null" >
+        sync_date = #{syncDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=SMALLINT},
+      </if>
+      <if test="platformType != null" >
+        platform_type = #{platformType,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="syncState != null" >
+        sync_state = #{syncState,jdbcType=SMALLINT},
+      </if>
+      <if test="dataId != null" >
+        data_id = #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sync_id = #{syncId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.orders.bean.entity.TErpSync" >
+    update public.t_erp_sync
+    set shop_id = #{shopId,jdbcType=BIGINT},
+      sync_date = #{syncDate,jdbcType=TIMESTAMP},
+      data = #{data,jdbcType=VARCHAR},
+      data_type = #{dataType,jdbcType=SMALLINT},
+      platform_type = #{platformType,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      sync_state = #{syncState,jdbcType=SMALLINT},
+      data_id = #{dataId,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where sync_id = #{syncId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="querySyncInfoByPlatformType" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sync
+    where shop_id = #{shopId,jdbcType=BIGINT} and platform_type = #{platformType,jdbcType=SMALLINT} and data_type = #{dataType,jdbcType=SMALLINT} and enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+    order by sync_date desc limit 1
+  </select>
+  
+  <select id="querySyncExistByDataId" resultType="java.lang.Integer">
+  	select count(1)
+  	from public.t_erp_sync 
+  	where data_id = #{dataId,jdbcType=VARCHAR} and platform_type = #{platformType,jdbcType=SMALLINT} and data_type = #{dataType,jdbcType=SMALLINT} and shop_id = #{shopId,jdbcType=BIGINT} and enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+  </select>
+  
+  <select id="dataTransSync" resultType="java.lang.Integer">
+  		select * from f_thrid_data_trans_platform()
+  </select>
+  
+  <select id="statDataCountSync" resultType="java.lang.Integer">
+  		select * from f_stat_data_trans_count()
+  </select>
+</mapper>

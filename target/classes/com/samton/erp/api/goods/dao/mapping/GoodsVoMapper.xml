@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.goods.dao.GoodsVoMapper">
+	<resultMap id="BaseResultMap" type="com.samton.erp.api.goods.bean.vo.GoodsVo">
+		<id column="goods_id" property="goodsId" jdbcType="BIGINT" />
+		<result column="sku" property="sku" jdbcType="VARCHAR" />
+		<result column="original_sku" property="originalSku" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="e_name" property="eName" jdbcType="VARCHAR" />
+		<result column="catalogi_id" property="catalogiId" jdbcType="BIGINT" />
+		<result column="sale_state" property="saleState" jdbcType="SMALLINT" />
+		<result column="inventory_count" property="inventoryCount" jdbcType="INTEGER" />
+		<result column="declare_e_name" property="declareEName" jdbcType="VARCHAR" />
+		<result column="declare_name" property="declareName" jdbcType="VARCHAR" />
+		<result column="have_battery" property="haveBattery" jdbcType="SMALLINT" />
+		<result column="infringement" property="infringement" jdbcType="SMALLINT" />
+		<result column="weight" property="weight" jdbcType="NUMERIC" />
+		<result column="sale_image" property="saleImage" jdbcType="VARCHAR" />
+		<result column="storget_image" property="storgetImage" jdbcType="VARCHAR" />
+		<result column="virtual_sku" property="virtualSku" jdbcType="VARCHAR" />
+		<result column="g_length" property="gLength" jdbcType="NUMERIC" />
+		<result column="g_width" property="gWidth" jdbcType="NUMERIC" />
+		<result column="g_height" property="gHeight" jdbcType="NUMERIC" />
+		<result column="volume" property="volume" jdbcType="NUMERIC" />
+		<result column="cost" property="cost" jdbcType="NUMERIC" />
+		<result column="pack_count" property="packCount" jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="NUMERIC" />
+		<result column="volume_weight" property="volumeWeight" jdbcType="NUMERIC" />
+		<result column="saler_user_id" property="salerUserId" jdbcType="BIGINT" />
+		<result column="packing_id" property="packingId" jdbcType="BIGINT" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="SMALLINT" />
+		<result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+		<result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+		<result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+		<result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+		<result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+		<result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+		<result column="not_deliver_count" property="notDeliverCount" jdbcType="INTEGER" />
+		<result column="deliver_count" property="deliverCount" jdbcType="INTEGER" />
+		<result column="catalogi_name" property="catalogiName" jdbcType="VARCHAR" />
+		<result column="p_catalogi_id" property="pCatalogiId" jdbcType="BIGINT" />
+		<result column="haveBatteryName" property="haveBatteryName" jdbcType="VARCHAR" />
+		<result column="infringementName" property="infringementName" jdbcType="VARCHAR" />
+		<result column="packName" property="packName" jdbcType="VARCHAR" />
+		<result column="salerUserName" property="salerUserName" jdbcType="VARCHAR" />
+		<result column="saleStateName" property="saleStateName" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="SkuVoRM"  type="com.samton.erp.api.goods.bean.vo.SkuVo" >
+		<result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+		<result column="sku" property="sku" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="whouse_name" property="whouseName" jdbcType="VARCHAR" />
+		<result column="space_code" property="spaceCode" jdbcType="VARCHAR" />
+		<result column="inventory_count" property="inventoryCount" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="historyRM"  type="com.samton.erp.api.goods.bean.vo.GoodsHistory" >
+		<result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+		<result column="count" property="count" jdbcType="INTEGER" />
+    	<result column="price" property="price" jdbcType="NUMERIC" />
+	    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+	    <result column="order_state" property="orderState" jdbcType="SMALLINT" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	
+	<select id="queryGoodsList" resultMap="BaseResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+		SELECT 
+		g.goods_id, g.sku, g.original_sku, g.name, g.e_name, g.catalogi_id,
+		g.sale_state, g.inventory_count, g.declare_e_name, g.declare_name, g.have_battery,
+		g.infringement, g.weight, g.sale_image, g.storget_image,
+		g.virtual_sku, g.g_length, g.g_width, g.g_height, g.volume, g.cost, g.pack_count, g.price,
+		g.volume_weight, g.saler_user_id, g.packing_id, g.remark, g.state, g.enterprise_id,
+		g.create_user_id, g.create_user_name, g.create_date, g.modify_user_id, g.modify_user_name, g.modify_date, g.last_modify_date,
+		g.not_deliver_count, g.deliver_count, gc.name AS catalogi_name, gc.p_catalogi_id,
+		CASE g.have_battery WHEN 1 THEN '是' ELSE '否' END haveBatteryName,
+		CASE g.infringement WHEN 1 THEN '是' ELSE '否' END infringementName,
+		CASE g.sale_state WHEN 1 THEN '自动创建' WHEN 2 THEN '等待开发' WHEN 3 THEN '正在销售' WHEN 4 THEN '商品清仓' ELSE '停止销售' END saleStateName,
+		gp.name packName,
+		pu.user_name salerUserName
+		FROM t_erp_goods AS g
+		LEFT JOIN t_erp_goods_catalog gc ON gc.catalogi_id = g.catalogi_id AND gc.state != 0
+		LEFT JOIN t_erp_goods_packing gp ON gp.packing_id = g.packing_id
+		LEFT JOIN platform.t_platform_pm_user pu ON pu.user_id = g.saler_user_id
+		WHERE g.state != 0
+		<!-- AND g.enterprise_id = #{search.enterpriseId,jdbcType=BIGINT} -->
+		<!-- AND g.create_user_id = #{search.createUserId,jdbcType=BIGINT} -->
+		<if test="search.sku != null and search.sku != ''">
+			AND upper(g.sku) like upper('%'||#{search.sku,jdbcType=VARCHAR}||'%')
+		</if>
+		<if test="search.name != null and search.name != ''">
+			AND upper(g.name) like upper('%'||#{search.name,jdbcType=VARCHAR}||'%')
+		</if>
+	</select>
+	<select id="getGoodsVoById" resultMap="BaseResultMap">
+		SELECT 
+		g.goods_id, g.sku, g.original_sku, g.name, g.e_name, g.catalogi_id,
+		g.sale_state, g.inventory_count, g.declare_e_name, g.declare_name, g.have_battery,
+		g.infringement, g.weight, g.sale_image, g.storget_image,g.remark,
+		g.virtual_sku, g.g_length, g.g_width, g.g_height, g.volume, g.cost, g.pack_count, g.price,
+		g.volume_weight, g.saler_user_id, g.packing_id, g.remark, g.state, g.enterprise_id,
+		g.create_user_id, g.create_user_name, g.create_date, g.modify_user_id, g.modify_user_name, g.modify_date, g.last_modify_date,
+		g.not_deliver_count, g.deliver_count, gc.name AS catalogi_name, gc.p_catalogi_id
+		FROM t_erp_goods AS g
+		LEFT JOIN t_erp_goods_catalog gc ON gc.catalogi_id = g.catalogi_id AND gc.state != 0
+		WHERE g.state != 0
+		AND g.goods_id = #{goodsId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="getSkuListByShelfId" resultMap="SkuVoRM">
+		select g.goods_id,g.sku,g.name,w.whouse_name,s.space_code,gs.inventory_count
+		from
+		t_erp_goods g,t_erp_goods_storage gs,t_erp_warehouse w,t_erp_space s
+		where w.whouse_id=gs.whouse_id
+		and gs.space_id=s.space_id
+		and gs.goods_id=g.goods_id
+		and g.state>0 and gs.state>0 and w.state>0 and s.state>0
+		and s.shelf_id=#{search.shelfId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="getGoodsHistorysByGoodsId" resultMap="historyRM">
+		SELECT o.name as order_num, od.count, od.price, o.customer_name, o.order_state, o.create_date
+		FROM public.t_erp_orders_detail od
+		LEFT join public.t_erp_orders o ON o.orders_id = od.order_id
+		WHERE od.goods_id = #{search.goodsId,jdbcType=BIGINT}
+		AND od.state > 0
+		ORDER BY o.create_date desc
+	</select>
+	
+</mapper>

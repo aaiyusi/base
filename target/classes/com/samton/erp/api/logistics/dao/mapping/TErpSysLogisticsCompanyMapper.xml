@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.samton.erp.api.logistics.dao.TErpSysLogisticsCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.logistics.bean.entity.TErpSysLogisticsCompany">
+    <id column="sys_logistics_id" jdbcType="BIGINT" property="sysLogisticsId" />
+    <result column="e_code" jdbcType="VARCHAR" property="eCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="state" jdbcType="SMALLINT" property="state" />
+    <result column="enterprise_id" jdbcType="BIGINT" property="enterpriseId" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_user_name" jdbcType="VARCHAR" property="modifyUserName" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="last_modify_date" jdbcType="TIMESTAMP" property="lastModifyDate" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
+    <result column="is_auth" jdbcType="SMALLINT" property="isAuth" />
+    <result column="auth_date" jdbcType="TIMESTAMP" property="authDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_logistics_id, e_code, name, state, enterprise_id, create_user_id, create_user_name, 
+    create_date, modify_user_id, modify_user_name, modify_date, last_modify_date, type,is_auth,auth_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sys_logistics_company
+    where sys_logistics_id = #{sysLogisticsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from public.t_erp_sys_logistics_company
+    where sys_logistics_id = #{sysLogisticsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.logistics.bean.entity.TErpSysLogisticsCompany">
+    insert into public.t_erp_sys_logistics_company (sys_logistics_id, e_code, name, 
+      state, enterprise_id, create_user_id, 
+      create_user_name, create_date, modify_user_id, 
+      modify_user_name, modify_date, last_modify_date, is_auth,auth_date
+      type)
+    values (#{sysLogisticsId,jdbcType=BIGINT}, #{eCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{state,jdbcType=SMALLINT}, #{enterpriseId,jdbcType=BIGINT}, #{createUserId,jdbcType=BIGINT}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=BIGINT}, 
+      #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=SMALLINT}),#{authDate,jdbcType=TIMESTAMP}, 
+      #{isAuth,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.logistics.bean.entity.TErpSysLogisticsCompany" useGeneratedKeys="true" keyProperty="sysLogisticsId">
+    insert into public.t_erp_sys_logistics_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysLogisticsId != null">
+        sys_logistics_id,
+      </if>
+      <if test="eCode != null">
+        e_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="enterpriseId != null">
+        enterprise_id,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null">
+        last_modify_date,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="isAuth != null">
+      is_auth
+      </if>
+      <if test="authDate != null">
+      auth_date
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysLogisticsId != null">
+        #{sysLogisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="eCode != null">
+        #{eCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null">
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null">
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null">
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=SMALLINT},
+      </if>
+       <if test="isAuth != null">
+        #{isAuth,jdbcType=SMALLINT},
+      </if>
+      <if test="authDate != null">
+        #{authDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.logistics.bean.entity.TErpSysLogisticsCompany">
+    update public.t_erp_sys_logistics_company
+    <set>
+      <if test="eCode != null">
+        e_code = #{eCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null">
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null">
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="isAuth != null">
+      is_auth = #{isAuth,jdbcType=SMALLINT},
+      </if>
+      <if test="authDate != null">
+      auth_date = #{authDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sys_logistics_id = #{sysLogisticsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.logistics.bean.entity.TErpSysLogisticsCompany">
+    update public.t_erp_sys_logistics_company
+    set e_code = #{eCode,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      state = #{state,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=SMALLINT},
+      isAuth =  #{isAuth,jdbcType=SMALLINT},
+      authDate =  #{authDate,jdbcType=TIMESTAMP}
+    where sys_logistics_id = #{sysLogisticsId,jdbcType=BIGINT}
+  </update>
+   <!-- 物流渠道自定义分页 -->
+    	<select id="queryLogisticsCompanyRecord" parameterType="com.samton.platform.common.bean.param.JqParamBean" resultType="java.util.HashMap">
+		select     sys_logistics_id, e_code, name, state, enterprise_id, create_user_id, create_user_name, 
+    to_char(create_date,'YYYY-MM-DD HH24:MI:SS') as create_date, modify_user_id, modify_user_name, modify_date, last_modify_date, type,is_auth,auth_date
+		from public.t_erp_sys_logistics_company
+	where state >0 and type = #{search.type,jdbcType=SMALLINT} and  enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+ 	<if test="search != null">
+		  <if test="search.name != null and search.name != ''">
+	        and name   like '%'||#{search.name,jdbcType=VARCHAR}||'%'
+	     </if>
+	</if> 
+	order by last_modify_date desc
+	</select>
+	
+		<select id="queryByNameSysId" resultType="com.samton.erp.api.logistics.bean.entity.TErpSysLogisticsCompany" parameterType="com.samton.erp.api.logistics.bean.entity.TErpSysLogisticsCompany">
+		select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sys_logistics_company
+    where state = 1 and enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+    and name =  #{name,jdbcType=VARCHAR}  limit 1
+	</select>
+</mapper>

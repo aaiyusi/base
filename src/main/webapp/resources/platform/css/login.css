@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+/*重置样式*/
+*{ box-sizing:border-box;}
+body{font:12px "微软雅黑",tahoma,verdana,Arial; color:#4c4d4d; background: url(../images/bg.jpg) no-repeat center top;}
+body,div,p,span,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,pre,form,tr,td,th,table{border:0px; padding:0px; margin:0px;}
+img,a img{margin:0px; padding:0px; border:0px; font-size: 0px; line-height: 0px;} 
+h1,h2,h3,h4,h5,h6{font-size:12px; font-weight:normal;}
+ul,li,ol,dt,dl,dd{ list-style:none;}
+address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
+table{border-collapse:collapse;border-spacing:0;}
+label,input,textarea,select,button{margin:0px; padding:0px; vertical-align:middle;}
+input,button,select,img{line-height:normal;}
+a{ color:#4c4d4d;text-decoration:none; outline: none; cursor:pointer;}
+a:hover{ color:#e76f12; text-decoration:none; }
+a:active{ outline: none; star:expression(this.onFocus=this.blur());}
+
+/* 通用样式 */
+.hr-2,.hr-3,.hr-4,.hr-5,.hr-6,.hr-7,.hr-8,.hr-9,.hr-10,.hr-11,.hr-12,.hr-13,.hr-14,.hr-15,.hr-16,.hr-17,.hr-18,.hr-19,.hr-20,.hr-30,.hr-24{clear:both; overflow:hidden; font-size:0px; line-height:0px;}
+.hr-2{height:2px;}.hr-3{height:3px;}.hr-4{height:4px;}.hr-5{height:5px;}.hr-6{height:6px;}.hr-7{height:7px;}.hr-8{height:8px;}.hr-9{height:9px;}.hr-10{height:10px;}.hr-11{height:11px;}.hr-12{height:12px;}.hr-13{ height:13px;}.hr-14{ height:14px;}.hr-15{ height:15px;}.hr-16{ height:16px;}.hr-17{ height:17px;}.hr-18{ height:18px;}.hr-19{ height:19px;}.hr-20{ height:20px;}.hr-21{ height:21px;}.hr-22{ height:22px;}.hr-23{ height:23px;}.hr-24{ height:24px;}.hr-30{ height:30px;}.hr-31{ height:31px;}
+.fl{float:left;display:inline;}.fr{float:right;display:inline;}
+.layout{ width:1000px; margin:0px auto; clear:both;}
+.header{ background: url(../images/header.png) repeat-x; height:87px;}
+.logo{ width:946px; margin:0 auto; padding-top:14px;}
+/*登陆框*/
+.login_box{ position:absolute; left:50%; top:50%; margin-left:-195px; margin-top:-156px; width:391px; height:313px; background: url(../images/login_cen_bg.png) repeat; -moz-box-shadow:0 1px 5px 0px rgba(0,0,0,0.3); -webkitbox-shadow:0 1px 5px 0px rgba(0,0,0,0.3); box-shadow:0 1px 5px 0px rgba(0,0,0,0.3);}
+.login_title{ height:57px; border-top: 1px solid #2bd0f8; background: -webkit-linear-gradient(#1caff5, #0073cc);
+  background: -moz-linear-gradient(#1caff5, #0073cc); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#1caff5, #0073cc); /* 标准的语法 */}
+.login_title h2{height:30px; margin-top:13px; margin-left: 27px; background: url(../images/title.png) no-repeat; text-indent: 999px; white-space: nowrap; overflow: hidden;}
+.login_center{ position: relative; width: 315px; margin: 0 auto; padding:10px 0;}
+.login_con{ height:41px; border:1px solid #b3b3b3; border-radius:3px; margin-top:26px; background:#fff;-mozbox-shadow:0 0px 0px 5px rgba(255,255,255,.5); -webkit-box-shadow:0 0px 0px 5px rgba(255,255,255,.5); box-shadow:0 0 0 5px rgba(255,255,255,.5);}
+.login_con span{ display:inline-block; float:right; width:39px; height:39px; background-color: #eaeaea; text-align:center;}
+.login_con i{ display:inline-block; width:15px; height:15px;/*  background:url(../images/login_icon.png) no-repeat; */ margin-top:14px; vertical-align:top;}
+.login_con i.user_icon,.login_con.focus i.user_icon{ background-position:0px 0px;}
+.login_con i.password_icon,.login_con.focus i.password_icon{ background-position:0px -65px;}
+.login_con .text{ width:274px; height:38px; line-height:28px; padding:5px 8px; border:0px none; vertical-align:top; outline:none; font-family:"微软雅黑"; font-size:14px;}
+.login_con.focus{ border:1px solid #2593e2; -mozbox-shadow:0 0px 0px 5px rgb(224,240,249); -webkit-box-shadow:0 0px 0px 5px rgb(224,240,249); box-shadow:0 0px 0px 5px rgb(224,240,249);}
+.login_con.focus span{ background-color:#d0edff;}
+.login_con.focus i{ background-color:#d0edff; background:url(../images/login_icon_hover.png) no-repeat;}
+.login_footer{ position:absolute; width: 100%; bottom:0; background:#f0f5f8; border-top:1px solid #e3e3e3; padding:15px 34px; color:#919191;}
+.login_footer .forget{ margin-left: 15px;}
+.login_footer label{ display:inline-block; margin-top:15px; cursor: pointer;}
+.login_footer .login_btn{ float: right; /* background: url(../images/login_btn.png) no-repeat;  */width:123px; height:47px; border:none; cursor: pointer; outline: none; color:#fff; font-size:16px; text-shadow: 1px 1px 0 #16699c; font-weight: bold;}
+/* 多选框 */
+.login_footer .checkbox{ height:14px; line-height:14px; background:url(../images/input_ico.png) no-repeat 0px -14px; cursor:pointer;}
+.login_footer .checkbox em{ padding-left:20px;}
+.login_footer .checkbox:hover{ background-position:0px -28px;}
+.login_footer .checked{ background-position:0px 0px;}
+.login_footer .checkbox.checked{background: url(../images/input_ico.png) no-repeat 0px 0px;}
+.login_footer .checked:hover{ background-position:0px -42px;}
+
+.footer{position:fixed; width: 100%; bottom:0; background: url(../images/footer_bg.png) repeat;}
+.footer p{ text-align: center; padding: 24px 0;}

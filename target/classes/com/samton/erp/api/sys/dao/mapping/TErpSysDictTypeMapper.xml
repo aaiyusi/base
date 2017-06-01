@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.sys.dao.TErpSysDictTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.sys.bean.entity.TErpSysDictType" >
+    <id column="dict_type_id" property="dictTypeId" jdbcType="BIGINT" />
+    <result column="type_code" property="typeCode" jdbcType="VARCHAR" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dict_type_id, type_code, type_name, enterprise_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sys_dict_type
+    where dict_type_id = #{dictTypeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_sys_dict_type
+    where dict_type_id = #{dictTypeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysDictType" >
+    insert into public.t_erp_sys_dict_type (dict_type_id, type_code, type_name, 
+      enterprise_id)
+    values (#{dictTypeId,jdbcType=BIGINT}, #{typeCode,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
+      #{enterpriseId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysDictType" >
+    insert into public.t_erp_sys_dict_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictTypeId != null" >
+        dict_type_id,
+      </if>
+      <if test="typeCode != null" >
+        type_code,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictTypeId != null" >
+        #{dictTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="typeCode != null" >
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysDictType" >
+    update public.t_erp_sys_dict_type
+    <set >
+      <if test="typeCode != null" >
+        type_code = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where dict_type_id = #{dictTypeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysDictType" >
+    update public.t_erp_sys_dict_type
+    set type_code = #{typeCode,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+    where dict_type_id = #{dictTypeId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.statistics.dao.StatiscsMapper" >
+     
+  <resultMap id="ChartVoMap" type="com.samton.erp.api.statistics.bean.vo.ChartVo" >
+    <result column="x_line" property="xLine" jdbcType="VARCHAR" />
+    <result column="dict_name" property="dictName" jdbcType="VARCHAR" />
+    <result column="order_count" property="orderCount" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <select id="getChartDataOrdersByDay" resultMap="ChartVoMap">
+   	select * from f_rpt_order_day(#{stat.enterpriseId,jdbcType=BIGINT},'${stat.startTime}','${stat.endTime}')
+  </select>
+  
+  <select id="getChartDataChannelPerformance" resultType="java.util.HashMap">
+   	select * from f_rpt_chanel_performance(#{stat.enterpriseId,jdbcType=BIGINT},'${stat.startTime}','${stat.endTime}')
+  </select>
+  
+  <select id="getOrderManagementStatis" resultType="java.util.HashMap">
+   	select * from f_rpt_order_managemen(#{stat.enterpriseId,jdbcType=BIGINT},'${stat.startTime}','${stat.endTime}')
+  </select>
+  
+</mapper>

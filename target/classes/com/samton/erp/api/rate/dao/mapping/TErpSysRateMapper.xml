@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.rate.dao.TErpSysRateMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.rate.bean.entity.TErpSysRate" >
+    <id column="rate_id" property="rateId" jdbcType="BIGINT" />
+    <result column="currency_code" property="currencyCode" jdbcType="VARCHAR" />
+    <result column="currency_name" property="currencyName" jdbcType="VARCHAR" />
+    <result column="standard_rate" property="standardRate" jdbcType="NUMERIC" />
+    <result column="proportion" property="proportion" jdbcType="NUMERIC" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap type="com.samton.erp.api.rate.bean.entity.TErpSysEnterpriseRate" id="EnterpriseResultMap">
+    <id column="e_rate_id" property="eRateId" jdbcType="BIGINT" />
+    <result column="rate_id" property="rateId" jdbcType="BIGINT"/> 
+    <result column="proportion" property="proportion" jdbcType="NUMERIC" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rate_id, currency_code, currency_name, standard_rate, proportion, state, create_user_id, 
+    create_user_name, create_date, modify_user_id, modify_user_name, modify_date, last_modify_date
+  </sql>
+  <select id="selectSysRateList" resultMap="BaseResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+ select * from ( select
+ a.rate_id, a.currency_code, a.currency_name, a.standard_rate, 
+ (case coalesce(b.proportion,0) when 0 then a.proportion else b.proportion end) proportion,
+ a.state,
+ (case coalesce(b.proportion,0) when 0 then a.state else b.state end) eState
+ from   t_erp_sys_rate a 
+   left join t_erp_sys_enterprise_rate b on a.rate_id=b.rate_id
+   and enterprise_id=#{search,jdbcType=BIGINT}
+   where a.state=1 
+   order by a.rate_id asc
+   ) as ab
+   where ab.eState=1
+  </select>
+  <select id="selectByRateId" resultMap="BaseResultMap" parameterType="com.samton.erp.api.rate.bean.entity.TErpSysEnterpriseRate" >
+   select 
+ a.rate_id, a.currency_code, a.currency_name, a.standard_rate, 
+ (case coalesce(b.proportion,0) when 0 then a.proportion else b.proportion end) proportion,
+ a.state
+ from   t_erp_sys_rate a 
+   left join t_erp_sys_enterprise_rate b on a.rate_id=b.rate_id and b.enterprise_id=#{enterpriseId,jdbcType=BIGINT}
+    where a.rate_id = #{rateId,jdbcType=BIGINT} and a.state=1 
+  </select>
+  <update id="updateByRateInfo" parameterType="com.samton.erp.api.rate.bean.entity.TErpSysRate" >
+    update public.t_erp_sys_rate
+    set 
+      proportion = #{proportion,jdbcType=NUMERIC},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = now()
+      last_modify_date = now()
+    where rate_id = #{rateId,jdbcType=BIGINT}
+  </update>
+  <update id="delByRateId" parameterType="java.lang.Long">
+    update public.t_erp_sys_enterprise_rate
+    set
+      state=0 where rate_id=#{rateId,jdbcType=BIGINT}
+  </update>
+  <insert id="insertEnterpriseRate" parameterType="com.samton.erp.api.rate.bean.entity.TErpSysEnterpriseRate">
+    insert into t_erp_sys_enterprise_rate
+    (rate_id,enterprise_id,proportion,state,create_user_id,create_user_name,create_date)
+    values
+    (#{rateId,jdbcType=BIGINT},#{enterpriseId,jdbcType=BIGINT},#{proportion,jdbcType=NUMERIC},
+     #{state,jdbcType=INTEGER},#{createUserId,jdbcType=BIGINT},#{createUserName,jdbcType=VARCHAR},now())
+  </insert>
+  <select id="selectEnterpriseRateByRateId" resultMap="EnterpriseResultMap" parameterType="com.samton.erp.api.rate.bean.entity.TErpSysEnterpriseRate"> 
+  select rate_id,enterprise_id,proportion
+  from t_erp_sys_enterprise_rate
+   where rate_id=#{rateId,jdbcType=BIGINT} and state=1 and enterprise_id=#{enterpriseId,jdbcType=BIGINT}
+  </select>
+  <update id="updateEnterpriseRateByRateId" parameterType="com.samton.erp.api.rate.bean.entity.TErpSysEnterpriseRate">
+  update t_erp_sys_enterprise_rate set 
+  proportion=#{proportion,jdbcType=NUMERIC},
+  modify_user_id=#{modifyUserId,jdbcType=BIGINT},
+  modify_user_name=#{modifyUserName,jdbcType=VARCHAR},
+  modify_date=now(),
+  last_modify_date=now()
+  where rate_id=#{rateId,jdbcType=BIGINT} and enterprise_id=#{enterpriseId,jdbcType=BIGINT}
+  </update>
+  <select id="queryAllRateList" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sys_rate
+    where state = 1
+  </select>
+</mapper>

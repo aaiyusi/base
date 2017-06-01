@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.warehouse.dao.TErpSpaceMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.warehouse.bean.entity.TErpSpace" >
+    <id column="space_id" property="spaceId" jdbcType="BIGINT" />
+    <result column="shelf_id" property="shelfId" jdbcType="BIGINT" />
+    <result column="space_code" property="spaceCode" jdbcType="VARCHAR" />
+    <result column="line" property="line" jdbcType="INTEGER" />
+    <result column="tier" property="tier" jdbcType="INTEGER" />
+    <result column="inventory_count" property="inventoryCount" jdbcType="INTEGER" />
+    <result column="suk_description" property="sukDescription" jdbcType="CHAR" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    space_id, shelf_id, space_code, line, tier, inventory_count, suk_description, state, 
+    enterprise_id, modify_user_id, last_modify_date, create_date, create_user_name, modify_user_name, 
+    create_user_id, modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_space
+    where space_id = #{spaceId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_space
+    where space_id = #{spaceId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpSpace" >
+    insert into public.t_erp_space (space_id, shelf_id, space_code, 
+      line, tier, inventory_count, 
+      suk_description, state, enterprise_id, 
+      modify_user_id, last_modify_date, create_date, 
+      create_user_name, modify_user_name, create_user_id, 
+      modify_date)
+    values (#{spaceId,jdbcType=BIGINT}, #{shelfId,jdbcType=BIGINT}, #{spaceCode,jdbcType=VARCHAR}, 
+      #{line,jdbcType=INTEGER}, #{tier,jdbcType=INTEGER}, #{inventoryCount,jdbcType=INTEGER}, 
+      #{sukDescription,jdbcType=CHAR}, #{state,jdbcType=SMALLINT}, #{enterpriseId,jdbcType=BIGINT}, 
+      #{modifyUserId,jdbcType=BIGINT}, #{lastModifyDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{createUserName,jdbcType=VARCHAR}, #{modifyUserName,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, 
+      #{modifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpSpace" >
+    insert into public.t_erp_space
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spaceId != null" >
+        space_id,
+      </if>
+      <if test="shelfId != null" >
+        shelf_id,
+      </if>
+      <if test="spaceCode != null" >
+        space_code,
+      </if>
+      <if test="line != null" >
+        line,
+      </if>
+      <if test="tier != null" >
+        tier,
+      </if>
+      <if test="inventoryCount != null" >
+        inventory_count,
+      </if>
+      <if test="sukDescription != null" >
+        suk_description,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spaceId != null" >
+        #{spaceId,jdbcType=BIGINT},
+      </if>
+      <if test="shelfId != null" >
+        #{shelfId,jdbcType=BIGINT},
+      </if>
+      <if test="spaceCode != null" >
+        #{spaceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="line != null" >
+        #{line,jdbcType=INTEGER},
+      </if>
+      <if test="tier != null" >
+        #{tier,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryCount != null" >
+        #{inventoryCount,jdbcType=INTEGER},
+      </if>
+      <if test="sukDescription != null" >
+        #{sukDescription,jdbcType=CHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpSpace" >
+    update public.t_erp_space
+    <set >
+      <if test="shelfId != null" >
+        shelf_id = #{shelfId,jdbcType=BIGINT},
+      </if>
+      <if test="spaceCode != null" >
+        space_code = #{spaceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="line != null" >
+        line = #{line,jdbcType=INTEGER},
+      </if>
+      <if test="tier != null" >
+        tier = #{tier,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryCount != null" >
+        inventory_count = #{inventoryCount,jdbcType=INTEGER},
+      </if>
+      <if test="sukDescription != null" >
+        suk_description = #{sukDescription,jdbcType=CHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where space_id = #{spaceId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpSpace" >
+    update public.t_erp_space
+    set shelf_id = #{shelfId,jdbcType=BIGINT},
+      space_code = #{spaceCode,jdbcType=VARCHAR},
+      line = #{line,jdbcType=INTEGER},
+      tier = #{tier,jdbcType=INTEGER},
+      inventory_count = #{inventoryCount,jdbcType=INTEGER},
+      suk_description = #{sukDescription,jdbcType=CHAR},
+      state = #{state,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where space_id = #{spaceId,jdbcType=BIGINT}
+  </update>
+  
+  
+  <insert id="batchInsert" parameterType="java.util.List">
+  		insert into public.t_erp_space (shelf_id, space_code, 
+	      line, tier, inventory_count, 
+	      suk_description, state, enterprise_id, 
+	      modify_user_id, last_modify_date, create_date, 
+	      create_user_name, modify_user_name, create_user_id, 
+	      modify_date)
+	    values 
+	    <foreach collection="list" item="item" index="index" separator=",">
+	     (#{item.shelfId,jdbcType=BIGINT}, #{item.spaceCode,jdbcType=VARCHAR}, 
+	      #{item.line,jdbcType=INTEGER}, #{item.tier,jdbcType=INTEGER}, #{item.inventoryCount,jdbcType=INTEGER}, 
+	      #{item.sukDescription,jdbcType=CHAR}, #{item.state,jdbcType=SMALLINT}, #{item.enterpriseId,jdbcType=BIGINT}, 
+	      #{item.modifyUserId,jdbcType=BIGINT}, #{item.lastModifyDate,jdbcType=TIMESTAMP}, #{item.createDate,jdbcType=TIMESTAMP}, 
+	      #{item.createUserName,jdbcType=VARCHAR}, #{item.modifyUserName,jdbcType=VARCHAR}, #{item.createUserId,jdbcType=BIGINT}, 
+	      #{item.modifyDate,jdbcType=TIMESTAMP})
+  		</foreach>
+	</insert>
+  <select id="getAllSpace" resultMap="BaseResultMap" parameterType="com.samton.erp.api.warehouse.bean.entity.TErpSpace" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_space
+    where state = #{state,jdbcType=SMALLINT}
+    AND enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+   <!--  AND create_user_id = #{createUserId,jdbcType=BIGINT} -->
+    <if test="shelfId != null" >
+    	AND shelf_id = #{shelfId,jdbcType=BIGINT}
+    </if>
+  </select>
+  
+  <select id="isSpaceUsed" resultType="java.lang.Integer">
+  	select 1 from t_erp_space
+  	where shelf_id=#{shelfId,jdbcType=BIGINT}
+  	and state=1 limit 1
+  </select>
+  <delete id="deleteByShelfId" parameterType="java.lang.Long" >
+   delete from public.t_erp_space
+    where  shelf_id=#{shelfId,jdbcType=BIGINT}
+  </delete>
+	
+	<select id="selectSpacesByShelfId" resultMap="BaseResultMap">
+	    select 
+ 	   <include refid="Base_Column_List" />
+ 	   from public.t_erp_space where state = 1 and shelf_id = #{shelfId,jdbcType=BIGINT} order by space_id
+	</select>
+
+</mapper>

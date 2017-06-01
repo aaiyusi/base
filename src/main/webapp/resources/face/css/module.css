@@ -1,0 +1,74 @@
+﻿#order-online-form {
+    position: fixed;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.3);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+}
+
+#order-online-form #order-online-banner, #order-online-form #order-checkout-error{
+    position: absolute;
+    background-color: #c2dbff;
+    color: #055c7c;
+    padding: 25px;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -250px;
+    width: 500px;
+    height: 260px;
+    display: block;
+}
+
+#order-online-form #order-online-banner a, #order-online-form #order-checkout-error a {
+       border: 1px solid #fff;
+       border-radius: 5px;
+       color: #055c7c;
+}
+
+#order-online-form #order-checkout-error a {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+}
+
+#order-online-form #order-online-banner a:hover, #order-online-form #order-checkout-error a:hover {
+    border-color: #055c7c;
+}
+
+#order-online-form #order-checkout-error img {
+    padding: 15px;
+}
+
+#order-online-form #order-online-banner h3, #order-online-form #order-checkout-error h3 {
+    font-weight: bolder;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+
+#order-online-form #order-checkout-error p {
+    text-align: initial;
+}
+
+#order-online-form #order-online-banner p {
+    font-size: 1.1em;
+}
+
+#order-online-form #order-online-banner .frozen-logo {
+    float: right;
+    padding: 15px;
+}
+#order-online-form #order-online-banner ul {
+    list-style: disc inside none;
+    margin-bottom: 10px;
+}
+
+#order-online-form #order-checkout-error {
+    width: 500px;
+    height: 355px;
+    text-align: center;
+} 

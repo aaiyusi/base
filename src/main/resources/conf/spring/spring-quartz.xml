@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>     
+<beans xmlns="http://www.springframework.org/schema/beans"    
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 定时推送任务提醒消息 -->
+	<bean id="remindQtzJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="remindTask" />
+		<property name="targetMethod" value="doIt" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="remindTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="remindQtzJob" />
+		<property name="startDelay" value="60000" />
+		<property name="repeatInterval" value="60000" />
+	</bean>
+	<!-- 推送消息结束 -->
+
+	<!-- 与OPS任务同步 -->
+    <bean id="syncQtzJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	    <property name="targetObject">  
+	        <ref bean="syncTask"/>  
+	    </property>  
+	    <property name="targetMethod">
+	        <value>execSyncReceives</value>  
+	    </property>  
+	</bean>  
+	<bean id="syncTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+	    <property name="jobDetail" ref="syncQtzJob"></property>  
+	    <property name="cronExpression" value="0/1 * * * * ?"></property>  
+	</bean>
+	<!-- 与OPS任务同步结束 -->  
+	  
+	<!-- ======================== 调度工厂 ======================== -->  
+	<bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+		<property name="jobDetails">
+			<list>
+		 <!--		<ref bean="remindQtzJob" />  -->
+ 		 <!--  		<ref bean="syncQtzJob" />    -->
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+		<!--		<ref bean="remindTrigger" />  -->
+ 	      <!--      <ref bean="syncTrigger" />   -->
+			</list>
+		</property>
+	</bean>    
+	
+</beans>

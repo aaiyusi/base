@@ -1,0 +1,44 @@
+/* 登录 */
+.header{ width:100%; height:61px; border-bottom:1px solid #e3e3e2; background-color:#FFF; display:table;}
+.header .logo{ float:left; padding-top:15px;}
+.loginbody{ width:100%; height:calc(100% - 108px); min-height:492px; background:#e6eaef url(../images/loginbody.jpg) no-repeat center; position:relative; display:table;}
+.loginbody .logincon{ position:absolute; top:50%; left:50%; width:1000px; height:385px; margin-top:-192px; margin-left:-500px;}
+.loginbody .loginimg{ float:left; display:inline;}
+.loginbody .loginwrap{ float:right; width:329px; height:385px; background-color:#FFF; border:1px solid #dedfe7; border-radius:3px; display:inline; box-shadow:0px 0px 6px rgba(0,0,0,0.1); overflow:hidden;}
+.loginwrap .logintit{ height:43px; background:url(../images/login_bg_03.gif) repeat-x; border-bottom:1px solid #dcdcdc;}
+.loginwrap .logintit h2{ line-height:43px; padding-left:19px; font-size:18px; color:#7d7d7d; text-shadow:2px 2px 2px rgba(256,256,256,0.3);}
+.loginwrap .loginerror{ height:30px; line-height:30px; padding:0 30px;}
+.loginwrap .loginerror span{ font-size:12px; color:#F00;}
+.loginwrap .textcon{ width:265px; height:41px; border:1px solid #d3d3d3; border-radius:3px; margin-bottom:16px; margin-left:31px; position:relative;}
+.loginwrap .textcon.codetext{ width:174px;}
+.loginwrap .textcon .text{ width:100%; height:39px; padding:5px 8px 5px 35px; border:0 none; border-radius:3px; background-color:#fff; font-size:14px; color:#4c4d4d;}
+.loginwrap .textcon .midicon{ position:absolute; top:12px; left:13px;}
+.loginwrap .textcon .codebtn{ position:absolute; top:-1px; left:172px; width:93px; height:41px; background-color:#09b0fe; border:1px solid #09b0fe; border-top-right-radius:3px; border-bottom-right-radius:3px; font-size:14px; color:#FFF; text-align:center; cursor:pointer;}
+.loginwrap .textcon .codebtn:hover{ background-color:#00a6f4;}
+.loginwrap .focus{ border-color:#09b0fe;}
+.loginwrap .focus .midicon{ background-image:url(../images/maxicon_hover.png);}
+.passwordope_con{ padding:0 30px; overflow:hidden;}
+.passwordope_con .checkbox{ float:left;}
+.passwordope_con .forgetpass{ float:right; font-size:14px; color:#0096ff;}
+.passwordope_con .forgetpass:hover{ text-decoration:underline;}
+.loginbtn{ padding:13px 30px 0;}
+.loginbtn.pdt0{ padding-top:0;}
+.loginbtn button{ width:124px; height:41px; border:1px solid #fe5f0c; background:url(../images/submit_btn_03.png) repeat-x; border-radius:3px; box-shadow:0 0 6px 2px rgba(0, 0, 0, 0.1); font-size:16px; cursor:pointer;}
+.loginbtn .submit_btn{ float:left; background-color:#ff8400; color:#FFF;}
+.loginbtn .submit_btn:hover{ background-position:0 -59px;}
+.loginbtn .registered_btn{ float:right; background-color:#fff; background-image:none; color:#ff8400;}
+.loginbtn .registered_btn:hover{ background:url(../images/submit_btn_03.png) repeat-x; color:#FFF;}
+.loginbtn .registered_submit{ width:100%; color:#FFF;}
+.loginbtn .registered_submit:hover{ background-position:0 -59px;}
+.dockingplat_con{ height:45px; line-height:45px; background:url(../images/dockingplat_line_15.png) no-repeat center; text-align:center; margin-top: 10px;}
+.dockingplat_con span{ display:inline-block; padding:0 6px; background-color:#FFF; font-size:12px; color:#7c7c7c;}
+.dockingplat_logo{ text-align:center;}
+.dockingplat_logo li{ display:inline-block; width:88px; height:30px; border:1px solid #c0c0c0; margin:0 3px;}
+.dockingplat_logo li img{ width:86px; height:28px;}
+.loginbottom{ height:35px; line-height:35px; text-align:center; font-size:12px; color:#7c7c7c;}
+.loginbottom a{ color:#09b0fe;}
+.loginbottom a:hover{ text-decoration:underline;}
+.loginfooter{ width:100%; height:46px; border-top:1px solid #e9e9e9; background-color:#FFF; display:table;}
+.loginfooter p{ line-height:46px; font-size:12px; color:#a4a4a4; text-align:center;}
+.overflow{ overflow:hidden;}
+

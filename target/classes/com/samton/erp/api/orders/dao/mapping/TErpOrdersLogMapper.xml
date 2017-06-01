@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.samton.erp.api.orders.dao.TErpOrdersLogMapper">
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.orders.bean.entity.TErpOrdersLog">
+    <id column="log_id" jdbcType="BIGINT" property="logId" />
+    <result column="orders_id" jdbcType="BIGINT" property="ordersId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="log_type" jdbcType="SMALLINT" property="logType" />
+    <result column="operation_type" jdbcType="VARCHAR" property="operationType" />
+    <result column="module_type" jdbcType="SMALLINT" property="moduleType" />
+    <result column="enterprise_id" jdbcType="BIGINT" property="enterpriseId" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    log_id, orders_id, content, log_type, operation_type, module_type, enterprise_id, 
+    create_user_id, create_user_name, create_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_orders_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from public.t_erp_orders_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrdersLog">
+    insert into public.t_erp_orders_log (log_id, orders_id, content, 
+      log_type, operation_type, module_type, 
+      enterprise_id, create_user_id, create_user_name, 
+      create_date)
+    values (#{logId,jdbcType=BIGINT}, #{ordersId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+      #{logType,jdbcType=SMALLINT}, #{operationType,jdbcType=VARCHAR}, #{moduleType,jdbcType=SMALLINT}, 
+      #{enterpriseId,jdbcType=BIGINT}, #{createUserId,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrdersLog">
+    insert into public.t_erp_orders_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="ordersId != null">
+        orders_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="logType != null">
+        log_type,
+      </if>
+      <if test="operationType != null">
+        operation_type,
+      </if>
+      <if test="moduleType != null">
+        module_type,
+      </if>
+      <if test="enterpriseId != null">
+        enterprise_id,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=BIGINT},
+      </if>
+      <if test="ordersId != null">
+        #{ordersId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null">
+        #{logType,jdbcType=SMALLINT},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleType != null">
+        #{moduleType,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null">
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrdersLog">
+    update public.t_erp_orders_log
+    <set>
+      <if test="ordersId != null">
+        orders_id = #{ordersId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null">
+        log_type = #{logType,jdbcType=SMALLINT},
+      </if>
+      <if test="operationType != null">
+        operation_type = #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleType != null">
+        module_type = #{moduleType,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null">
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrdersLog">
+    update public.t_erp_orders_log
+    set orders_id = #{ordersId,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      log_type = #{logType,jdbcType=SMALLINT},
+      operation_type = #{operationType,jdbcType=VARCHAR},
+      module_type = #{moduleType,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryOrdersLogList" resultMap="BaseResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+  		select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_orders_log
+    where enterprise_id = #{enterpriseId,jdbcType=BIGINT} and orders_id = #{search.ordersId,jdbcType=BIGINT}
+    order by create_date desc
+  </select>
+</mapper>

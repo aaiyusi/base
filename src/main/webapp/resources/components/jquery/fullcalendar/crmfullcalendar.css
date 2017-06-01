@@ -1,0 +1,27 @@
+.fc-header-title h2 {
+    font-weight: normal !important;
+    color: #333333 !important;
+    font-size: 18px;
+    font-family: Arial;
+    font-family: Arial,"Hiragino Sans GB","微软雅黑","黑体-简", Helvetica, sans-serif;
+}
+.fc-header-center .fc-state-default {
+    background-color: transparent !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+.fc-header-center .fc-button-prev ,.fc-header-center  .fc-button-next{
+    border: none !important;
+    background: none;
+}
+span.circle {
+    position: absolute;
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    background: #ddd;
+    border-radius: 10px;
+    left: 13px;
+    text-align: center;
+    bottom: -2px;
+}

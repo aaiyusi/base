@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.catalog.dao.TErpGoodsCatalogMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.catalog.bean.entity.TErpGoodsCatalog" >
+    <id column="catalogi_id" property="catalogiId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="e_name" property="eName" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="SMALLINT" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="customs_code" property="customsCode" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="p_catalogi_id" property="pCatalogiId" jdbcType="BIGINT"/> 
+  </resultMap>
+  <resultMap type="com.samton.erp.api.catalog.bean.entity.GoodsCatalogVO" id="VoResultMap" extends="BaseResultMap">
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    catalogi_id, name, e_name, level, order_num, remark, customs_code, state, enterprise_id, 
+    create_user_id, create_user_name, create_date, modify_user_id, modify_user_name, 
+    modify_date, last_modify_date,p_catalogi_id
+  </sql>
+  <select id="selectGoodsByPId" parameterType="java.lang.Long" resultMap="VoResultMap">
+    select  goods_id from public.t_erp_goods where  catalogi_id=#{catalogiId,jdbcType=BIGINT} and state=1
+  </select>
+  <select id="selectCatalogByPIdPage" resultMap="VoResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+    select 
+    <include refid="Base_Column_List"/> 
+    from t_erp_goods_catalog where p_catalogi_id=#{search,jdbcType=BIGINT} and state=1 order by order_num asc
+  </select>
+<select id="selectCatalogByPId" parameterType="java.lang.Long" resultMap="VoResultMap">
+    select 
+    <include refid="Base_Column_List"/> 
+    from t_erp_goods_catalog where p_catalogi_id=#{pCatalogiId,jdbcType=BIGINT} and state=1
+ </select>
+ <select id="selectCatalogById" parameterType="java.lang.Long" resultMap="VoResultMap">
+  select
+  <include refid="Base_Column_List"/>
+  from t_erp_goods_catalog where catalogi_id=#{catalogiId,jdbcType=BIGINT} and state=1
+ </select>
+   <select id="selectGoodsCatalogList" resultMap="VoResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean"> 
+    select 
+    <include refid="Base_Column_List"/>
+     from t_erp_goods_catalog where level=1 and state=1 
+     and enterprise_id=#{search,jdbcType=BIGINT}
+     order by order_num asc
+   </select>
+   <select id="selectGoodsCatalog" resultMap="VoResultMap" parameterType="java.lang.Long">  
+    select 
+    <include refid="Base_Column_List"/>
+     from t_erp_goods_catalog where  state=1 
+     and enterprise_id=#{enterpriseId,jdbcType=BIGINT}
+     order by order_num asc
+   </select>
+   <select id="selectGoodsCatalogParentList" resultMap="VoResultMap">
+      select 
+  catalogi_id, name
+     from t_erp_goods_catalog where level=1 and state=1 
+    
+   </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_goods_catalog
+    and state=1
+    where catalogi_id = #{catalogiId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_goods_catalog
+    where catalogi_id = #{catalogiId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertCatalogInfo" parameterType="com.samton.erp.api.catalog.bean.entity.TErpGoodsCatalog" >
+    insert into public.t_erp_goods_catalog ( name, e_name, 
+      level, order_num, remark, 
+      customs_code, state, enterprise_id, 
+      p_catalogi_id,
+      create_user_id, create_user_name, create_date, 
+      last_modify_date)
+    values (#{name,jdbcType=VARCHAR}, #{eName,jdbcType=VARCHAR}, 
+      #{level,jdbcType=SMALLINT}, #{orderNum,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{customsCode,jdbcType=VARCHAR}, #{state,jdbcType=SMALLINT}, #{enterpriseId,jdbcType=BIGINT},
+      #{pCatalogiId,jdbcType=BIGINT}, 
+      #{createUserId,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR},now(), 
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.catalog.bean.entity.TErpGoodsCatalog" >
+    insert into public.t_erp_goods_catalog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catalogiId != null" >
+        catalogi_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="eName != null" >
+        e_name,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="customsCode != null" >
+        customs_code,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catalogiId != null" >
+        #{catalogiId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eName != null" >
+        #{eName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=SMALLINT},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="customsCode != null" >
+        #{customsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.catalog.bean.entity.TErpGoodsCatalog" >
+    update public.t_erp_goods_catalog
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eName != null" >
+        e_name = #{eName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=SMALLINT},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="customsCode != null" >
+        customs_code = #{customsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where catalogi_id = #{catalogiId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByCatalogInfo" parameterType="com.samton.erp.api.catalog.bean.entity.TErpGoodsCatalog" >
+    update public.t_erp_goods_catalog
+    set name = #{name,jdbcType=VARCHAR},
+      e_name = #{eName,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      customs_code = #{customsCode,jdbcType=VARCHAR},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = now(),
+      last_modify_date = now()
+    where catalogi_id = #{catalogiId,jdbcType=BIGINT}
+  </update>
+  <update id="delByCatalogId" parameterType="java.lang.Long">
+     update public.t_erp_goods_catalog set state=0 
+       where catalogi_id=#{catalogId,jdbcType=BIGINT}   
+  </update>
+  
+  
+   <select id="selectGoodsCatalogAllList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+      select 
+    <include refid="Base_Column_List" />
+     from t_erp_goods_catalog 
+     where 
+     	state=1
+     and 
+    	enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+   </select>
+</mapper>

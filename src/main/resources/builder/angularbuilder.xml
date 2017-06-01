@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<project name="Squirrel" default="compress" basedir=".">
+    <description>Squirrel Build</description>
+    <!--属性的定义-->
+    <property name="web.dir" location="../../../main/webapp/" />
+    <property name="yuicompressor.jar" location="${web.dir}/WEB-INF/lib/yuicompressor.jar" />
+    <property name="css.dev.dir" location="${web.dir}/resources/" />
+    <property name="css.bulid.dir" location="${web.dir}/resources/" />
+    <property name="css.merge.name" value="components/jqwidgets/dist/jqx_st.css" />
+    <property name="css.bulid.name" value="components/jqwidgets/dist/jqx_st.min.css" />
+
+    <property name="js.dev.dir" location="${web.dir}/resources/" />
+    <property name="js.bulid.dir" location="${web.dir}/resources/" />
+    <property name="js.merge.name" value="components/angular/dist/angular_st.js" />
+    <property name="js.bulid.name" value="components/angular/dist/angular_st.min.js" />	
+	<property name="charset" value="utf-8"/>
+    
+	<!--
+    <target name="compress" depends="css.compress,js.compress" />
+	-->
+	<target name="compress" depends="js.compress" />
+	
+    <!-- CSS Merge -->
+    <target name="css.merge">
+        <echo message="开始合并 CSS" />
+        <concat destfile="${css.dev.dir}/${css.merge.name}">
+        	<path path="${css.dev.dir}/components/jqwidgets/styles/jqx.base.css" /> 
+        </concat>
+    </target>
+
+    <!-- CSS Compress -->
+    <target name="css.compress" depends="css.merge">
+        <!-- 删除 Bulid 下的 css -->
+        <delete>
+            <fileset dir="${css.bulid.dir}" includes="${css.bulid.name}" />
+        </delete>
+    	<echo message="开始压缩CSS" />
+        <apply executable="java" parallel="false" verbose="true" dest="${css.bulid.dir}">
+            <!-- 引入 css 文件并执行 yuicompressor 压缩 -->
+            <fileset dir="${css.dev.dir}" includes="${css.merge.name}" />
+            <arg line="-jar" />
+            <arg path="${yuicompressor.jar}" />
+            <arg line="--charset ${charset}" />
+            <arg value="-o" />
+            <targetfile />
+            <mapper type="glob" from="*.css" to="${css.bulid.name}" />
+        </apply>
+    	 <!-- 删除合并的临时 css -->
+    	<!--
+        <delete>
+            <fileset dir="${css.dev.dir}" includes="${css.merge.name}" />
+        </delete>
+    	<echo message="删除合并的临时 css" />
+    	-->
+    </target>
+	
+	
+	<target name="js.merge">
+		<echo message="开始合并js" />
+        <concat destfile="${js.dev.dir}/${js.merge.name}"  encoding="${charset}" outputencoding="${charset}">
+        	<path path="${js.dev.dir}/components/angular/angular.min.js" />
+        	<path path="${js.dev.dir}/components/angular/angular-resource.min.js" />
+    		<path path="${js.dev.dir}/components/angular/angular-sanitize.min.js" />
+    		<path path="${js.dev.dir}/components/angular/angular-animate.min.js" />
+    		<path path="${js.dev.dir}/components/angular/angular-cookies.min.js" />
+    		<path path="${js.dev.dir}/components/angular/plugins/ui-router/angular-ui-router.min.js" />
+        	<path path="${js.dev.dir}/components/angular/plugins/ui-bootstrap/ui-bootstrap-tpls-0.13.0.min.js" />
+        	<path path="${js.dev.dir}/components/angular/plugins/ui-sortable/sortable.js" />
+        	<path path="${js.dev.dir}/components/angular/plugins/upload/angular-file-upload.js" />
+    		<path path="${js.dev.dir}/components/angular/plugins/ngImgCrop/ng-img-crop.js" />
+        	<!--ngdialog源码有修改-->
+    		<path path="${js.dev.dir}/components/angular/plugins/ngDialog/js/ngDialog.js" />
+        </concat>
+	</target>
+	
+	<target name="js.compress" depends="js.merge">
+		<!-- 删除 Bulid 下的 js -->
+        <delete>
+            <fileset dir="${js.bulid.dir}" includes="${js.bulid.name}" />
+        </delete>
+    	<echo message="开始压缩js" />
+        <apply executable="java" parallel="false" verbose="true" dest="${js.bulid.dir}">
+            <!-- 引入 js 文件并执行 yuicompressor 压缩 -->
+            <fileset dir="${js.dev.dir}" includes="${js.merge.name}" />
+            <arg line="-jar" />
+            <arg path="${yuicompressor.jar}" />
+        	<arg line="--nomunge --charset ${charset}" />
+            <arg value="-o" />
+            <targetfile />
+            <mapper type="glob" from="*.js" to="${js.bulid.name}" />
+        </apply>
+	</target>
+</project>

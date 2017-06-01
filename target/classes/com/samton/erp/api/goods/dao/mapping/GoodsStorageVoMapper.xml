@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.goods.dao.GoodsStorageVoMapper">
+	<resultMap id="BaseResultMap" type="com.samton.erp.api.goods.bean.vo.GoodsStorageVo">
+		<id column="gs_id" property="gsId" jdbcType="BIGINT" />
+	   <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+	   <result column="space_id" property="spaceId" jdbcType="BIGINT" />
+	   <result column="is_default" property="isDefault" jdbcType="SMALLINT" />
+	   <result column="state" property="state" jdbcType="SMALLINT" />
+	   <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+	   <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+	   <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+	   <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	   <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+	   <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+	   <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+	   <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+	   <result column="whouse_id" property="whouseId" jdbcType="BIGINT" />
+	   <result column="whouse_name" property="whouseName" jdbcType="VARCHAR" />
+	   <result column="space_code" property="spaceCode" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="queryWhouseListByGoodsId" resultMap="BaseResultMap">
+  	select a.gs_id,a.goods_id,a.whouse_id,w.whouse_name
+	from t_erp_goods_storage a
+	inner join t_erp_warehouse w on a.whouse_id = w.whouse_id and a.enterprise_id = w.enterprise_id and w.state = 1
+	where a.state = 1 and a.goods_id = #{goodsId,jdbcType=BIGINT} and a.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="querySpaceListByWhouseId" resultMap="BaseResultMap">
+  	select a.gs_id,a.goods_id,a.space_id,w.space_code
+	from t_erp_goods_storage a
+	inner join t_erp_space w on a.space_id = w.space_id and a.enterprise_id = w.enterprise_id and w.state = 1
+	where a.state = 1 and a.whouse_id = #{whouseId,jdbcType=BIGINT} and a.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and a.goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+</mapper>

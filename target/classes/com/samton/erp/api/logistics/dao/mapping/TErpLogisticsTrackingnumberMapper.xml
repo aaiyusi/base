@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.logistics.dao.TErpLogisticsTrackingnumberMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.logistics.bean.entity.TErpLogisticsTrackingnumber" >
+    <id column="tnum_id" property="tnumId" jdbcType="BIGINT" />
+    <result column="logistics_id" property="logisticsId" jdbcType="BIGINT" />
+    <result column="tnumber" property="tnumber" jdbcType="CHAR" />
+    <result column="is_used" property="isUsed" jdbcType="SMALLINT" />
+    <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="orders_id" property="ordersId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tnum_id, logistics_id, tnumber, is_used, use_time, state, enterprise_id, create_user_id, 
+    create_user_name, create_date, modify_user_id, modify_user_name, modify_date, last_modify_date, 
+    orders_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_logistics_trackingnumber
+    where tnum_id = #{tnumId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_logistics_trackingnumber
+    where tnum_id = #{tnumId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsTrackingnumber" >
+    insert into public.t_erp_logistics_trackingnumber (tnum_id, logistics_id, tnumber, 
+      is_used, use_time, state, 
+      enterprise_id, create_user_id, create_user_name, 
+      create_date, modify_user_id, modify_user_name, 
+      modify_date, last_modify_date, orders_id
+      )
+    values (#{tnumId,jdbcType=BIGINT}, #{logisticsId,jdbcType=BIGINT}, #{tnumber,jdbcType=CHAR}, 
+      #{isUsed,jdbcType=SMALLINT}, #{useTime,jdbcType=TIMESTAMP}, #{state,jdbcType=SMALLINT}, 
+      #{enterpriseId,jdbcType=BIGINT}, #{createUserId,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=BIGINT}, #{modifyUserName,jdbcType=VARCHAR}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP}, #{ordersId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsTrackingnumber" >
+    insert into public.t_erp_logistics_trackingnumber
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tnumId != null" >
+        tnum_id,
+      </if>
+      <if test="logisticsId != null" >
+        logistics_id,
+      </if>
+      <if test="tnumber != null" >
+        tnumber,
+      </if>
+      <if test="isUsed != null" >
+        is_used,
+      </if>
+      <if test="useTime != null" >
+        use_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+      <if test="ordersId != null" >
+        orders_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tnumId != null" >
+        #{tnumId,jdbcType=BIGINT},
+      </if>
+      <if test="logisticsId != null" >
+        #{logisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="tnumber != null" >
+        #{tnumber,jdbcType=CHAR},
+      </if>
+      <if test="isUsed != null" >
+        #{isUsed,jdbcType=SMALLINT},
+      </if>
+      <if test="useTime != null" >
+        #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordersId != null" >
+        #{ordersId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsTrackingnumber" >
+    update public.t_erp_logistics_trackingnumber
+    <set >
+      <if test="logisticsId != null" >
+        logistics_id = #{logisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="tnumber != null" >
+        tnumber = #{tnumber,jdbcType=CHAR},
+      </if>
+      <if test="isUsed != null" >
+        is_used = #{isUsed,jdbcType=SMALLINT},
+      </if>
+      <if test="useTime != null" >
+        use_time = #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordersId != null" >
+        orders_id = #{ordersId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where tnum_id = #{tnumId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsTrackingnumber" >
+    update public.t_erp_logistics_trackingnumber
+    set logistics_id = #{logisticsId,jdbcType=BIGINT},
+      tnumber = #{tnumber,jdbcType=CHAR},
+      is_used = #{isUsed,jdbcType=SMALLINT},
+      use_time = #{useTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      orders_id = #{ordersId,jdbcType=BIGINT}
+    where tnum_id = #{tnumId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 运单号分页 -->
+    	<select id="queryTrackingRecord" resultType="java.util.HashMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+		select   t.tnum_id, t.logistics_id, t.tnumber, t.is_used, t.use_time, t.state, t.enterprise_id, t.create_user_id, 
+    t.create_user_name,to_char(t.create_date,'YYYY-MM-DD HH24:MI:SS') as create_date, t.modify_user_id, t.modify_user_name, t.modify_date, to_char(t.last_modify_date,'YYYY-MM-DD HH24:MI:SS') as last_modify_date, 
+    t.orders_id,c.name ,o.name
+    from public.t_erp_logistics_trackingnumber t  left join public.t_erp_logistics_company c on t.logistics_id = c.logistics_id left join public.t_erp_orders o on t.orders_id = o.orders_id 
+	where t.state = 1 and t.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and c.state = 1 and c.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+	 	<if test="search != null">
+		  <if test="search.logisticsId != null and search.logisticsId != ''">
+	        and t.logistics_id =  CAST(#{search.logisticsId,jdbcType=BIGINT} AS   BIGINT) 
+	     </if>
+	     <if test="search.used != null and search.used != ''">
+	      	 and t.is_used =   CAST(#{search.used,jdbcType=SMALLINT}  AS   SMALLINT) 
+	     </if>
+	      <if test="search.tnumber != null and search.tnumber != ''">
+	      	  and t.tnumber like  '%'||#{search.tnumber,jdbcType=CHAR}||'%'
+	     </if>
+	      <if test="search.orderId!= null and search.orderId != ''">
+	       and o.name like  '%'||#{search.orderId,jdbcType=VARCHAR}||'%'
+	     </if> 
+	</if> 
+	order by t.last_modify_date desc
+	</select>
+	
+	<select id="queryTrackNumByLogisId" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from public.t_erp_logistics_trackingnumber
+	    where logistics_id = #{logisticsId,jdbcType=BIGINT} and is_used = 0 and state = 1
+	    order by create_date limit 1
+	</select>
+	
+		<select id="queryTrackNumExist" resultType="java.lang.Integer">
+		select 
+	    count(*)
+	    from public.t_erp_logistics_trackingnumber
+	    where tnumber = #{trackCode,jdbcType=BIGINT} and is_used = 0 and state = 1 and  enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+	     limit 1
+	</select>
+	
+</mapper>

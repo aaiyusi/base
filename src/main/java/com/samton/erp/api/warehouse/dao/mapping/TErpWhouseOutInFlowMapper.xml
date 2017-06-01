@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.warehouse.dao.TErpWhouseOutInFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.warehouse.bean.entity.WhouseOutInFlowDetali" >
+    <result column="createDate" property="createDate" jdbcType="VARCHAR" />
+    <result column="sku" property="sku" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="whouseName" property="whouseName" jdbcType="VARCHAR" />
+    <result column="skuout" property="skuout" jdbcType="BIGINT" />
+    <result column="skuin" property="skuin" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+   createDate,sku,name,whouseName,skuout,skuin
+  </sql>
+  
+  <select  id="queryWhouseOutInFlow" resultType="java.util.HashMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+		  	SELECT
+			to_char(T .create_date, 'YYYY-MM-DD') create_date,
+			T .sku,
+			goods. NAME,
+			house.whouse_name,
+			T .whouse_id,
+			SUM (
+				CASE
+				WHEN T . TYPE = 0 THEN
+					T . COUNT
+				ELSE
+					0
+				END
+			) skuout,
+			SUM (
+				CASE
+				WHEN T . TYPE = 1 THEN
+					T . COUNT
+				ELSE
+					0
+				END
+			) skuin
+		FROM
+			(
+				SELECT
+					C .whouse_id,
+					cd.create_user_name,
+					cd.sku,
+					cd.create_date,
+					cd. STATE,
+					cd.enterprise_id,
+					cd. TYPE,
+					(cd. COUNT - cd.inventory_count) as COUNT,
+					cd.state
+				FROM
+					t_erp_whouse_check_detail cd
+				LEFT JOIN t_erp_whouse_check C ON cd.check_id = C .check_id where cd.state = 1 and C.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and cd.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+				<if test="search != null">
+					     <if test="search.typeQuery != null and search.typeQuery != ''">
+					        and cd.type =CAST(#{search.typeQuery,jdbcType=VARCHAR}   AS   SMALLINT) 
+					     </if>
+					     <!-- 
+					      <if test="search.contactPhone != null and search.contactPhone != ''">
+					        and contact_phone like '%'||#{search.contactPhone,jdbcType=VARCHAR}||'%'
+					     </if> -->
+					</if>
+				UNION
+					SELECT
+						s.whouse_id,
+						sd.create_user_name,
+						sd.SKU,
+						sd.create_date,
+						sd. STATE,
+						sd.enterprise_id,
+						s. TYPE,
+						sd. COUNT,
+						sd.state
+					FROM
+						t_erp_whouse_storage_detail sd
+					LEFT JOIN t_erp_whouse_storage s ON sd.storage_id = s.storage_id where sd.state = 1 and s.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and sd.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+					<if test="search != null">
+					     <if test="search.typeQuery != null and search.typeQuery != ''">
+					        and s.type = CAST(#{search.typeQuery,jdbcType=VARCHAR}   AS   SMALLINT) 
+					     </if>
+					     <!-- 
+					      <if test="search.contactPhone != null and search.contactPhone != ''">
+					        and contact_phone like '%'||#{search.contactPhone,jdbcType=VARCHAR}||'%'
+					     </if> -->
+					</if>
+			) T
+		LEFT JOIN t_erp_goods goods ON T .sku = goods.sku
+		LEFT JOIN t_erp_warehouse house ON T .whouse_id = house.whouse_id
+		where 1 = 1 
+		<if test="search != null">
+		  <if test="search.whouse_id != null and search.whouse_id != ''">
+	        and t.whouse_id =    CAST(#{search.whouse_id,jdbcType=VARCHAR}   AS   BIGINT) 
+	     </if>
+	     <if test="search.startDate != null and search.startDate != ''">
+	      	and <![CDATA[ t.create_date >= #{search.startDate,jdbcType=VARCHAR}::timestamp]]>
+	     </if>
+	      <if test="search.endDate != null and search.endDate != ''">
+	      	and <![CDATA[ t.create_date <= #{search.endDate,jdbcType=VARCHAR}::timestamp]]>
+	     </if>
+	      <if test="search.sku != null and search.sku != ''">
+	        and t.sku like '%'||#{search.sku,jdbcType=VARCHAR}||'%'
+	     </if> 
+	</if>
+		GROUP BY
+			to_char(T .create_date, 'YYYY-MM-DD'),
+			goods. NAME,
+			house.whouse_name,
+			T .sku,
+			T .whouse_id
+		ORDER BY
+			create_date DESC
+  </select>
+  
+  <select id="queryDetail" resultType="java.util.HashMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+  			SELECT
+	to_char(
+		T .create_date,
+		'YYYY-MM-DD HH:mm:SS'
+	) create_date,
+	T . TYPE,
+	T .space_id,
+	T .space_code,
+	T . COUNT,
+	T .create_user_name,
+	T .whouse_id,
+	T .isFlag,
+	T .price,
+	T .storage_code
+
+FROM
+	(
+		SELECT
+			C .whouse_id,
+			cd.create_user_name,
+			cd.sku,
+			cd.create_date,
+			cd. STATE,
+			cd.enterprise_id,
+			cd. TYPE,
+			(cd. COUNT - cd.inventory_count) as COUNT,
+			C .storage_code,
+			cd. STATE,
+			cd.space_id,
+			sp.space_code,
+			cd.price,
+			1 as isFlag
+		FROM
+			t_erp_whouse_check_detail cd
+		LEFT JOIN t_erp_whouse_check C ON cd.check_id = C .check_id left join t_erp_space sp on cd.space_id = sp.space_id
+		WHERE
+			cd. STATE = 1     and to_char(cd .create_date,'YYYY-MM-DD') = #{search.create_date,jdbcType=VARCHAR} 
+										and cd.sku =  #{search.sku,jdbcType=VARCHAR} 
+										and C.whouse_id =  CAST(#{search.whouse_id,jdbcType=VARCHAR}   AS   BIGINT) 
+										and C.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and cd.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+		UNION
+			SELECT
+				s.whouse_id,
+				sd.create_user_name,
+				sd.SKU,
+				sd.create_date,
+				sd. STATE,
+				sd.enterprise_id,
+				s. TYPE,
+				sd. COUNT,
+				s.storage_code,
+				sd. STATE,
+				sd.space_id,
+				sp.space_code,
+				sd.price,
+				0 as isFlag
+			FROM
+				t_erp_whouse_storage_detail sd
+			LEFT JOIN t_erp_whouse_storage s ON sd.storage_id = s.storage_id left join t_erp_space sp on sd.space_id = sp.space_id
+			WHERE
+				sd. STATE = 1 and to_char(sd .create_date,'YYYY-MM-DD') = #{search.create_date,jdbcType=VARCHAR} 
+										and sd.sku =  #{search.sku,jdbcType=VARCHAR} 
+										and s.whouse_id = CAST(#{search.whouse_id,jdbcType=VARCHAR}   AS   BIGINT) 
+										and s.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and sd.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+	) T
+LEFT JOIN t_erp_goods goods ON T .sku = goods.sku
+LEFT JOIN t_erp_warehouse house ON T .whouse_id = house.whouse_id
+		<if test="search.typeQuery != null and search.typeQuery != ''">
+	      	where T.type = CAST(#{search.typeQuery,jdbcType=VARCHAR}   AS   SMALLINT) 
+	     </if>
+  
+  </select>
+</mapper>

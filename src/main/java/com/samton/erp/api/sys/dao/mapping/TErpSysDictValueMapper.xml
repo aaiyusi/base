@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.sys.dao.TErpSysDictValueMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.sys.bean.entity.TErpSysDictValue" >
+    <id column="dict_value_id" property="dictValueId" jdbcType="BIGINT" />
+    <result column="dict_type_id" property="dictTypeId" jdbcType="BIGINT" />
+    <result column="dict_name" property="dictName" jdbcType="VARCHAR" />
+    <result column="dict_value" property="dictValue" jdbcType="VARCHAR" />
+    <result column="dict_value_desc" property="dictValueDesc" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="country_short" property="countryShort" jdbcType="VARCHAR" />
+    <result column="rate_id" property="rateId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dict_value_id, dict_type_id, dict_name, dict_value, dict_value_desc, order_num, enterprise_id,country_short,rate_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sys_dict_value
+    where dict_value_id = #{dictValueId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_sys_dict_value
+    where dict_value_id = #{dictValueId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysDictValue" >
+    insert into public.t_erp_sys_dict_value (dict_value_id, dict_type_id, dict_name, 
+      dict_value, dict_value_desc, order_num, 
+      enterprise_id)
+    values (#{dictValueId,jdbcType=BIGINT}, #{dictTypeId,jdbcType=BIGINT}, #{dictName,jdbcType=VARCHAR}, 
+      #{dictValue,jdbcType=VARCHAR}, #{dictValueDesc,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, 
+      #{enterpriseId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysDictValue" >
+    insert into public.t_erp_sys_dict_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictValueId != null" >
+        dict_value_id,
+      </if>
+      <if test="dictTypeId != null" >
+        dict_type_id,
+      </if>
+      <if test="dictName != null" >
+        dict_name,
+      </if>
+      <if test="dictValue != null" >
+        dict_value,
+      </if>
+      <if test="dictValueDesc != null" >
+        dict_value_desc,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictValueId != null" >
+        #{dictValueId,jdbcType=BIGINT},
+      </if>
+      <if test="dictTypeId != null" >
+        #{dictTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null" >
+        #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValueDesc != null" >
+        #{dictValueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysDictValue" >
+    update public.t_erp_sys_dict_value
+    <set >
+      <if test="dictTypeId != null" >
+        dict_type_id = #{dictTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="dictName != null" >
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null" >
+        dict_value = #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValueDesc != null" >
+        dict_value_desc = #{dictValueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where dict_value_id = #{dictValueId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.sys.bean.entity.TErpSysDictValue" >
+    update public.t_erp_sys_dict_value
+    set dict_type_id = #{dictTypeId,jdbcType=BIGINT},
+      dict_name = #{dictName,jdbcType=VARCHAR},
+      dict_value = #{dictValue,jdbcType=VARCHAR},
+      dict_value_desc = #{dictValueDesc,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+    where dict_value_id = #{dictValueId,jdbcType=BIGINT}
+  </update>
+  <select id="querySysDictListByDictTypeId" resultType="java.util.HashMap">
+  		select dict_name as dict_name, dict_value as dict_value,dict_value_id as dict_value_id,dict_type_id
+		from t_erp_sys_dict_value
+		<if test="dictTypeId != 0">
+			where dict_type_id = #{dictTypeId,jdbcType=BIGINT}
+		</if>
+  </select>
+  <select id="querySysDictValueByCountry" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sys_dict_value
+    where country_short = #{countryShort,jdbcType=VARCHAR} limit 1
+  </select>
+  <select id="queryAllCountryList" resultMap="BaseResultMap" >
+  		select d.dict_name as dict_name, d.dict_value as dict_value,d.dict_type_id as dict_type_id,d.dict_value_id as dict_value_id
+		from 
+			t_erp_sys_dict_value d
+		left join
+	 		t_erp_sys_dict_value dt
+		on
+		d.	dict_type_id = dt.dict_value_id
+		where dt.dict_type_id = 1
+  </select>
+  <select id="querySysDictValueByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_sys_dict_value
+    where dict_name = #{dictName,jdbcType=VARCHAR} limit 1
+  </select>
+</mapper>

@@ -1,0 +1,85 @@
+/* CSS Document */
+html,body{ width:100%; height:100%;}
+.main_con{ width:100%;overflow:auto;}
+/*  */
+.warehousemenu_box{ width:260px; height:100%; padding:10px;}
+.warehousemenu_tit{ width:100%; height:40px; background-color:#FFF; border:1px solid #e0e3f2;}
+.warehousemenu_tit h2{ float:left; display:inline; padding-left:10px; line-height:38px; font-size:14px; font-weight:bold;}
+.warehousemenu_tit .blue_btn{ float:right; margin-top:7px; margin-right:10px; background-color:#00b1e1;}
+.col_tit{ height:40px; line-height:40px; border:1px solid #e0e3f2; background-color:#f6f6f6;}
+.col_tit.bortopnone{ border-top:0 none;}
+.col_tit.borbottomnone{ border-bottom:0 none;}
+.col_tit h2{ float:left; display:inline; padding-left:10px; font-size:12px; font-weight:bold; padding-top: 14px;}
+.col_tit button{ float:right; margin-top:9px; margin-right:10px;}
+.col_tit .select{ float:right; margin-top:9px; margin-right:10px;}
+.warehousemenu_con{ width:100%; height:calc(100% - 50px); margin-top:10px; background-color:#FFF;}
+.warehousecontent_box{ position:absolute; top:10px; left:260px; right:10px; bottom:10px;}
+.warehousecontentshelf_box{ position:absolute; top:98px; left:260px; right:10px; bottom:10px;}
+.warehousemenu_list{ height:calc(100% - 40px); padding-top:10px; border:1px solid #e0e3f2; border-top:0 none;}
+.warehousemenu_list li{ height:30px; line-height:30px; cursor:pointer;}
+.warehousemenu_list li a{ float:left; width:180px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-size:12px; color:#4c4d4d; padding-left:20px;}
+.warehousemenu_list li button{ display:none; float:right; margin-top:3px; margin-right:9px;}
+.warehousemenu_list li:hover{ background-color:#f8f8f8;}
+.warehousemenu_list li:hover button{ display:block;}
+.warehousecontent_mess{ background-color:#FFF;}
+.height100{ height:100%;}
+.warehousecontent_messlist{ border:1px solid #e0e3f2; border-top:0px none; padding-bottom:10px; padding-right:20px; overflow:hidden;}
+.warehousecontent_messlist li{ float:left; margin-top:10px; position:relative;}
+.warehousecontent_messlist li.width33{ width:33%;}
+.warehousecontent_messlist li.width34{ width:34%;}
+.warehousecontent_messlist li.width66{ width:66%;}
+.warehousecontent_messlist li .label{ display:block; position:absolute; top:0; left:0; width:100px; height:28px; line-height:28px; padding-right:5px; font-size:12px; color:#242f3f; text-align:right;}
+.warehousecontent_messlist li .inputtextcon{ width:100%; padding-left:100px;}
+.warehousecontent_messlist li .inputtextcon .inputtext{ width:100%; min-width:inherit;}
+
+.blue_btn{ border:1px solid #15a5fb; border-radius:3px; padding:0 5px; background-color:#00b1e1; font-size:12px; color:#FFF;}
+.inputtext { min-width:173px; height:28px; padding:3px 8px; border:1px solid #cfd9db; border-radius:3px; font-size: 12px; color:#000;}
+.width273{ width:273px;}
+
+/*包装验货*/
+.w200{ width:200px;}
+.gray_box{background:#f6f6f6; border:1px solid #e1e4f2; border-radius:3px; padding:13px 21px;}
+.core_box{ margin-bottom:10px;}
+.package_heater{border:1px solid #e0e3f2; border-top:0 none; padding:10px; background-color:#FFF; position:relative;}
+.package_ipt{ width:200px;}
+.package_ipt .blue_btn{height:26px;}
+.package_ipt ul{ margin-top:-10px;}
+.package_ipt li{ padding-top:10px;}
+.package_info{position:absolute; top:10px; width:calc(100% - 230px);margin-left:210px;height: 100px; overflow:hidden; }
+.package_info h3,.package_none h3{font-size:14px; font-weight:bold; color:#5e6989;}
+.package_info p,.package_none p{padding-top:10px; color:#7a7a7a;}
+.prompt_ico{float:left; display: inline-block; width:30px; height:30px; margin-top:4px; margin-right:10px; background:url("../images/icon.png") no-repeat;}
+.package_info_tit{ display: inline-block; font-size:16px; padding-right:100px;}
+.package_info_tit span,.package_info ul li span{color:#15a5fb;}
+.package_info ul li{ display: inline-block; padding-right:140px; margin-top:20px;}
+.customer_contact{ padding:10px; line-height:22px;}    
+.dis-none{display: none;}
+
+/* 16*16图标 */
+.midicon{ display:inline-block; width:16px; height:16px; background:url(../images/maxicon.png) no-repeat;}
+.user_icon{ background-position:0 0;}
+.password_icon{ background-position:0 -36px;}
+.code_icon{ background-position:0 -109px;}
+.home_icon{ background-position:0 -109px;}
+
+/* 多选框 */
+.checkbox{ cursor:pointer;}
+.checkbox i{ display:inline-block; width:14px; height:14px; background:url(../images/checkbox_15.png) no-repeat; vertical-align:middle;}
+.checkbox em{ padding-left:8px; font-size:14px; color:#7c7c7c; vertical-align:middle;}
+.checkbox:hover i{ background-position:0 -20px;}
+.checkbox.checked i{ background-position:0 -60px;}
+.checkbox.checked:hover{ background-position:0 -40px;}
+
+/* 首页 */
+.chartbox{ padding-bottom:10px; overflow:hidden;}
+.chartbox.width50{ width:50%;}
+.chartbox.width50.fl{ float:left; padding-right:5px;}
+.chartbox.width50.fr{ float:right; padding-left:5px;}
+.chartcon{ height:260px; border:1px solid #e0e3f2; border-top:0 none; background-color:#FFF;}
+.ordermanage_con,.performance_con{ height:195px; border:1px solid #e0e3f2; border-top:0 none; background-color:#FFF; padding:0 10px;}
+.ordermanage_con li{ height:35px; line-height:35px; border-bottom:1px dashed #e0e3f2; padding:0 20px; overflow: hidden;}
+.ordermanage_con li span{ display:inline-block; width:100px;}
+.ordermanage_con li em{ padding-right:20px; color:#00b1e1; text-decoration:underline;}
+.performance_con{ padding:10px;}
+.performance_con th,.performance_con td{ height:30px; text-align:center; border:1px solid #e0e3f2;}
+.performance_con th{ background-color:#f6f6f6;}

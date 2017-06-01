@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.address.dao.TErpEnterprisePostAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.address.bean.entity.TErpEnterprisePostAddress" >
+    <id column="address_id" property="addressId" jdbcType="BIGINT" />
+    <result column="address_name" property="addressName" jdbcType="VARCHAR" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="proportion" property="proportion" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="addresses" property="addresses" jdbcType="VARCHAR" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR"/> 
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="company_fax" property="companyFax" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    address_id, address_name, enterprise_id, proportion, country, province, city, area, addresses, 
+    postcode, telephone, company_name, mobile_phone, email,state, company_fax, create_user_id, create_user_name, 
+    create_date, modify_user_id, modify_user_name, modify_date, last_modify_date
+  </sql>
+  <select id="selectAddressList" resultMap="BaseResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+   select
+   <include refid="Base_Column_List"/>
+   from public.t_erp_enterprise_post_address
+   where state=1 and 
+   enterprise_id=#{search,jdbcType=BIGINT}
+   order by create_date desc
+  </select>
+  <select id="selectAddressInfoById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_enterprise_post_address
+    where address_id = #{addressId,jdbcType=BIGINT} and state=1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_enterprise_post_address
+    where address_id = #{addressId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertAddressInfo" parameterType="com.samton.erp.api.address.bean.entity.TErpEnterprisePostAddress" >
+    insert into public.t_erp_enterprise_post_address ( address_name, enterprise_id, 
+      proportion, country, province, 
+      city, area, addresses, 
+      postcode, telephone, company_name, 
+      mobile_phone, email,state, company_Fax, 
+      create_user_id, create_user_name, create_date 
+       )
+    values ( #{addressName,jdbcType=VARCHAR}, #{enterpriseId,jdbcType=BIGINT}, 
+      #{proportion,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{addresses,jdbcType=VARCHAR}, 
+      #{postcode,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{mobilePhone,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{companyFax,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, now() 
+)
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.address.bean.entity.TErpEnterprisePostAddress" >
+    insert into public.t_erp_enterprise_post_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="rateId != null" >
+        rate_id,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="proportion != null" >
+        proportion,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="addresses != null" >
+        addresses,
+      </if>
+      <if test="postcode != null" >
+        postcode,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="公司传真 != null" >
+        公司传真,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addressId != null" >
+        #{addressId,jdbcType=BIGINT},
+      </if>
+      <if test="rateId != null" >
+        #{rateId,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="proportion != null" >
+        #{proportion,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="addresses != null" >
+        #{addresses,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="公司传真 != null" >
+        #{公司传真,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.address.bean.entity.TErpEnterprisePostAddress" >
+    update public.t_erp_enterprise_post_address
+    <set >
+      <if test="rateId != null" >
+        rate_id = #{rateId,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="proportion != null" >
+        proportion = #{proportion,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="addresses != null" >
+        addresses = #{addresses,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="公司传真 != null" >
+        公司传真 = #{公司传真,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where address_id = #{addressId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByAddressInfo" parameterType="com.samton.erp.api.address.bean.entity.TErpEnterprisePostAddress" >
+    update public.t_erp_enterprise_post_address
+    set address_name = #{
+      addressName,jdbcType=BIGINT},
+      proportion = #{proportion,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      addresses = #{addresses,jdbcType=VARCHAR},
+      postcode = #{postcode,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      email=#{email,jdbcType=VARCHAR},
+      company_fax = #{companyFax,jdbcType=VARCHAR},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = now(),
+      last_modify_date = now()
+    where address_id = #{addressId,jdbcType=BIGINT}
+  </update>
+  <update id="deleteAddressInfo" parameterType="java.lang.Long">
+  update public.t_erp_enterprise_post_address set state=0 ,last_modify_date=now() where address_id=#{addressId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectOneByFirst" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_enterprise_post_address
+    where  state=1 and enterprise_id = #{enterpriseId,jdbcType=BIGINT} order by create_date desc limit 1
+  </select>
+  
+    <select id="queryAll" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_enterprise_post_address
+    where  state=1 and enterprise_id = #{enterpriseId,jdbcType=BIGINT} order by create_date desc
+  </select>
+  
+</mapper>

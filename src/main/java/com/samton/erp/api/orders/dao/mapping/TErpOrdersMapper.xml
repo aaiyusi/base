@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.orders.dao.TErpOrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.orders.bean.entity.TErpOrders" >
+    <id column="orders_id" property="ordersId" jdbcType="BIGINT" />
+    <result column="order_type" property="orderType" jdbcType="SMALLINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="orders_date" property="ordersDate" jdbcType="TIMESTAMP" />
+    <result column="deal_num" property="dealNum" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="customs_code" property="customsCode" jdbcType="NUMERIC" />
+    <result column="insurance" property="insurance" jdbcType="NUMERIC" />
+    <result column="cost" property="cost" jdbcType="NUMERIC" />
+    <result column="gathering_account" property="gatheringAccount" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="BIGINT" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="message_state" property="messageState" jdbcType="SMALLINT" />
+    <result column="reply_content" property="replyContent" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="phone1" property="phone1" jdbcType="VARCHAR" />
+    <result column="phone2" property="phone2" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="postal_code" property="postalCode" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="spare_address" property="spareAddress" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="cust_logistics" property="custLogistics" jdbcType="VARCHAR" />
+    <result column="logistics_id" property="logisticsId" jdbcType="BIGINT" />
+    <result column="bills" property="bills" jdbcType="VARCHAR" />
+    <result column="interior_bills" property="interiorBills" jdbcType="VARCHAR" />
+    <result column="fast_picking" property="fastPicking" jdbcType="SMALLINT" />
+    <result column="antcipated_freight" property="antcipatedFreight" jdbcType="NUMERIC" />
+    <result column="actual_freight" property="actualFreight" jdbcType="NUMERIC" />
+    <result column="weight" property="weight" jdbcType="NUMERIC" />
+    <result column="packing_id" property="packingId" jdbcType="BIGINT" />
+    <result column="is_print" property="isPrint" jdbcType="SMALLINT" />
+    <result column="order_state" property="orderState" jdbcType="SMALLINT" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="payment" property="payment" jdbcType="NUMERIC" />
+    <result column="is_checked" property="isChecked" jdbcType="SMALLINT" />
+    <result column="is_outstorage" property="isOutstorage" jdbcType="SMALLINT" />
+    <result column="parent_order_id" property="parentOrderId" jdbcType="BIGINT" />
+    <result column="is_retry" property="isRetry" jdbcType="SMALLINT" />
+    <result column="retry_content" property="retryContent" jdbcType="VARCHAR" />
+    <result column="top_order_id" property="topOrderId" jdbcType="BIGINT" />
+    <result column="country_short" property="countryShort" jdbcType="VARCHAR" />
+    <result column="country_cn" property="countryCn" jdbcType="VARCHAR" />
+    <result column="refund_money" property="refundMoney" jdbcType="NUMERIC" />
+    <result column="transfer_money" property="transferMoney" jdbcType="NUMERIC" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="is_stockout" property="isStockout" jdbcType="SMALLINT" />
+    <result column="cancel_time" property="cancelTime" jdbcType="TIMESTAMP" />
+    <result column="payment_money" property="paymentMoney" jdbcType="NUMERIC" />
+    <result column="income_freight" property="incomeFreight" jdbcType="NUMERIC" />
+    <result column="orders_money" property="ordersMoney" jdbcType="NUMERIC" />
+    <result column="original_money" property="originalMoney" jdbcType="NUMERIC" />
+    <result column="deliver_time" property="deliverTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="OrderBaseResultMap" type="com.samton.erp.api.orders.bean.entity.vo.OrdersVo" extends="BaseResultMap">
+    <result column="logistics_name" property="logisticsName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="OrderNumBaseResultMap" type="com.samton.erp.api.orders.bean.entity.vo.OrderTnumberVo" extends="BaseResultMap">
+    <result column="logistics_name" property="logisticsName" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="tnum_id" property="tnumId" jdbcType="VARCHAR" />
+    <result column="tnumber" property="tnumber" jdbcType="VARCHAR" />
+    <result column="is_used" property="isUsed" jdbcType="VARCHAR" />
+    <result column="is_usedCn" property="isUseCn" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="orderPrintVoResultMap" type="com.samton.erp.api.orders.bean.entity.vo.OrderPrintVo" extends="BaseResultMap">
+  	<result column="countryCode" property="countryCode" jdbcType="VARCHAR"   />
+  	<result column="enterpriseName" property="enterpriseName" jdbcType="VARCHAR"   />
+  	<result column="enterprisePostAddress" property="enterprisePostAddress" jdbcType="VARCHAR"   />
+  	<result column="logisticsName" property="logisticsName" jdbcType="VARCHAR"   />
+  	<result column="customerCompany" property="customerCompany" jdbcType="VARCHAR"   />
+	<result column="address_temp_id" property="addressTempId" jdbcType="BIGINT" />
+	<result column="declaration_temp_id" property="declarationTempId" jdbcType="BIGINT" />
+	<result column="allocation_temp_id" property="allocationTempId" jdbcType="BIGINT" />
+  	
+    	<collection property="orderDetailPrintVos"  ofType="com.samton.erp.api.orders.bean.entity.vo.OrderDetailPrintVo"  column="order_id"  >
+		    <id column="detail_id" property="detailId" jdbcType="BIGINT" />
+		    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+		    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+		    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+		    <result column="d_count" property="count" jdbcType="INTEGER" />
+		    <result column="d_price" property="price" jdbcType="NUMERIC" />
+		    <result column="d_weight" property="weight" jdbcType="NUMERIC" />
+		    <result column="d_customs_code" property="customsCode" jdbcType="BIGINT" />
+		    <result column="space_id" property="spaceId" jdbcType="BIGINT" />
+		    <result column="state" property="state" jdbcType="SMALLINT" />
+		    <result column="goods_info" property="goodsInfo" jdbcType="VARCHAR" />
+		    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+		    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+		    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+		    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+		    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+		    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+		    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+		        
+		    <result column="sku" property="sku" jdbcType="VARCHAR" />
+		    <result column="declareName" property="declareName" jdbcType="VARCHAR" />
+		    <result column="declareEName" property="declareEName" jdbcType="VARCHAR" />
+		    <result column="whouseName" property="whouseName" jdbcType="VARCHAR" />
+		    <result column="spaceName" property="spaceName" jdbcType="VARCHAR" />
+		    <result column="d_name" property="name" jdbcType="VARCHAR" />
+		    <result column="d_eName" property="eName" jdbcType="VARCHAR" />
+    	</collection>
+  </resultMap>
+  
+  <resultMap id="orderExportVoResultMap" type="com.samton.erp.api.orders.bean.entity.vo.OrderExportVo" extends="BaseResultMap">
+  	<result column="currency_code" property="currencyCode" jdbcType="VARCHAR"   />
+  	<result column="order_stateCn" property="orderStateCn" jdbcType="VARCHAR"   />
+  	<result column="goods_info" property="goodsInfo" jdbcType="VARCHAR"   />
+  	<result column="price" property="price" jdbcType="NUMERIC"   />
+  	<result column="pack_weight" property="packWeight" jdbcType="NUMERIC"   />
+  	<result column="platform_goods_id" property="productId" jdbcType="VARCHAR"   />
+  	<result column="sku" property="sku" jdbcType="VARCHAR"   />
+  	<result column="order_num" property="childId" jdbcType="VARCHAR"   />
+  	<result column="whouse_name" property="whouseName" jdbcType="VARCHAR"   />
+  	<result column="space_code" property="spaceCode" jdbcType="VARCHAR"   />
+  	<result column="count" property="count" jdbcType="INTEGER"   />
+  	<result column="original_sku" property="originalSku" jdbcType="VARCHAR"   />
+  	<result column="inventory_count" property="inventoryCount" jdbcType="INTEGER"   />
+  	<result column="catalog_name" property="catalogName" jdbcType="VARCHAR"   />
+  	<result column="declare_name" property="declareName" jdbcType="VARCHAR"   />
+  	<result column="declare_e_name" property="declareEname" jdbcType="VARCHAR"   />
+  	<result column="e_name" property="eName" jdbcType="VARCHAR"   />
+  	<result column="goods_name" property="goodsName" jdbcType="VARCHAR"   />
+  	<result column="sale_image" property="saleImage" jdbcType="VARCHAR"   />
+  	<result column="pack_name" property="packName" jdbcType="VARCHAR"   />
+  	<result column="shop_name" property="shopName" jdbcType="VARCHAR"   />
+  	<result column="pack_price" property="packPrice" jdbcType="NUMERIC"   />
+  	<result column="total_cost" property="totalCost" jdbcType="NUMERIC"   />
+  	<result column="logistics_name" property="logistisName" jdbcType="VARCHAR"   />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orders_id, order_type, name, orders_date, deal_num, shop_id, customs_code, insurance, 
+    cost, gathering_account, currency, message, message_state, reply_content, remark, 
+    customer_id, customer_name, phone1, phone2, email, country, province, postal_code, 
+    address, spare_address, city, cust_logistics, logistics_id, bills, interior_bills, 
+    fast_picking, antcipated_freight, actual_freight, weight, packing_id, is_print, order_state, 
+    state, enterprise_id, create_user_id, create_user_name, create_date, modify_user_id, country_short,country_cn,
+    modify_user_name, modify_date, last_modify_date,payment,is_checked,is_outstorage,parent_order_id,is_retry,retry_content,top_order_id,refund_money,transfer_money,
+    pay_time,deliver_time,original_money,orders_money,income_freight,payment_money,cancel_time,is_stockout
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_orders
+    where orders_id = #{ordersId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_orders
+    where orders_id = #{ordersId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrders" >
+    insert into public.t_erp_orders (orders_id, order_type, name, 
+      orders_date, deal_num, shop_id, 
+      customs_code, insurance, cost, 
+      gathering_account, currency, message, 
+      message_state, reply_content, remark, 
+      customer_id, customer_name, phone1, 
+      phone2, email, country, 
+      province, postal_code, address, 
+      spare_address, city, cust_logistics, 
+      logistics_id, bills, interior_bills, 
+      fast_picking, antcipated_freight, actual_freight, 
+      weight, packing_id, is_print, 
+      order_state, state, enterprise_id, 
+      create_user_id, create_user_name, create_date, 
+      modify_user_id, modify_user_name, modify_date, 
+      last_modify_date,payment,is_checked,is_outstorage,parent_order_id,is_retry,retry_content,top_order_id,country_short,country_cn,refund_money,transfer_money,
+      pay_time,deliver_time,original_money,orders_money,income_freight,payment_money,cancel_time,is_stockout)
+    values (#{ordersId,jdbcType=BIGINT}, #{orderType,jdbcType=SMALLINT}, #{name,jdbcType=VARCHAR}, 
+      #{ordersDate,jdbcType=TIMESTAMP}, #{dealNum,jdbcType=VARCHAR}, #{shopId,jdbcType=BIGINT}, 
+      #{customsCode,jdbcType=NUMERIC}, #{insurance,jdbcType=NUMERIC}, #{cost,jdbcType=NUMERIC}, 
+      #{gatheringAccount,jdbcType=VARCHAR}, #{currency,jdbcType=BIGINT}, #{message,jdbcType=VARCHAR}, 
+      #{messageState,jdbcType=SMALLINT}, #{replyContent,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{phone1,jdbcType=VARCHAR}, 
+      #{phone2,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{spareAddress,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{custLogistics,jdbcType=VARCHAR}, 
+      #{logisticsId,jdbcType=BIGINT}, #{bills,jdbcType=VARCHAR}, #{interiorBills,jdbcType=VARCHAR}, 
+      #{fastPicking,jdbcType=SMALLINT}, #{antcipatedFreight,jdbcType=NUMERIC}, #{actualFreight,jdbcType=NUMERIC}, 
+      #{weight,jdbcType=NUMERIC}, #{packingId,jdbcType=BIGINT}, #{isPrint,jdbcType=SMALLINT}, 
+      #{orderState,jdbcType=SMALLINT}, #{state,jdbcType=SMALLINT}, #{enterpriseId,jdbcType=BIGINT}, 
+      #{createUserId,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyUserId,jdbcType=BIGINT}, #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{lastModifyDate,jdbcType=TIMESTAMP},#{payment,jdbcType=NUMERIC},#{isChecked,jdbcType=SMALLINT},#{isOutstorage,jdbcType=SMALLINT},
+      #{parentOrderId,jdbcType=BIGINT},#{isRetry,jdbcType=SMALLINT},#{retryContent,jdbcType=VARCHAR},#{topOrderId,jdbcType=BIGINT},
+      #{countryShort,jdbcType=VARCHAR},#{countryCn,jdbcType=VARCHAR},#{refundMoney,jdbcType=NUMERIC},#{transferMoney,jdbcType=NUMERIC},
+      #{payTime,jdbcType=TIMESTAMP},#{deliverTime,jdbcType=TIMESTAMP},#{originalMoney,jdbcType=NUMERIC},#{ordersMoney,jdbcType=NUMERIC},
+      #{incomeFreight,jdbcType=NUMERIC},#{paymentMoney,jdbcType=NUMERIC},#{cancelTime,jdbcType=TIMESTAMP},#{isStockout,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrders" useGeneratedKeys="true" keyProperty="ordersId">
+    insert into public.t_erp_orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ordersId != null" >
+        orders_id,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ordersDate != null" >
+        orders_date,
+      </if>
+      <if test="dealNum != null" >
+        deal_num,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="customsCode != null" >
+        customs_code,
+      </if>
+      <if test="insurance != null" >
+        insurance,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="gatheringAccount != null" >
+        gathering_account,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="messageState != null" >
+        message_state,
+      </if>
+      <if test="replyContent != null" >
+        reply_content,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="phone1 != null" >
+        phone1,
+      </if>
+      <if test="phone2 != null" >
+        phone2,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="postalCode != null" >
+        postal_code,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="spareAddress != null" >
+        spare_address,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="custLogistics != null" >
+        cust_logistics,
+      </if>
+      <if test="logisticsId != null" >
+        logistics_id,
+      </if>
+      <if test="bills != null" >
+        bills,
+      </if>
+      <if test="interiorBills != null" >
+        interior_bills,
+      </if>
+      <if test="fastPicking != null" >
+        fast_picking,
+      </if>
+      <if test="antcipatedFreight != null" >
+        antcipated_freight,
+      </if>
+      <if test="actualFreight != null" >
+        actual_freight,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="packingId != null" >
+        packing_id,
+      </if>
+      <if test="isPrint != null" >
+        is_print,
+      </if>
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="isChecked != null" >
+        is_checked,
+      </if>
+      <if test="isOutstorage != null" >
+        is_outstorage,
+      </if>
+      <if test="parentOrderId != null" >
+        parent_order_id,
+      </if>
+      <if test="isRetry != null" >
+        is_retry,
+      </if>
+      <if test="retryContent != null" >
+        retry_content,
+      </if>
+      <if test="topOrderId != null" >
+        top_order_id,
+      </if>
+       <if test="countryShort != null" >
+        country_short,
+      </if>
+       <if test="countryCn != null" >
+        country_cn,
+      </if>
+      <if test="refundMoney != null" >
+        refund_money,
+      </if>
+      <if test="transferMoney != null" >
+        transfer_money,
+      </if>
+       <if test="payTime != null" >
+        pay_time,
+      </if>
+       <if test="deliverTime != null" >
+        deliver_time,
+      </if>
+       <if test="originalMoney != null" >
+        original_money,
+      </if>
+       <if test="ordersMoney != null" >
+        orders_money,
+      </if>
+       <if test="incomeFreight != null" >
+        income_freight,
+      </if>
+       <if test="paymentMoney != null" >
+        payment_money,
+      </if>
+       <if test="cancelTime != null" >
+        cancel_time,
+      </if>
+       <if test="isStockout != null" >
+        is_stockout,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ordersId != null" >
+        #{ordersId,jdbcType=BIGINT},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=SMALLINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersDate != null" >
+        #{ordersDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealNum != null" >
+        #{dealNum,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="customsCode != null" >
+        #{customsCode,jdbcType=NUMERIC},
+      </if>
+      <if test="insurance != null" >
+        #{insurance,jdbcType=NUMERIC},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=NUMERIC},
+      </if>
+      <if test="gatheringAccount != null" >
+        #{gatheringAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=BIGINT},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="messageState != null" >
+        #{messageState,jdbcType=SMALLINT},
+      </if>
+      <if test="replyContent != null" >
+        #{replyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone1 != null" >
+        #{phone1,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null" >
+        #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null" >
+        #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="spareAddress != null" >
+        #{spareAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="custLogistics != null" >
+        #{custLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsId != null" >
+        #{logisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="bills != null" >
+        #{bills,jdbcType=VARCHAR},
+      </if>
+      <if test="interiorBills != null" >
+        #{interiorBills,jdbcType=VARCHAR},
+      </if>
+      <if test="fastPicking != null" >
+        #{fastPicking,jdbcType=SMALLINT},
+      </if>
+      <if test="antcipatedFreight != null" >
+        #{antcipatedFreight,jdbcType=NUMERIC},
+      </if>
+      <if test="actualFreight != null" >
+        #{actualFreight,jdbcType=NUMERIC},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=NUMERIC},
+      </if>
+      <if test="packingId != null" >
+        #{packingId,jdbcType=BIGINT},
+      </if>
+      <if test="isPrint != null" >
+        #{isPrint,jdbcType=SMALLINT},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=SMALLINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=NUMERIC},
+      </if>
+      <if test="isChecked != null" >
+        #{isChecked,jdbcType=SMALLINT},
+      </if>
+      <if test="isOutstorage != null" >
+         #{isOutstorage,jdbcType=SMALLINT},
+      </if>
+       <if test="parentOrderId != null" >
+        #{parentOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="isRetry != null" >
+        #{isRetry,jdbcType=SMALLINT},
+      </if>
+      <if test="retryContent != null" >
+        #{retryContent,jdbcType=VARCHAR},
+      </if>
+      <if test="topOrderId != null" >
+        #{topOrderId,jdbcType=BIGINT},
+      </if>
+       <if test="countryShort != null" >
+        #{countryShort,jdbcType=VARCHAR},
+      </if>
+       <if test="countryCn != null" >
+        #{countryCn,jdbcType=VARCHAR},
+      </if>
+       <if test="refundMoney != null" >
+        #{refundMoney,jdbcType=NUMERIC},
+      </if>
+      <if test="transferMoney != null" >
+        #{transferMoney,jdbcType=NUMERIC},
+      </if>
+       <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="deliverTime != null" >
+        #{deliverTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="originalMoney != null" >
+        #{originalMoney,jdbcType=NUMERIC},
+      </if>
+       <if test="ordersMoney != null" >
+        #{ordersMoney,jdbcType=NUMERIC},
+      </if>
+       <if test="incomeFreight != null" >
+        #{incomeFreight,jdbcType=NUMERIC},
+      </if>
+       <if test="paymentMoney != null" >
+        #{paymentMoney,jdbcType=NUMERIC},
+      </if>
+       <if test="cancelTime != null" >
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="isStockout != null" >
+        #{isStockout,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrders" >
+    update public.t_erp_orders
+    <set >
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=SMALLINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersDate != null" >
+        orders_date = #{ordersDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealNum != null" >
+        deal_num = #{dealNum,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="customsCode != null" >
+        customs_code = #{customsCode,jdbcType=NUMERIC},
+      </if>
+      <if test="insurance != null" >
+        insurance = #{insurance,jdbcType=NUMERIC},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=NUMERIC},
+      </if>
+      <if test="gatheringAccount != null" >
+        gathering_account = #{gatheringAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=BIGINT},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="messageState != null" >
+        message_state = #{messageState,jdbcType=SMALLINT},
+      </if>
+      <if test="replyContent != null" >
+        reply_content = #{replyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone1 != null" >
+        phone1 = #{phone1,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null" >
+        phone2 = #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null" >
+        postal_code = #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="spareAddress != null" >
+        spare_address = #{spareAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="custLogistics != null" >
+        cust_logistics = #{custLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsId != null" >
+        logistics_id = #{logisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="bills != null" >
+        bills = #{bills,jdbcType=VARCHAR},
+      </if>
+      <if test="interiorBills != null" >
+        interior_bills = #{interiorBills,jdbcType=VARCHAR},
+      </if>
+      <if test="fastPicking != null" >
+        fast_picking = #{fastPicking,jdbcType=SMALLINT},
+      </if>
+      <if test="antcipatedFreight != null" >
+        antcipated_freight = #{antcipatedFreight,jdbcType=NUMERIC},
+      </if>
+      <if test="actualFreight != null" >
+        actual_freight = #{actualFreight,jdbcType=NUMERIC},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=NUMERIC},
+      </if>
+      <if test="packingId != null" >
+        packing_id = #{packingId,jdbcType=BIGINT},
+      </if>
+      <if test="isPrint != null" >
+        is_print = #{isPrint,jdbcType=SMALLINT},
+      </if>
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=SMALLINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=NUMERIC},
+       </if>
+       <if test="isChecked != null" >
+        is_checked = #{isChecked,jdbcType=SMALLINT},
+      </if>
+      <if test="isOutstorage != null" >
+        is_outstorage = #{isOutstorage,jdbcType=SMALLINT},
+      </if>
+      <if test="parentOrderId != null" >
+        parent_order_id = #{parentOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="isRetry != null" >
+        is_retry = #{isRetry,jdbcType=SMALLINT},
+      </if>
+      <if test="retryContent != null" >
+        retry_content = #{retryContent,jdbcType=VARCHAR},
+      </if>
+      <if test="topOrderId != null" >
+        top_order_id = #{topOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="countryShort != null" >
+        country_short = #{countryShort,jdbcType=VARCHAR},
+      </if>
+       <if test="countryCn != null" >
+        country_cn = #{countryCn,jdbcType=VARCHAR},
+      </if>
+      <if test="refundMoney != null" >
+        refund_money = #{refundMoney,jdbcType=NUMERIC},
+      </if>
+      <if test="transferMoney != null" >
+        transfer_money = #{transferMoney,jdbcType=NUMERIC},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="deliverTime != null" >
+        deliver_time = #{deliverTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="originalMoney != null" >
+        original_money = #{originalMoney,jdbcType=NUMERIC},
+      </if>
+       <if test="ordersMoney != null" >
+        orders_money = #{ordersMoney,jdbcType=NUMERIC},
+      </if>
+       <if test="incomeFreight != null" >
+        income_freight = #{incomeFreight,jdbcType=NUMERIC},
+      </if>
+       <if test="paymentMoney != null" >
+        payment_money = #{paymentMoney,jdbcType=NUMERIC},
+      </if>
+       <if test="cancelTime != null" >
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="isStockout != null" >
+        is_stockout = #{isStockout,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where orders_id = #{ordersId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrders" >
+    update public.t_erp_orders
+    set order_type = #{orderType,jdbcType=SMALLINT},
+      name = #{name,jdbcType=VARCHAR},
+      orders_date = #{ordersDate,jdbcType=TIMESTAMP},
+      deal_num = #{dealNum,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      customs_code = #{customsCode,jdbcType=NUMERIC},
+      insurance = #{insurance,jdbcType=NUMERIC},
+      cost = #{cost,jdbcType=NUMERIC},
+      gathering_account = #{gatheringAccount,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=BIGINT},
+      message = #{message,jdbcType=VARCHAR},
+      message_state = #{messageState,jdbcType=SMALLINT},
+      reply_content = #{replyContent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      phone1 = #{phone1,jdbcType=VARCHAR},
+      phone2 = #{phone2,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      postal_code = #{postalCode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      spare_address = #{spareAddress,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      cust_logistics = #{custLogistics,jdbcType=VARCHAR},
+      logistics_id = #{logisticsId,jdbcType=BIGINT},
+      bills = #{bills,jdbcType=VARCHAR},
+      interior_bills = #{interiorBills,jdbcType=VARCHAR},
+      fast_picking = #{fastPicking,jdbcType=SMALLINT},
+      antcipated_freight = #{antcipatedFreight,jdbcType=NUMERIC},
+      actual_freight = #{actualFreight,jdbcType=NUMERIC},
+      weight = #{weight,jdbcType=NUMERIC},
+      packing_id = #{packingId,jdbcType=BIGINT},
+      is_print = #{isPrint,jdbcType=SMALLINT},
+      order_state = #{orderState,jdbcType=SMALLINT},
+      state = #{state,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      payment = #{payment,jdbcType=NUMERIC},
+      is_checked = #{isChecked,jdbcType=SMALLINT},
+      is_outstorage = #{isOutstorage,jdbcType=SMALLINT},
+      parent_order_id = #{parentOrderId,jdbcType=BIGINT},
+      is_retry = #{isRetry,jdbcType=SMALLINT},
+      top_order_id = #{topOrderId,jdbcType=BIGINT},
+      retry_content = #{retryContent,jdbcType=VARCHAR},
+      country_short = #{countryShort,jdbcType=VARCHAR},
+      country_cn = #{countryCn,jdbcType=VARCHAR},
+      refund_money = #{refundMoney,jdbcType=NUMERIC},
+      transfer_money = #{transferMoney,jdbcType=NUMERIC},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      deliver_time = #{deliverTime,jdbcType=TIMESTAMP},
+      original_money = #{originalMoney,jdbcType=NUMERIC},
+      orders_money = #{ordersMoney,jdbcType=NUMERIC},
+      income_freight = #{incomeFreight,jdbcType=NUMERIC},
+      payment_money = #{paymentMoney,jdbcType=NUMERIC},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      is_stockout = #{isStockout,jdbcType=SMALLINT}
+    where orders_id = #{ordersId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryOrderCodeIsExists" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrders" resultType="java.lang.Integer">
+  	select count(1) from t_erp_orders where name = #{name,jdbcType=VARCHAR} and state = 1
+  </select>
+  
+  <select id="queryOrderDealNumIsExists" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrders" resultType="java.lang.Integer">
+  	select count(1) from t_erp_orders where deal_num = #{dealNum,jdbcType=VARCHAR} and shop_id = #{shopId,jdbcType=BIGINT} and state = 1
+  </select>
+  
+  <select id="queryOrdersList" resultType="java.util.HashMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+	select a.orders_id,a.order_type,a.name,a.orders_date,a.deal_num,a.customs_code,a.insurance,a.cost,a.gathering_account,a.currency,a.message,
+	a.message_state,a.reply_content,a.remark,a.customer_id,a.customer_name,a.phone1,a.phone2,a.email,a.country,b.is_use,a.pay_time,
+	a.province,a.postal_code,a.address,a.spare_address,a.city,a.cust_logistics,a.logistics_id,a.bills,a.interior_bills,a.country_short,a.country_cn,
+	a.fast_picking,a.antcipated_freight,a.actual_freight,a.weight,a.packing_id,a.is_print,a.order_state,c.name as logistics_name,a.is_stockout,
+	b.shop_id,b.shop_name,b.platform_type,b.platform_account,a.orders_money,a.original_money,a.payment,a.income_freight,a.payment_money
+    from t_erp_orders a
+    inner join t_erp_shop b on a.shop_id = b.shop_id and a.enterprise_id = b.enterprise_id
+    <if test="isAdmin == 0 and isManager == 0">
+	    inner join t_erp_shop_user u on a.shop_id = u.shop_id and a.enterprise_id = u.enterprise_id and u.user_id = #{currentUserId,jdbcType=BIGINT} and u.state = 1
+    </if>
+    left join t_erp_logistics_company c on a.logistics_id = c.logistics_id
+    left join t_erp_sys_rate d on a.currency = d.rate_id and d.state = 1
+	where a.state = 1 and b.state = 1 and a.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+	<if test="search != null">
+		 <if test="search.orderState != null and search.orderState != -1">
+		 	and a.order_state = #{search.orderState,jdbcType=SMALLINT}
+	     </if>
+	      <if test="search.startDate != null and search.startDate != '' and search.filterType == 0">
+	      	and <![CDATA[a.pay_time>= #{search.startDate,jdbcType=VARCHAR}::timestamp]]>
+	     </if>
+	      <if test="search.endDate != null and search.endDate != '' and search.filterType == 0">
+	      	and <![CDATA[a.pay_time<= #{search.endDate,jdbcType=VARCHAR}::timestamp]]>
+	     </if>
+	     <if test="search.startDate != null and search.startDate != '' and search.filterType == 1">
+	      	and <![CDATA[a.deliver_time>= #{search.startDate,jdbcType=VARCHAR}::timestamp]]>
+	     </if>
+	      <if test="search.endDate != null and search.endDate != '' and search.filterType == 1">
+	      	and <![CDATA[a.deliver_time<= #{search.endDate,jdbcType=VARCHAR}::timestamp]]>
+	     </if>
+	     <if test="search.platformType != null">
+		 	and b.platform_type = #{search.platformType,jdbcType=SMALLINT}
+	     </if>
+	     <if test="search.shopId != null">
+	     	and a.shop_id =  #{search.shopId,jdbcType=BIGINT}
+	     </if>
+	     <if test="search.logisticsId != null">
+	     	<if test="search.logisticsId == -1">
+	     		and a.logistics_id is null
+	     	</if>
+	     	<if test="search.logisticsId != -1">
+	     		and a.logistics_id = #{search.logisticsId,jdbcType=BIGINT}
+	     	</if>
+	     </if>
+	     <if test="search.isUse != null">
+	     	 and b.is_use = #{search.isUse,jdbcType=SMALLINT}
+	     </if>
+	     <if test="search.name != null and search.name != ''">
+	     	and a.name like '%'||#{search.name,jdbcType=VARCHAR}||'%'
+	     </if>
+	      <if test="search.dealNum != null and search.dealNum != ''">
+	     	and a.deal_num like '%'||#{search.dealNum,jdbcType=VARCHAR}||'%'
+	     </if>
+	      <if test="search.bills != null and search.bills != ''">
+	     	and a.bills like '%'||#{search.bills,jdbcType=VARCHAR}||'%'
+	     </if>
+	      <if test="search.interiorBills != null and search.interiorBills != ''">
+	     	and a.interior_bills like '%'||#{search.interiorBills,jdbcType=VARCHAR}||'%'
+	     </if>
+	      <if test="search.custLogistics != null and search.custLogistics != ''">
+	     	and a.cust_logistics like '%'||#{search.custLogistics,jdbcType=VARCHAR}||'%'
+	     </if>
+	      <if test="search.customerId != null and search.customerId != ''">
+	     	and a.customer_id like '%'||#{search.customerId,jdbcType=VARCHAR}||'%'
+	     </if>
+	      <if test="search.customerName != null and search.customerName != ''">
+	     	and a.customer_name like '%'||#{search.customerName,jdbcType=VARCHAR}||'%'
+	     </if>
+	      <if test="search.email != null and search.email != ''">
+	     	and a.email like '%'||#{search.email,jdbcType=VARCHAR}||'%'
+	     </if>
+	      <if test="search.country != null and search.country != ''">
+	       and a.country like '%'||#{search.country,jdbcType=VARCHAR}||'%'
+	     </if>
+	     <if test="search.countryCn != null and search.countryCn != ''">
+	       and a.country_cn like '%'||#{search.countryCn,jdbcType=VARCHAR}||'%'
+	     </if>
+	      <if test="search.city != null and search.city != ''">
+	     	and (a.province like '%'||#{search.city,jdbcType=VARCHAR}||'%' or a.city like '%'||#{search.city,jdbcType=VARCHAR}||'%')
+	     </if>
+	      <if test="search.phone != null and search.phone != ''">
+	        and (a.phone1 like '%'||#{search.phone,jdbcType=VARCHAR}||'%' or a.phone2 like '%'||#{search.phone,jdbcType=VARCHAR}||'%')
+	     </if>
+	     <if test="search.productId != null and search.productId != ''">
+	     	and exists(
+	     		select 1 from t_erp_orders_detail od
+				inner join t_erp_goods b on od.goods_id = b.goods_id and od.enterprise_id = b.enterprise_id and b.state = 1
+				where od.state = 1 and b.platform_goods_id = #{search.productId,jdbcType=VARCHAR} and od.order_id = a.orders_id
+	     	)
+	     </if>
+	</if>
+	 <if test="sidx != null and sidx != ''">
+		order by ${sidx} ${sord}
+	</if>
+	<if test="sidx == null or sidx == ''">
+		order by a.orders_id desc
+	</if>
+	</select>
+	<select id="queryOrderCountByState" resultType="java.lang.Long">
+		select count(1)
+		from t_erp_orders
+		where state = 1 and order_state = #{orderState,jdbcType=SMALLINT} and enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+	</select>
+	
+	<update id="batchDealOrderState">
+		update public.t_erp_orders
+		set order_state = #{orderState,jdbcType=SMALLINT}
+		where orders_id in
+		<foreach item="idItem" collection="idList" open="(" separator="," close=")"> 
+			#{idItem}
+		</foreach>
+	</update>
+	<select id="queryDistributionPrintSetPreviewList" resultType="java.util.HashMap">
+		select a.detail_id,a.count,a.goods_info,b.name,b.deal_num,b.bills,b.shop_id,b.remark,c.sku,c.original_sku,c.name as goods_name,c.e_name,
+		c.sale_image,c.storget_image,d.shop_name,d.platform_type,e.whouse_name,f.space_code,COALESCE(e.whouse_name,'无') || '/' || COALESCE(f.space_code,'无') as warehouse
+		from t_erp_orders_detail a
+		inner join t_erp_orders b on b.orders_id = a.order_id and a.enterprise_id = b.enterprise_id and b.state = 1
+		inner join t_erp_goods c on a.goods_id = c.goods_id and a.enterprise_id = c.enterprise_id and c.state = 1
+		inner join t_erp_shop d on b.shop_id = d.shop_id and b.enterprise_id = d.enterprise_id and d.state = 1
+		left join t_erp_warehouse e on e.whouse_id = a.customs_code and a.enterprise_id = e.enterprise_id and e.state = 1
+		left join t_erp_space f on a.space_id = f.space_id and a.enterprise_id = f.enterprise_id and f.state = 1
+		where a.state = 1 and a.order_id in
+		<foreach item="idItem" collection="idList" open="(" separator="," close=")"> 
+			#{idItem}
+		</foreach>
+		order by a.order_id
+	</select>
+	
+	<select id="queryPrintSetPreviewList" resultType="java.util.HashMap">
+		select row_number() over() rownum,a.detail_id,a.count,a.goods_info,b.name,b.deal_num,b.bills,b.shop_id,b.remark,c.sku,c.original_sku,c.name as goods_name,c.e_name,
+		c.sale_image,c.storget_image,COALESCE(e.whouse_name,'无') as whouse_name,COALESCE(f.space_code,'无') as space_code,c.inventory_count
+		from t_erp_orders_detail a
+		inner join t_erp_orders b on b.orders_id = a.order_id and a.enterprise_id = b.enterprise_id and b.state = 1
+		inner join t_erp_goods c on a.goods_id = c.goods_id and a.enterprise_id = c.enterprise_id and c.state = 1
+		left join t_erp_warehouse e on e.whouse_id = a.customs_code and a.enterprise_id = e.enterprise_id and e.state = 1
+		left join t_erp_space f on a.space_id = f.space_id and a.enterprise_id = f.enterprise_id and f.state = 1
+		where a.state = 1 and a.order_id in
+		<foreach item="idItem" collection="idList" open="(" separator="," close=")"> 
+			#{idItem}
+		</foreach>
+		order by a.order_id
+	</select>
+	
+	<select id="queryOrdersInfoByCode" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from public.t_erp_orders
+	    where (name = #{ordersCode,jdbcType=VARCHAR} or bills = #{ordersCode,jdbcType=VARCHAR}) and state = 1 and enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+	    order by create_date desc
+	    limit 1
+	</select>
+	
+	<select id="queryOrderInfoByName" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from public.t_erp_orders
+	    where enterprise_id = #{enterpriseId,jdbcType=BIGINT} and state = 1
+	    <if test="ordersCode != null">
+		 	and name = #{ordersCode,jdbcType=VARCHAR}
+	    </if>
+	    <if test="trackNumber != null">
+		 	and bills = #{trackNumber,jdbcType=VARCHAR}
+	    </if>
+	    <if test="tradeCode != null">
+	    	and deal_num = #{tradeCode,jdbcType=VARCHAR}
+	    </if>
+	    order by create_date desc
+	    limit 1
+	</select>
+	
+	<select id="queryAllSubOrderByTopId" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from public.t_erp_orders
+	    where enterprise_id = #{enterpriseId,jdbcType=BIGINT} and state = 1
+	    and top_order_id = #{topOrderId,jdbcType=BIGINT}
+	    order by create_date desc
+	</select>
+	
+	<select id="queryRelateOrderById" resultMap="OrderBaseResultMap">
+		select t.orders_id,t.parent_order_id,t.top_order_id,t.name,t.order_state,t.enterprise_id,t.orders_date,t.bills,t.payment,COALESCE(t.customs_code,0.000) as customs_code,t.weight,t.actual_freight,t.logistics_id,lc.name as logistics_name
+		from t_erp_orders t
+		left join t_erp_logistics_company lc on t.logistics_id = lc.logistics_id and t.enterprise_id = lc.enterprise_id and lc.state = 1
+		where exists(select true from t_erp_orders b where b.orders_id = #{ordersId,jdbcType=BIGINT} and b.top_order_id = t.top_order_id and b.state = 1 and b.enterprise_id = t.enterprise_id) 
+		and t.orders_id != #{ordersId,jdbcType=BIGINT} and t.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and t.state = 1
+		order by t.orders_date desc
+	</select>
+	
+	<select id="queryOrdersByIds" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from public.t_erp_orders
+	    where orders_id in
+		<foreach item="idItem" collection="idList" open="(" separator="," close=")"> 
+			#{idItem}
+		</foreach>
+		order by orders_id
+	</select>
+	
+	<select id="queryOrderTradeNumList" resultMap="OrderNumBaseResultMap">
+			select a.orders_id,a.name,a.logistics_id,b.name as logistics_name,c.name as company_name,d.tnum_id,d.tnumber,d.is_used,
+			case when a.logistics_id is not null and d.is_used = 1 then '填充成功' when a.logistics_id is not null and d.is_used is null then '待填充' else '' end as is_usedCn
+			from t_erp_orders a
+			left join t_erp_logistics_company b on a.logistics_id = b.logistics_id and a.enterprise_id = b.enterprise_id
+			left join t_erp_sys_logistics_company c on c.sys_logistics_id = b.sys_logistics_id
+			left join t_erp_logistics_trackingnumber d on a.orders_id = d.orders_id and a.logistics_id = d.logistics_id and d.state = 1 and a.enterprise_id = b.enterprise_id
+			where a.enterprise_id = #{enterpriseId,jdbcType=BIGINT} and a.state = 1 and a.orders_id in
+			<foreach item="idItem" collection="idList" open="(" separator="," close=")"> 
+				#{idItem}
+			</foreach>
+			order by a.orders_id
+	</select>
+	
+	<update id="markOrderIsPrint">
+		update public.t_erp_orders
+		set order_state = #{orderState,jdbcType=SMALLINT},is_print = #{isPrint,jdbcType=SMALLINT}
+		where orders_id in
+		<foreach item="idItem" collection="idList" open="(" separator="," close=")"> 
+			#{idItem}
+		</foreach>
+	</update>
+	
+	<select id="batchUpdateOrdersState" resultType="java.util.HashMap">
+		select * from f_batch_deal_order_status(#{ids,jdbcType=VARCHAR},#{orderState,jdbcType=SMALLINT},#{userId,jdbcType=BIGINT},#{userName,jdbcType=VARCHAR},#{enterpriseId,jdbcType=BIGINT})
+	</select>
+	
+	<select id="batchUpdateOrder" resultType="java.util.HashMap">
+		select * from f_batch_update_order(#{names,jdbcType=VARCHAR},#{orderState,jdbcType=SMALLINT},#{logisticsId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{editLogist,jdbcType=VARCHAR},#{editState,jdbcType=VARCHAR},#{editRemark,jdbcType=VARCHAR},#{userId,jdbcType=BIGINT},#{userName,jdbcType=VARCHAR},#{enterpriseId,jdbcType=BIGINT})
+	</select>
+	
+	<select id="judgeOrderIsStockout" resultType="java.lang.Integer" parameterType="java.lang.Long">
+		select * from f_common_judge_order_is_stockout(#{ordersId,jdbcType=BIGINT})
+	</select>
+	
+	<select id="queryOrderCount" resultType="java.util.HashMap">
+		select * from f_rpt_order_count(#{enterpriseId,jdbcType=BIGINT},#{userId,jdbcType=BIGINT})
+	</select>
+	
+	<select id="queryOrderIdsByName" resultType="java.util.HashMap">
+		select * from f_common_get_orders_ids(#{names,jdbcType=VARCHAR})
+	</select>
+	
+	<select id="queryOrderPrintVoByIds" resultMap="orderPrintVoResultMap">
+			select a.orders_id,a.order_type,a.name,a.orders_date,a.deal_num,a.customs_code,a.insurance,a.cost,a.gathering_account,a.currency,a.message,
+			a.message_state,a.reply_content,a.remark,a.customer_id,a.customer_name,a.phone1,a.phone2,a.email,a.country,a.pay_time,
+			a.province,a.postal_code,a.address,a.spare_address,a.city,a.cust_logistics,a.logistics_id,a.bills,a.interior_bills,a.country_short,a.country_short as countryCode,a.country_cn,
+			a.fast_picking,a.antcipated_freight,a.actual_freight,a.weight,a.packing_id,a.is_print,a.order_state,a.is_stockout,
+			a.orders_money,a.original_money,a.payment,a.income_freight,a.payment_money
+			,a.customer_name  as customerCompany
+			,b.company_name as enterpriseName
+			,e.dict_name || '-' || d.province || '-' ||d.city|| '-'  || d.area || '-' || d.addresses ||  '&lt;br/&gt;' || d.proportion  || '&lt;br/&gt;' || d.postcode ||  '&lt;br/&gt;' || d.telephone  as enterprisePostAddress
+			,f.name as logisticsName
+			,tg.sku as sku,tg.name as d_name,tg.e_name as d_eName,tg.declare_name as declareName,tg.declare_e_name as declareEName
+			,COALESCE(tw.whouse_name,'无仓库')  as whouseName
+			,COALESCE(tp.space_code,'无仓位')  as spaceName
+			,tod.detail_id,tod.count as  d_count , tod.price as d_price, tod.weight as d_weight
+			,c.address_temp_id ,c.declaration_temp_id ,c.allocation_temp_id
+			
+		    from t_erp_orders a
+		    left join t_erp_orders_detail tod on tod.order_id=a.orders_id and tod.state=1
+			left join t_erp_sys_enterprise b on a.enterprise_id = b.enterprise_id 
+			left join t_erp_logistics_company c on a.logistics_id = c.logistics_id  and c.state=1
+			left join t_erp_enterprise_post_address  d on c.back_address_id = d.address_id and d.state = 1
+			left join t_erp_sys_dict_value e on  e.dict_value =d.country 
+			left join t_erp_sys_logistics_company f  on f.sys_logistics_id = c.sys_logistics_id and f.state=1
+			left join  t_erp_goods tg on  tg.goods_id=tod.goods_id and tg.state=1
+			left join  t_erp_warehouse tw on  tw.whouse_id=tod.customs_code and tw.state=1
+			left join t_erp_space tp on tp.space_id = tod.space_id and tp.state=1
+			
+			where 
+				a.enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+			and 
+				a.state = 1 
+			and 
+				a.orders_id in
+				 <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+					  #{item}  
+				 </foreach>  
+	</select>
+	
+	<select id="queryOrderExportList" resultMap="orderExportVoResultMap">
+		select a.orders_id, a.order_type, a.name, a.orders_date, a.deal_num, a.shop_id, a.customs_code, a.insurance, 
+		    a.cost, a.gathering_account, a.currency,a.remark, 
+		    a.customer_id,a.customer_name, a.phone1, a.phone2, a.email, a.country, a.province, a.postal_code, 
+		    a.address, a.spare_address, a.city, a.cust_logistics, a.logistics_id, a.bills, a.interior_bills, 
+		    a.fast_picking, a.antcipated_freight, a.actual_freight, a.weight, a.packing_id, a.order_state,a.country_short,a.country_cn,a.payment,a.refund_money,a.transfer_money,a.pay_time,a.deliver_time,a.original_money,a.orders_money,a.income_freight,a.payment_money,b.shop_name,c.name as logistics_name,r.currency_code,
+		    e.cost as total_cost,p.name as pack_name,p.price,p.price as pack_price,p.weight as pack_weight,e.sku,e.original_sku,e.name as goods_name,e.e_name,e.sale_image,
+		    e.inventory_count,e.declare_name,e.declare_e_name,e.platform_goods_id,d.order_num,gc.name as catalog_name,d.goods_info,w.whouse_name,s.space_code,
+		    case a.order_state when 0 then '待审核' when 1 then '待处理' when 2 then '配货中' when 3 then '已发货' when 4 then '已作废' else '处理失败' end as order_stateCn
+		from t_erp_orders a
+		inner join t_erp_shop b on a.shop_id = b.shop_id and a.enterprise_id = b.enterprise_id
+		<if test="isAdmin == 0 and isManager == 0">
+			inner join t_erp_shop_user u on a.shop_id = u.shop_id and a.enterprise_id = u.enterprise_id and u.user_id = #{currentUserId,jdbcType=BIGINT} and u.state = 1
+		</if>
+		left join t_erp_logistics_company c on a.logistics_id = c.logistics_id and a.enterprise_id = c.enterprise_id and c.state = 1
+		left join t_erp_orders_detail d on a.orders_id = d.order_id and a.enterprise_id = d.enterprise_id and d.state = 1
+		left join t_erp_goods e on d.goods_id = e.goods_id and e.enterprise_id = d.enterprise_id and e.state = 1
+		left join t_erp_goods_packing p on a.packing_id = p.packing_id and p.state = 1
+		left join t_erp_goods_catalog gc on e.catalogi_id = gc.catalogi_id and gc.state = 1
+		left join t_erp_sys_rate r on a.currency = r.rate_id and r.state = 1
+		left join t_erp_warehouse w on d.customs_code = w.whouse_id and w.state = 1
+		left join t_erp_space s on d.space_id = s.space_id and s.state = 1
+		where a.state = 1 and a.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+		<if test="search != null">
+			 <if test="search.orderState != null and search.orderState != -1">
+			 	and a.order_state = #{search.orderState,jdbcType=SMALLINT}
+		     </if>
+		     <if test="search.startDate != null and search.startDate != '' and search.filterType == 0">
+		      	and <![CDATA[a.pay_time>= #{search.startDate,jdbcType=VARCHAR}::timestamp]]>
+		     </if>
+		      <if test="search.endDate != null and search.endDate != '' and search.filterType == 0">
+		      	and <![CDATA[a.pay_time<= #{search.endDate,jdbcType=VARCHAR}::timestamp]]>
+		     </if>
+		     <if test="search.startDate != null and search.startDate != '' and search.filterType == 1">
+		      	and <![CDATA[a.deliver_time>= #{search.startDate,jdbcType=VARCHAR}::timestamp]]>
+		     </if>
+		      <if test="search.endDate != null and search.endDate != '' and search.filterType == 1">
+		      	and <![CDATA[a.deliver_time<= #{search.endDate,jdbcType=VARCHAR}::timestamp]]>
+		     </if>
+		     <if test="search.platformType != null">
+			 	and b.platform_type = #{search.platformType,jdbcType=SMALLINT}
+		     </if>
+		     <if test="search.shopId != null">
+		     	and a.shop_id =  #{search.shopId,jdbcType=BIGINT}
+		     </if>
+		     <if test="search.logisticsId != null">
+		     	<if test="search.logisticsId == -1">
+		     		and a.logistics_id is null
+		     	</if>
+		     	<if test="search.logisticsId != -1">
+		     		and a.logistics_id = #{search.logisticsId,jdbcType=BIGINT}
+		     	</if>
+		     </if>
+		     <if test="search.isUse != null">
+		     	 and b.is_use = #{search.isUse,jdbcType=SMALLINT}
+		     </if>
+		     <if test="search.name != null and search.name != ''">
+		     	and a.name like '%'||#{search.name,jdbcType=VARCHAR}||'%'
+		     </if>
+		      <if test="search.dealNum != null and search.dealNum != ''">
+		     	and a.deal_num like '%'||#{search.dealNum,jdbcType=VARCHAR}||'%'
+		     </if>
+		      <if test="search.bills != null and search.bills != ''">
+		     	and a.bills like '%'||#{search.bills,jdbcType=VARCHAR}||'%'
+		     </if>
+		      <if test="search.interiorBills != null and search.interiorBills != ''">
+		     	and a.interior_bills like '%'||#{search.interiorBills,jdbcType=VARCHAR}||'%'
+		     </if>
+		      <if test="search.custLogistics != null and search.custLogistics != ''">
+		     	and a.cust_logistics like '%'||#{search.custLogistics,jdbcType=VARCHAR}||'%'
+		     </if>
+		      <if test="search.customerId != null and search.customerId != ''">
+		     	and a.customer_id like '%'||#{search.customerId,jdbcType=VARCHAR}||'%'
+		     </if>
+		      <if test="search.customerName != null and search.customerName != ''">
+		     	and a.customer_name like '%'||#{search.customerName,jdbcType=VARCHAR}||'%'
+		     </if>
+		      <if test="search.email != null and search.email != ''">
+		     	and a.email like '%'||#{search.email,jdbcType=VARCHAR}||'%'
+		     </if>
+		      <if test="search.country != null and search.country != ''">
+		       and a.country like '%'||#{search.country,jdbcType=VARCHAR}||'%'
+		     </if>
+		     <if test="search.countryCn != null and search.countryCn != ''">
+		       and a.country_cn like '%'||#{search.countryCn,jdbcType=VARCHAR}||'%'
+		     </if>
+		      <if test="search.city != null and search.city != ''">
+		     	and (a.province like '%'||#{search.city,jdbcType=VARCHAR}||'%' or a.city like '%'||#{search.city,jdbcType=VARCHAR}||'%')
+		     </if>
+		      <if test="search.phone != null and search.phone != ''">
+		        and (a.phone1 like '%'||#{search.phone,jdbcType=VARCHAR}||'%' or a.phone2 like '%'||#{search.phone,jdbcType=VARCHAR}||'%')
+		     </if>
+		     <if test="search.productId != null and search.productId != ''">
+		     	and exists(
+		     		select 1 from t_erp_orders_detail od
+					inner join t_erp_goods b on od.goods_id = b.goods_id and od.enterprise_id = b.enterprise_id and b.state = 1
+					where od.state = 1 and b.platform_goods_id = #{search.productId,jdbcType=VARCHAR} and od.order_id = a.orders_id
+		     	)
+		     </if>
+		</if>
+		order by a.orders_id desc
+	</select>
+	
+	<select id="queryOrderPrintVoByName" resultMap="orderPrintVoResultMap">
+			select a.orders_id,a.order_type,a.name,a.orders_date,a.deal_num,a.customs_code,a.insurance,a.cost,a.gathering_account,a.currency,a.message,
+			a.message_state,a.reply_content,a.remark,a.customer_id,a.customer_name,a.phone1,a.phone2,a.email,a.country,a.pay_time,
+			a.province,a.postal_code,a.address,a.spare_address,a.city,a.cust_logistics,a.logistics_id,a.bills,a.interior_bills,a.country_short,a.country_short as countryCode,a.country_cn,
+			a.fast_picking,a.antcipated_freight,a.actual_freight,a.weight,a.packing_id,a.is_print,a.order_state,a.is_stockout,
+			a.orders_money,a.original_money,a.payment,a.income_freight,a.payment_money
+			,a.customer_name  as customerCompany
+			,tod.detail_id,tod.count as  d_count , tod.price as d_price, tod.weight as d_weight
+			
+		    from t_erp_orders a
+		    left join
+				(
+					select t.* from t_erp_orders_detail t
+					inner join  t_erp_goods tg on  tg.goods_id=t.goods_id and tg.state=1
+						where t.state=1
+				) tod on tod.order_id=a.orders_id 
+			
+			where 
+				a.enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+			and 
+				a.state = 1 
+			and 
+				a.name = #{name,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

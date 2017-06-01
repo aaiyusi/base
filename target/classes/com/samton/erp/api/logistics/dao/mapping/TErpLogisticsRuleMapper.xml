@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.samton.erp.api.logistics.dao.TErpLogisticsRuleMapper">
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.logistics.bean.entity.TErpLogisticsRule">
+    <id column="rule_id" jdbcType="BIGINT" property="ruleId" />
+    <result column="logistics_id" jdbcType="BIGINT" property="logisticsId" />
+    <result column="enterprise_id" jdbcType="BIGINT" property="enterpriseId" />
+    <result column="rule_name" jdbcType="VARCHAR" property="ruleName" />
+    <result column="order_type" jdbcType="SMALLINT" property="orderType" />
+    <result column="auto_transport" jdbcType="SMALLINT" property="autoTransport" />
+    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="priority_level" jdbcType="SMALLINT" property="priorityLevel" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_user_name" jdbcType="VARCHAR" property="modifyUserName" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="last_modify_date" jdbcType="TIMESTAMP" property="lastModifyDate" />
+  </resultMap>
+  <resultMap id="VoResultMap" type="com.samton.erp.api.logistics.bean.vo.RuleVo" extends="BaseResultMap">
+    <result column="logistics_name" jdbcType="VARCHAR" property="logisticsName" />
+    <result column="auto_transport_txt" jdbcType="VARCHAR" property="autoTransportTxt" />
+    <result column="status_txt" jdbcType="VARCHAR" property="statusTxt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    a.rule_id, a.logistics_id, a.enterprise_id, a.rule_name, a.order_type, a.auto_transport, a.describe, 
+    a.priority_level, a.status, a.create_user_id, a.create_user_name, a.create_date, a.modify_user_id, 
+    a.modify_user_name, a.modify_date, a.last_modify_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_logistics_rule a
+    where a.rule_id = #{ruleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from public.t_erp_logistics_rule
+    where rule_id = #{ruleId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsRule">
+    insert into public.t_erp_logistics_rule (rule_id, logistics_id, enterprise_id, 
+      rule_name, order_type, auto_transport, 
+      describe, priority_level, status, 
+      create_user_id, create_user_name, create_date, 
+      modify_user_id, modify_user_name, modify_date, 
+      last_modify_date)
+    values (#{ruleId,jdbcType=BIGINT}, #{logisticsId,jdbcType=BIGINT}, #{enterpriseId,jdbcType=BIGINT}, 
+      #{ruleName,jdbcType=VARCHAR}, #{orderType,jdbcType=SMALLINT}, #{autoTransport,jdbcType=SMALLINT}, 
+      #{describe,jdbcType=VARCHAR}, #{priorityLevel,jdbcType=SMALLINT}, #{status,jdbcType=SMALLINT}, 
+      #{createUserId,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyUserId,jdbcType=BIGINT}, #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{lastModifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="ruleId"  parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsRule">
+    insert into public.t_erp_logistics_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        rule_id,
+      </if>
+      <if test="logisticsId != null">
+        logistics_id,
+      </if>
+      <if test="enterpriseId != null">
+        enterprise_id,
+      </if>
+      <if test="ruleName != null">
+        rule_name,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="autoTransport != null">
+        auto_transport,
+      </if>
+      <if test="describe != null">
+        describe,
+      </if>
+      <if test="priorityLevel != null">
+        priority_level,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null">
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=BIGINT},
+      </if>
+      <if test="logisticsId != null">
+        #{logisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseId != null">
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="ruleName != null">
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=SMALLINT},
+      </if>
+      <if test="autoTransport != null">
+        #{autoTransport,jdbcType=SMALLINT},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevel != null">
+        #{priorityLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null">
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null">
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsRule">
+    update public.t_erp_logistics_rule
+    <set>
+      <if test="logisticsId != null">
+        logistics_id = #{logisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseId != null">
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="ruleName != null">
+        rule_name = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=SMALLINT},
+      </if>
+      <if test="autoTransport != null">
+        auto_transport = #{autoTransport,jdbcType=SMALLINT},
+      </if>
+      <if test="describe != null">
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevel != null">
+        priority_level = #{priorityLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null">
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where
+    	rule_id = #{ruleId,jdbcType=BIGINT}
+    and 
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsRule">
+    update public.t_erp_logistics_rule
+    set logistics_id = #{logisticsId,jdbcType=BIGINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      rule_name = #{ruleName,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=SMALLINT},
+      auto_transport = #{autoTransport,jdbcType=SMALLINT},
+      describe = #{describe,jdbcType=VARCHAR},
+      priority_level = #{priorityLevel,jdbcType=SMALLINT},
+      status = #{status,jdbcType=SMALLINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where rule_id = #{ruleId,jdbcType=BIGINT}
+  </update>
+  <!-- 以上是自动生成的 -->
+  
+  <!-- 查询规则列表 -->
+  <select id="selectRuleList" resultMap="VoResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean"> 
+    select 
+    <include refid="Base_Column_List"/>, case when a.auto_transport=0 then '不支持' else '支持' end as auto_transport_txt,
+     case when a.status=0 then '停用' else '启用' end as status_txt, b.name as logistics_name
+     from t_erp_logistics_rule a
+     inner join t_erp_logistics_company b on a.logistics_id=b.logistics_id  and b.state=1
+     where a.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+     <if test="search.ruleName != null and search.ruleName != '' ">
+        and a.rule_name like  '%'||#{search.ruleName,jdbcType=VARCHAR}||'%' 
+     </if>
+     <if test="search.logisticsId != null">
+        and a.logistics_id = #{search.logisticsId,jdbcType=BIGINT}
+     </if>
+     <if test="search.status != null">
+        and a.status =  #{search.status,jdbcType=BIGINT}
+     </if>
+     order by a.rule_id desc
+  </select>
+  
+  
+  <select id="selectRuleVoByRuleId" resultMap="VoResultMap" > 
+    select 
+    <include refid="Base_Column_List"/>, case when a.auto_transport=0 then '不支持' else '支持' end as auto_transport_txt,
+     case when a.status=0 then '停用' else '启用' end as status_txt, b.name as logistics_name
+     from t_erp_logistics_rule a
+     inner join t_erp_logistics_company b on a.logistics_id=b.logistics_id 
+     where 
+     	a.rule_id = #{ruleId,jdbcType=BIGINT}
+     and
+    	 a.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+     order by a.rule_id desc
+  </select>
+</mapper>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.upload.dao.LisEnterpriseAttachmeMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.upload.entity.LisEnterpriseAttachme" >
+    <id column="att_id" property="attId" jdbcType="BIGINT" />
+    <result column="att_type" property="attType" jdbcType="VARCHAR" />
+    <result column="att_name" property="attName" jdbcType="VARCHAR" />
+    <result column="att_path" property="attPath" jdbcType="VARCHAR" />
+    <result column="att_suffix" property="attSuffix" jdbcType="VARCHAR" />
+    <result column="att_size" property="attSize" jdbcType="INTEGER" />
+    <result column="att_desc" property="attDesc" jdbcType="VARCHAR" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="att_cate" property="attCate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    att_id, att_type, att_name, att_path, att_suffix, att_size, att_desc, enterprise_id, 
+    state, create_user_id, create_user_name, create_date, modify_user_id, modify_user_name, 
+    modify_date, last_modify_date, att_cate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_lis_enterprise_attachme
+    where att_id = #{attId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_lis_enterprise_attachme
+    where att_id = #{attId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.upload.entity.LisEnterpriseAttachme" >
+    insert into public.t_lis_enterprise_attachme (att_id, att_type, att_name, 
+      att_path, att_suffix, att_size, 
+      att_desc, enterprise_id, state, 
+      create_user_id, create_user_name, create_date, 
+      modify_user_id, modify_user_name, modify_date, 
+      last_modify_date, att_cate)
+    values (#{attId,jdbcType=BIGINT}, #{attType,jdbcType=VARCHAR}, #{attName,jdbcType=VARCHAR}, 
+      #{attPath,jdbcType=VARCHAR}, #{attSuffix,jdbcType=VARCHAR}, #{attSize,jdbcType=INTEGER}, 
+      #{attDesc,jdbcType=VARCHAR}, #{enterpriseId,jdbcType=BIGINT}, #{state,jdbcType=SMALLINT}, 
+      #{createUserId,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyUserId,jdbcType=BIGINT}, #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{lastModifyDate,jdbcType=TIMESTAMP}, #{attCate,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.upload.entity.LisEnterpriseAttachme" >
+    insert into public.t_lis_enterprise_attachme
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attId != null" >
+        att_id,
+      </if>
+      <if test="attType != null" >
+        att_type,
+      </if>
+      <if test="attName != null" >
+        att_name,
+      </if>
+      <if test="attPath != null" >
+        att_path,
+      </if>
+      <if test="attSuffix != null" >
+        att_suffix,
+      </if>
+      <if test="attSize != null" >
+        att_size,
+      </if>
+      <if test="attDesc != null" >
+        att_desc,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+      <if test="attCate != null" >
+        att_cate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attId != null" >
+        #{attId,jdbcType=BIGINT},
+      </if>
+      <if test="attType != null" >
+        #{attType,jdbcType=VARCHAR},
+      </if>
+      <if test="attName != null" >
+        #{attName,jdbcType=VARCHAR},
+      </if>
+      <if test="attPath != null" >
+        #{attPath,jdbcType=VARCHAR},
+      </if>
+      <if test="attSuffix != null" >
+        #{attSuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="attSize != null" >
+        #{attSize,jdbcType=INTEGER},
+      </if>
+      <if test="attDesc != null" >
+        #{attDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attCate != null" >
+        #{attCate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.upload.entity.LisEnterpriseAttachme" >
+    update public.t_lis_enterprise_attachme
+    <set >
+      <if test="attType != null" >
+        att_type = #{attType,jdbcType=VARCHAR},
+      </if>
+      <if test="attName != null" >
+        att_name = #{attName,jdbcType=VARCHAR},
+      </if>
+      <if test="attPath != null" >
+        att_path = #{attPath,jdbcType=VARCHAR},
+      </if>
+      <if test="attSuffix != null" >
+        att_suffix = #{attSuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="attSize != null" >
+        att_size = #{attSize,jdbcType=INTEGER},
+      </if>
+      <if test="attDesc != null" >
+        att_desc = #{attDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attCate != null" >
+        att_cate = #{attCate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where att_id = #{attId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.upload.entity.LisEnterpriseAttachme" >
+    update public.t_lis_enterprise_attachme
+    set att_type = #{attType,jdbcType=VARCHAR},
+      att_name = #{attName,jdbcType=VARCHAR},
+      att_path = #{attPath,jdbcType=VARCHAR},
+      att_suffix = #{attSuffix,jdbcType=VARCHAR},
+      att_size = #{attSize,jdbcType=INTEGER},
+      att_desc = #{attDesc,jdbcType=VARCHAR},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      state = #{state,jdbcType=SMALLINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      att_cate = #{attCate,jdbcType=BIGINT}
+    where att_id = #{attId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectLisEnterpriseProductList" resultMap="BaseResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean" >
+  	select 
+    <include refid="Base_Column_List" />
+    from public.t_lis_enterprise_attachme
+    where enterprise_id = #{enterpriseId,jdbcType=BIGINT} and state =1
+    <if test="search != null">
+    	<if test="search.attName != null">
+    		and att_name like '%'||#{search.attName,jdbcType=VARCHAR}||'%' 
+    	</if>
+    	<if test="search.attCate != null">
+    		and att_cate in (
+    			with recursive r as ( 
+			      select t4.cate_id from t_lis_pic_cate t4 where t4.cate_id = #{search.attCate,jdbcType=BIGINT}
+			     union   all 
+			       SELECT t1.cate_id FROM t_lis_pic_cate t1, r WHERE t1.parent_cate_id = r.cate_id 
+			     ) 
+			   SELECT distinct r.* FROM r
+    		) 
+    	</if>
+    </if>
+    order by create_date desc
+  </select>
+</mapper>

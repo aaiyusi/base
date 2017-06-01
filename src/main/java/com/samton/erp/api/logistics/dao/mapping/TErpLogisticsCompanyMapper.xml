@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.samton.erp.api.logistics.dao.TErpLogisticsCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.logistics.bean.entity.TErpLogisticsCompany">
+    <id column="logistics_id" jdbcType="BIGINT" property="logisticsId" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
+    <result column="sys_logistics_id" jdbcType="BIGINT" property="sysLogisticsId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="e_code" jdbcType="VARCHAR" property="eCode" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="express_type" jdbcType="SMALLINT" property="expressType" />
+    <result column="website" jdbcType="VARCHAR" property="website" />
+    <result column="auto_freight" jdbcType="SMALLINT" property="autoFreight" />
+    <result column="freight_rule" jdbcType="SMALLINT" property="freightRule" />
+    <result column="discount" jdbcType="NUMERIC" property="discount" />
+    <result column="declare_name" jdbcType="VARCHAR" property="declareName" />
+    <result column="declare_ename" jdbcType="VARCHAR" property="declareEname" />
+    <result column="declare_percent" jdbcType="NUMERIC" property="declarePercent" />
+    <result column="min_declare" jdbcType="NUMERIC" property="minDeclare" />
+    <result column="max_declare" jdbcType="NUMERIC" property="maxDeclare" />
+    <result column="ebay_logistics" jdbcType="VARCHAR" property="ebayLogistics" />
+    <result column="amazon_logistics" jdbcType="VARCHAR" property="amazonLogistics" />
+    <result column="aliexpress_logistics" jdbcType="VARCHAR" property="aliexpressLogistics" />
+    <result column="wish_logistics" jdbcType="VARCHAR" property="wishLogistics" />
+    <result column="dhgate_logistics" jdbcType="VARCHAR" property="dhgateLogistics" />
+    <result column="lazada_logistics" jdbcType="VARCHAR" property="lazadaLogistics" />
+    <result column="cdiscount_logistics" jdbcType="VARCHAR" property="cdiscountLogistics" />
+    <result column="ensogo_logistics" jdbcType="VARCHAR" property="ensogoLogistics" />
+    <result column="print_type" jdbcType="SMALLINT" property="printType" />
+    <result column="address_temp_id" jdbcType="BIGINT" property="addressTempId" />
+    <result column="declaration_temp_id" jdbcType="BIGINT" property="declarationTempId" />
+    <result column="allocation_temp_id" jdbcType="BIGINT" property="allocationTempId" />
+    <result column="back_address_id" jdbcType="BIGINT" property="backAddressId" />
+    <result column="address_id" jdbcType="BIGINT" property="addressId" />
+    <result column="state" jdbcType="SMALLINT" property="state" />
+    <result column="enterprise_id" jdbcType="BIGINT" property="enterpriseId" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_user_name" jdbcType="VARCHAR" property="modifyUserName" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="last_modify_date" jdbcType="TIMESTAMP" property="lastModifyDate" />
+    <result column="hidetracknumber" jdbcType="SMALLINT" property="hidetracknumber" />
+    <result column="label_size" jdbcType="SMALLINT" property="labelSize" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    logistics_id, type, sys_logistics_id, name, e_code, account, express_type, website, 
+    auto_freight, freight_rule, discount, declare_name, declare_ename, declare_percent, 
+    min_declare, max_declare, ebay_logistics, amazon_logistics, aliexpress_logistics, 
+    wish_logistics, dhgate_logistics, lazada_logistics, cdiscount_logistics, ensogo_logistics, 
+    print_type, address_temp_id, declaration_temp_id, allocation_temp_id, back_address_id, 
+    address_id, state, enterprise_id, create_user_id, create_user_name, create_date, 
+    modify_user_id, modify_user_name, modify_date, last_modify_date, hidetracknumber, 
+    label_size
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_logistics_company
+    where logistics_id = #{logisticsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from public.t_erp_logistics_company
+    where logistics_id = #{logisticsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsCompany">
+    insert into public.t_erp_logistics_company (logistics_id, type, sys_logistics_id, 
+      name, e_code, account, 
+      express_type, website, auto_freight, 
+      freight_rule, discount, declare_name, 
+      declare_ename, declare_percent, min_declare, 
+      max_declare, ebay_logistics, amazon_logistics, 
+      aliexpress_logistics, wish_logistics, dhgate_logistics, 
+      lazada_logistics, cdiscount_logistics, ensogo_logistics, 
+      print_type, address_temp_id, declaration_temp_id, 
+      allocation_temp_id, back_address_id, address_id, 
+      state, enterprise_id, create_user_id, 
+      create_user_name, create_date, modify_user_id, 
+      modify_user_name, modify_date, last_modify_date, 
+      hidetracknumber, label_size
+      )
+    values (#{logisticsId,jdbcType=BIGINT}, #{type,jdbcType=SMALLINT}, #{sysLogisticsId,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{eCode,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{expressType,jdbcType=SMALLINT}, #{website,jdbcType=VARCHAR}, #{autoFreight,jdbcType=SMALLINT}, 
+      #{freightRule,jdbcType=SMALLINT}, #{discount,jdbcType=NUMERIC}, #{declareName,jdbcType=VARCHAR}, 
+      #{declareEname,jdbcType=VARCHAR}, #{declarePercent,jdbcType=NUMERIC}, #{minDeclare,jdbcType=NUMERIC}, 
+      #{maxDeclare,jdbcType=NUMERIC}, #{ebayLogistics,jdbcType=VARCHAR}, #{amazonLogistics,jdbcType=VARCHAR}, 
+      #{aliexpressLogistics,jdbcType=VARCHAR}, #{wishLogistics,jdbcType=VARCHAR}, #{dhgateLogistics,jdbcType=VARCHAR}, 
+      #{lazadaLogistics,jdbcType=VARCHAR}, #{cdiscountLogistics,jdbcType=VARCHAR}, #{ensogoLogistics,jdbcType=VARCHAR}, 
+      #{printType,jdbcType=SMALLINT}, #{addressTempId,jdbcType=BIGINT}, #{declarationTempId,jdbcType=BIGINT}, 
+      #{allocationTempId,jdbcType=BIGINT}, #{backAddressId,jdbcType=BIGINT}, #{addressId,jdbcType=BIGINT}, 
+      #{state,jdbcType=SMALLINT}, #{enterpriseId,jdbcType=BIGINT}, #{createUserId,jdbcType=BIGINT}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=BIGINT}, 
+      #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP}, 
+     #{hidetracknumber,jdbcType=SMALLINT}, #{labelSize,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsCompany">
+    insert into public.t_erp_logistics_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logisticsId != null">
+        logistics_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="sysLogisticsId != null">
+        sys_logistics_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="eCode != null">
+        e_code,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="expressType != null">
+        express_type,
+      </if>
+      <if test="website != null">
+        website,
+      </if>
+      <if test="autoFreight != null">
+        auto_freight,
+      </if>
+      <if test="freightRule != null">
+        freight_rule,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="declareName != null">
+        declare_name,
+      </if>
+      <if test="declareEname != null">
+        declare_ename,
+      </if>
+      <if test="declarePercent != null">
+        declare_percent,
+      </if>
+      <if test="minDeclare != null">
+        min_declare,
+      </if>
+      <if test="maxDeclare != null">
+        max_declare,
+      </if>
+      <if test="ebayLogistics != null">
+        ebay_logistics,
+      </if>
+      <if test="amazonLogistics != null">
+        amazon_logistics,
+      </if>
+      <if test="aliexpressLogistics != null">
+        aliexpress_logistics,
+      </if>
+      <if test="wishLogistics != null">
+        wish_logistics,
+      </if>
+      <if test="dhgateLogistics != null">
+        dhgate_logistics,
+      </if>
+      <if test="lazadaLogistics != null">
+        lazada_logistics,
+      </if>
+      <if test="cdiscountLogistics != null">
+        cdiscount_logistics,
+      </if>
+      <if test="ensogoLogistics != null">
+        ensogo_logistics,
+      </if>
+      <if test="printType != null">
+        print_type,
+      </if>
+      <if test="addressTempId != null">
+        address_temp_id,
+      </if>
+      <if test="declarationTempId != null">
+        declaration_temp_id,
+      </if>
+      <if test="allocationTempId != null">
+        allocation_temp_id,
+      </if>
+      <if test="backAddressId != null">
+        back_address_id,
+      </if>
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="enterpriseId != null">
+        enterprise_id,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null">
+        last_modify_date,
+      </if>
+      <if test="hidetracknumber != null">
+        hidetracknumber,
+      </if>
+      <if test="labelSize != null">
+        label_size,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logisticsId != null">
+        #{logisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="sysLogisticsId != null">
+        #{sysLogisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eCode != null">
+        #{eCode,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="expressType != null">
+        #{expressType,jdbcType=SMALLINT},
+      </if>
+      <if test="website != null">
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="autoFreight != null">
+        #{autoFreight,jdbcType=SMALLINT},
+      </if>
+      <if test="freightRule != null">
+        #{freightRule,jdbcType=SMALLINT},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=NUMERIC},
+      </if>
+      <if test="declareName != null">
+        #{declareName,jdbcType=VARCHAR},
+      </if>
+      <if test="declareEname != null">
+        #{declareEname,jdbcType=VARCHAR},
+      </if>
+      <if test="declarePercent != null">
+        #{declarePercent,jdbcType=NUMERIC},
+      </if>
+      <if test="minDeclare != null">
+        #{minDeclare,jdbcType=NUMERIC},
+      </if>
+      <if test="maxDeclare != null">
+        #{maxDeclare,jdbcType=NUMERIC},
+      </if>
+      <if test="ebayLogistics != null">
+        #{ebayLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="amazonLogistics != null">
+        #{amazonLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="aliexpressLogistics != null">
+        #{aliexpressLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="wishLogistics != null">
+        #{wishLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="dhgateLogistics != null">
+        #{dhgateLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="lazadaLogistics != null">
+        #{lazadaLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="cdiscountLogistics != null">
+        #{cdiscountLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="ensogoLogistics != null">
+        #{ensogoLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="printType != null">
+        #{printType,jdbcType=SMALLINT},
+      </if>
+      <if test="addressTempId != null">
+        #{addressTempId,jdbcType=BIGINT},
+      </if>
+      <if test="declarationTempId != null">
+        #{declarationTempId,jdbcType=BIGINT},
+      </if>
+      <if test="allocationTempId != null">
+        #{allocationTempId,jdbcType=BIGINT},
+      </if>
+      <if test="backAddressId != null">
+        #{backAddressId,jdbcType=BIGINT},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null">
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null">
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null">
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      
+      <if test="hidetracknumber != null">
+        #{hidetracknumber,jdbcType=SMALLINT},
+      </if>
+      <if test="labelSize != null">
+        #{labelSize,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsCompany">
+    update public.t_erp_logistics_company
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="sysLogisticsId != null">
+        sys_logistics_id = #{sysLogisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eCode != null">
+        e_code = #{eCode,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="expressType != null">
+        express_type = #{expressType,jdbcType=SMALLINT},
+      </if>
+      <if test="website != null">
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+        auto_freight = #{autoFreight,jdbcType=SMALLINT},
+      <if test="freightRule != null">
+        freight_rule = #{freightRule,jdbcType=SMALLINT},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=NUMERIC},
+      </if>
+      <if test="declareName != null">
+        declare_name = #{declareName,jdbcType=VARCHAR},
+      </if>
+      <if test="declareEname != null">
+        declare_ename = #{declareEname,jdbcType=VARCHAR},
+      </if>
+      <if test="declarePercent != null">
+        declare_percent = #{declarePercent,jdbcType=NUMERIC},
+      </if>
+      <if test="minDeclare != null">
+        min_declare = #{minDeclare,jdbcType=NUMERIC},
+      </if>
+      <if test="maxDeclare != null">
+        max_declare = #{maxDeclare,jdbcType=NUMERIC},
+      </if>
+      <if test="ebayLogistics != null">
+        ebay_logistics = #{ebayLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="amazonLogistics != null">
+        amazon_logistics = #{amazonLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="aliexpressLogistics != null">
+        aliexpress_logistics = #{aliexpressLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="wishLogistics != null">
+        wish_logistics = #{wishLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="dhgateLogistics != null">
+        dhgate_logistics = #{dhgateLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="lazadaLogistics != null">
+        lazada_logistics = #{lazadaLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="cdiscountLogistics != null">
+        cdiscount_logistics = #{cdiscountLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="ensogoLogistics != null">
+        ensogo_logistics = #{ensogoLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="printType != null">
+        print_type = #{printType,jdbcType=SMALLINT},
+      </if>
+        address_temp_id = #{addressTempId,jdbcType=BIGINT},
+        declaration_temp_id = #{declarationTempId,jdbcType=BIGINT},
+        allocation_temp_id = #{allocationTempId,jdbcType=BIGINT},
+      <if test="backAddressId != null">
+        back_address_id = #{backAddressId,jdbcType=BIGINT},
+      </if>
+      <if test="addressId != null">
+        address_id = #{addressId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null">
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null">
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+        hidetracknumber = #{hidetracknumber,jdbcType=SMALLINT},
+      <if test="labelSize != null">
+        label_size = #{labelSize,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where logistics_id = #{logisticsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsCompany">
+    update public.t_erp_logistics_company
+    set type = #{type,jdbcType=SMALLINT},
+      sys_logistics_id = #{sysLogisticsId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      e_code = #{eCode,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      express_type = #{expressType,jdbcType=SMALLINT},
+      website = #{website,jdbcType=VARCHAR},
+      auto_freight = #{autoFreight,jdbcType=SMALLINT},
+      freight_rule = #{freightRule,jdbcType=SMALLINT},
+      discount = #{discount,jdbcType=NUMERIC},
+      declare_name = #{declareName,jdbcType=VARCHAR},
+      declare_ename = #{declareEname,jdbcType=VARCHAR},
+      declare_percent = #{declarePercent,jdbcType=NUMERIC},
+      min_declare = #{minDeclare,jdbcType=NUMERIC},
+      max_declare = #{maxDeclare,jdbcType=NUMERIC},
+      ebay_logistics = #{ebayLogistics,jdbcType=VARCHAR},
+      amazon_logistics = #{amazonLogistics,jdbcType=VARCHAR},
+      aliexpress_logistics = #{aliexpressLogistics,jdbcType=VARCHAR},
+      wish_logistics = #{wishLogistics,jdbcType=VARCHAR},
+      dhgate_logistics = #{dhgateLogistics,jdbcType=VARCHAR},
+      lazada_logistics = #{lazadaLogistics,jdbcType=VARCHAR},
+      cdiscount_logistics = #{cdiscountLogistics,jdbcType=VARCHAR},
+      ensogo_logistics = #{ensogoLogistics,jdbcType=VARCHAR},
+      print_type = #{printType,jdbcType=SMALLINT},
+      address_temp_id = #{addressTempId,jdbcType=BIGINT},
+      declaration_temp_id = #{declarationTempId,jdbcType=BIGINT},
+      allocation_temp_id = #{allocationTempId,jdbcType=BIGINT},
+      back_address_id = #{backAddressId,jdbcType=BIGINT},
+      address_id = #{addressId,jdbcType=BIGINT},
+      state = #{state,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      hidetracknumber = #{hidetracknumber,jdbcType=SMALLINT},
+      label_size = #{labelSize,jdbcType=SMALLINT}
+    where logistics_id = #{logisticsId,jdbcType=BIGINT}
+  </update>
+ 
+    <select id="selectAllLogistics" resultMap="BaseResultMap" >
+  	select  t.logistics_id, t.type, t.sys_logistics_id,concat(t.name,' 【',s.name,'】')  as name, t.e_code, t.account, t.express_type, t.website, t.state , t.enterprise_id
+  	
+    from public.t_erp_logistics_company t left join public.t_erp_sys_logistics_company s on t.sys_logistics_id = s.sys_logistics_id
+    where t.state = 1 and s.state = 1 and t.enterprise_id = #{enterpriseId,jdbcType=BIGINT}  and s.enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+    <if test=" sysLogisticsId != null">
+    		and  t.sys_logistics_id = #{sysLogisticsId,jdbcType=BIGINT} 
+    </if>
+  </select>
+  
+   <select id="selectAllLogisticsBySysId" resultMap="BaseResultMap" >
+  	select   t.logistics_id, t.type, t.sys_logistics_id, t.name, t.e_code, t.account, t.express_type, t.website, 
+    t.auto_freight, t.freight_rule, t.discount, t.declare_name, t.declare_ename, t.declare_percent, 
+    t.min_declare, t.max_declare, t.ebay_logistics, t.amazon_logistics, t.aliexpress_logistics, 
+    t.wish_logistics, t.dhgate_logistics, t.lazada_logistics, t.cdiscount_logistics, t.ensogo_logistics, 
+    t.print_type, t.address_temp_id, t.declaration_temp_id, t.allocation_temp_id, t.back_address_id, 
+    t.address_id, t.state, t.enterprise_id, t.create_user_id, t.create_user_name, t.create_date, 
+    t.modify_user_id, t.modify_user_name, t.modify_date, t.last_modify_date, t.hidetracknumber, 
+    t.label_size
+    from public.t_erp_logistics_company t left join public.t_erp_sys_logistics_company s on t.sys_logistics_id = s.sys_logistics_id
+    where t.state > 0 and s.state > 0 and t.enterprise_id = #{enterpriseId,jdbcType=BIGINT}  and s.enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+    		and  t.sys_logistics_id = #{sysLogisticsId,jdbcType=BIGINT} 
+  </select>
+  
+  <!-- 物流渠道分页 -->
+    	<select id="queryLogisticsCompanyRecord" resultType="java.util.HashMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+		select     logistics_id, type, sys_logistics_id, name, e_code, account, express_type, website, 
+    auto_freight, freight_rule, discount, declare_name, declare_ename, declare_percent, 
+    min_declare, max_declare, ebay_logistics, amazon_logistics, aliexpress_logistics, 
+    wish_logistics, dhgate_logistics, lazada_logistics, cdiscount_logistics, ensogo_logistics, 
+    print_type, address_temp_id, declaration_temp_id, allocation_temp_id, back_address_id, 
+    address_id, state, enterprise_id, create_user_id, create_user_name, to_char(create_date,'YYYY-MM-DD HH24:MI:SS') as create_date, 
+    modify_user_id, modify_user_name, modify_date, last_modify_date,hidetracknumber, 
+    label_size
+		from public.t_erp_logistics_company
+	where state > 0 and enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+<!-- 	<if test="search != null">
+		  <if test="search.whouse_id != null and search.whouse_id != ''">
+	        and t.whouse_id =  CAST(#{search.whouse_id,jdbcType=VARCHAR}   AS   BIGINT) 
+	     </if>
+	     <if test="search.spaceId != null and search.spaceId != ''">
+	        and spaceId like '%'||#{search.spaceId,jdbcType=VARCHAR}||'%'
+	     </if> 
+	</if> -->
+	order by last_modify_date desc
+	</select>
+	
+	  <!-- 物流渠道根据主表id查询 -->
+    	<select id="queryLogisticsCompanyById" resultType="java.util.HashMap">
+		select     logistics_id, type, sys_logistics_id, name, e_code, account, express_type, website, 
+    auto_freight, freight_rule, discount, declare_name, declare_ename, declare_percent, 
+    min_declare, max_declare, ebay_logistics, amazon_logistics, aliexpress_logistics, 
+    wish_logistics, dhgate_logistics, lazada_logistics, cdiscount_logistics, ensogo_logistics, 
+    print_type, address_temp_id, declaration_temp_id, allocation_temp_id, back_address_id, 
+    address_id, state, enterprise_id, create_user_id, create_user_name, to_char(create_date,'YYYY-MM-DD HH24:MI:SS') as create_date, 
+    modify_user_id, modify_user_name, modify_date, last_modify_date,  hidetracknumber, 
+    label_size
+		from public.t_erp_logistics_company
+	where state > 1 and enterprise_id = #{enterpriseId,jdbcType=BIGINT}  and sys_logistics_id = #{sysId,jdbcType=BIGINT} 
+	order by last_modify_date desc
+	</select>
+	
+	<select id="queryByNameSysId" resultType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsCompany" parameterType="com.samton.erp.api.logistics.bean.entity.TErpLogisticsCompany">
+		select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_logistics_company
+    where state >0 and enterprise_id = #{enterpriseId,jdbcType=BIGINT} 
+    and name =  #{name,jdbcType=VARCHAR} and sys_logistics_id = #{sysLogisticsId,jdbcType=BIGINT} limit 1
+	</select>
+	<select id="queryAuthLogistics" resultType="java.util.HashMap">
+		select a.logistics_id,a.sys_logistics_id,a.name, a.name || '【' || b.name || '】' as logistics_name
+		from t_erp_logistics_company a
+		inner join t_erp_sys_logistics_company b on a.sys_logistics_id = b.sys_logistics_id
+		where a.state = 1 and a.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+	</select>
+</mapper>

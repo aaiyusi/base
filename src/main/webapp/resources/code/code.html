@@ -1,0 +1,783 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html class="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <META NAME="Generator" CONTENT="EditPlus">
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/library.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/custom.css"/>
+    <script type="text/javascript" src="js/library.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+
+</head>
+<body>
+<header class="navbar navbar-fixed-top" id="header">
+    <div class="navbar-toolbar clearfix">
+        <div class="alert alert-warning">
+            <a href="#" target="_blank" class="text-warning">最强平台-代码生成</a>
+            <p></p>
+        </div>
+        <ul class="nav navbar-nav navbar-left">
+            <li class="hidden-xs hidden-sm">
+                <a data-toggle="minimize" class="sidebar-minimize" href="javascript:void(0);">
+                    <span data-original-title="收缩/展开左侧导航" data-container="body" data-toggle="tooltip"
+                          data-placement="bottom" class="meta"><span class="icon"></span></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>
+
+
+<aside class="sidebar sidebar-left sidebar-menu">
+    <!-- START Sidebar Content -->
+    <section class="content slimscroll">
+        <header class="logo-env">
+            <h1 class="logo"></h1>
+        </header>
+
+        <!-- user account -->
+        <div class="account">
+        <span class="accont-photo">
+            <!--<i class="ico-user7"></i>-->
+            <div id="imgMemberLogoLeftMenu"
+                 style="background-image:url(image/avatar.png)"
+                 class="accont-photo"></div>
+        </span>
+            <div class="accontdetail">
+                <p>
+                    <strong>程序猿</strong>
+
+                </p>
+                <p><a href="#">您有<strong id="messageCount" class="text-danger pl5">1000+</strong> bug</a></p>
+                <p><a href="#" class="import-task">您有<strong id="importSystemCount"
+                                                             class="text-danger pl5 pr5">10000+</strong>个任务</a></p>
+            </div>
+        </div>
+        <!-- user account -->
+        <ul class="topmenu" data-toggle="menu">
+            <li id="M0010300" class="active open">
+                <a href="javascript:void(0);" data-toggle="submenu" data-target="#mM0010300" data-parent=".topmenu">
+                    <span class="figure"><i class="ico-file"></i></span> <span class="text">代码管理</span>
+                </a>
+        </ul>
+    </section>
+</aside>
+<section id="main" role="main">
+    <div class="container-fluid has-toobar has-navbar multichoice" id="parentMenu">
+        <div class="panel-navbar">
+            <div class="scroll-hide">
+                <div class="publish-tab">
+                    <ul class="nav nav-tabs" id="grenul">
+                        <li labelname="form"><a href="javascript:void(0);"
+                                                class="pl5 pr5"><span class="text">表单代码<span
+                                class="label label-danger ml5" >0</span></span></a></li>
+                        <li labelname="table"><a href="javascript:void(0);"
+                                                 class="pl5 pr5"><span class="text">列表代码<span
+                                class="label label-info ml5" >0</span></span></a></li>
+                        <li labelname="js"><a href="javascript:void(0);"
+                                              class="pl5 pr5"><span class="text">列表js代码<span
+                                class="label label-info ml5" >0</span></span></a></li>
+                        <li labelname="controll"><a href="javascript:void(0);"
+                                                    class="pl5 pr5"><span class="text">controll代码<span
+                                class="label label-info ml5" >0</span></span></a></li>
+                        <li labelname="service"><a
+                                href="javascript:void(0);" class="pl5 pr5"><span class="text">service代码<span
+                                class="label label-info ml5" >0</span></span></a></li>
+                        <li labelname="dao"><a
+                                href="javascript:void(0);" class="pl5 pr5"><span class="text">dao代码<span
+                                class="label label-info ml5" >0</span></span></a></li>
+                    </ul>
+                </div>
+
+            </div>
+            </form>
+        </div>
+    </div>
+</section>
+<div id="viewDiv">
+    <!--<div class="container-fluid">
+        <div class=" ">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-10 tab-content">
+                <div class="tab-pane active">
+                    <form class="form-horizontal form-bordered clearfix min" action="">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="ico-users2 mr5"></i>客户信息</h3>
+                            </div>
+                            <div class="panel-body pt0 pb0">
+                                <div class="form-horizontal form-bordered min">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"><span class="text-danger pr5">*</span>$必填$</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="%name" placeholder="请输入%name">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">$不必填$</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="%name" placeholder="请输入%name">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">$金额$</label>
+                                        <div class="col-sm-4">
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" name="%name" placeholder="请输入%name">
+                                                <span class="input-group-addon">RMB</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">$选择项$</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" name="currencyId">
+                                                <option value="">-请选择-</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">$单行文件$</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="street1" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">$多行文件$</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" rows="3" name="%name"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-md-6" ></div>
+                                    <div class="col-md-6 text-right">
+                                        <button type="button" class="btn btn-primary">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>
+
+<section>
+    <div class="container-fluid">
+        <div class=" ">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-10 tab-content">
+
+                <div class="tab-pane active">
+                    <div class="panel panel-default" id="htmlDiv">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="ico-users2 mr5"></i><label id="labelname">html</label>代码</h3>
+                        </div>
+                        <div class="panel-body pt0 pb0">
+                            <div class="form-horizontal form-bordered min">
+								 <div class="form-group">
+									<label class="col-sm-2 control-label">字段实体名称</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="entity" placeholder="后台实体接收名，效果为obj.name" maxlength="50">
+									</div>
+								</div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">字段 <button type="button" class="btn btn-primary" onclick="grenFormHtml()">生成</button></label>
+                                    <div class="col-sm-4">
+                                        <textarea class="form-control" rows="50" id="fields"></textarea>
+                                    </div>
+                                    <label class="col-sm-2 control-label">代码<button type="button" class="btn btn-primary" onclick="viewHtml()">预览</button></label>
+                                    <div class="col-sm-4">
+                                        <textarea class="form-control codeText" rows="50" id="table_codeText" style="display: none"></textarea>
+                                        <textarea class="form-control codeText" rows="50" id="form_codeText"></textarea>
+                                        <textarea class="form-control codeText" rows="50" id="js_codeText" style="display: none"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--<div class="panel-footer">
+                            <div class="row">
+                                <div class="col-md-6" ></div>
+                                <div class="col-md-6 text-right">
+                                    <button type="button" class="btn btn-primary">生成</button>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="loading_large" style="display:none">
+    <span class="loading_text" style="display:inline;"><i class="ico-refresh"></i>数据处理中，请稍后...</span>
+</div>
+
+<script type="application/javascript">
+    var codeType = "form";
+    $(document).ready(function(){
+        $("#grenul li").bind("click",function(){
+            $("#labelname").html($(this).attr("labelname"));
+            codeType = $(this).attr("labelname");
+            $("#viewDiv").html("");
+            $(".codeText").hide();
+            $("#"+codeType+"_codeText").show();
+        });
+
+
+    });
+
+
+    function viewHtml(){
+
+        $("#viewDiv").html($("#"+codeType+"_codeText").val());
+    }
+    /**
+     * 生成表单html代码
+     */
+    function grenFormHtml(){
+        try{
+            var text = $("#fields").val();
+            var entity = $("#entity").val();
+            if(entity){
+            	entity = entity + ".";
+            }
+            if(text == ""){
+                alert("请输入字段");
+                return;
+            }
+            //表单元素
+            var htmlContent = $($("#formTemp").html());
+
+            var objs = text.split("\n");
+            //alert(objs[objs.length-1]);
+            if(objs[objs.length-1] == ""){
+                objs.pop();
+            }
+
+            var groupTemp = $($("#groupTemp").html());
+            for (var i=0;i<objs.length;i++ )
+            {
+
+                var a = objs[i].replace(" ","").split("	");
+                var name = a[0];//中文名称
+                var	code = a[1];//name
+                var type = a[2];//类型
+                var length = a[3];//长度
+                var key = a[5];//是否主键
+				var maxlength = "";
+                //console.log("length--"+length);
+                var field;
+                if(key == "TRUE"){
+                    field = $("#btTemp").html();
+                }else{
+                    if(type.toUpperCase().split("CHAR").length > 1) {
+                        field = $("#bbtTemp").html();
+                        if(length){
+                        	maxlength = "maxlength='"+length+"'";
+                        }
+                    } else if(type.toUpperCase().split("TEXT").length > 1){
+                        field = $("#textTemp").html();
+                        if(length){
+                        	maxlength = "maxlength='"+length+"'";
+                        }
+                    } else if (type.toUpperCase().split("INTEGER").length > 1 || type.toUpperCase().split("BIGINT").length > 1)
+                    {
+                        field = $("#bbtTemp").html();
+                    } else if (type.toUpperCase().split("INT2").length > 1)
+                    {
+                        field = $("#xzxTemp").html();
+                    }else if (type.toUpperCase().split("INT").length > 1)
+                    {
+                        field = $("#bbtTemp").html();
+                        if(length){
+                        	maxlength = "maxlength='"+length+"'";
+                        }
+                    } else if (type.toUpperCase().split("DATE").length > 1 || type.toUpperCase().split("TIMESTEAMP").length > 1)
+                    {
+                        field = $("#timeTemp").html();
+                        if(length){
+                        	maxlength = "maxlength='20'";
+                        }
+                    } else if (type.toUpperCase().split("NUMERIC").length > 1)
+                    {
+                        field = $("#jeTemp").html();
+                        if(length){
+                        	maxlength = "maxlength='"+length+"'";
+                        }
+                    }
+                    else {
+                        field = $("#bbtTemp").html();
+                    }
+                }
+                //%name% 字段 中文名
+                //%name  字段 name
+                var reg = new RegExp("%name%","g");
+                var reg1 = new RegExp("%name","g");
+                var maxlengthreg = new RegExp("%maxlength%","g");
+                var stringObj = field;
+                var newstr = stringObj.replace(reg,name);
+                 //%name属性下划线转驼峰
+                if(code.split("_").length > 1){
+                	var codes = code.split("_");
+                	var tempcode = "";
+                	for(var ci=0;ci<codes.length;ci++){
+                		//alert(codes[ci])
+                		if(ci == 0){
+	                		tempcode += codes[ci];
+                		}else{
+                			tempcode += (codes[ci]+"").substring(0,1).toUpperCase() + (codes[ci]+"").substring(1);
+                		}
+                	}
+                	code = tempcode;
+                }
+                
+               
+                newstr = newstr.replace(reg1,entity+code);
+                newstr = newstr.replace(maxlengthreg,maxlength);
+
+                //v如果是多行文本，直接换行
+                if(type.toUpperCase().split("TEXT").length > 1){
+                    htmlContent.find("#contentDiv").append(groupTemp);
+                    groupTemp = $($("#groupTemp").html());
+                }
+                groupTemp.append(newstr);
+                if(i%2 == 1 || i == objs.length - 1){
+                    htmlContent.find("#contentDiv").append(groupTemp);
+                    groupTemp = $($("#groupTemp").html());
+                }
+            }
+            $("#form_codeText").val(htmlContent.html());
+        }catch(e){
+            alert("生成form代码异常"+e);
+        }
+        grenTableJSHtml();
+    }
+
+    /**
+     * 生成列表html代码
+     */
+    function grenTableJSHtml(){
+        var dreg = new RegExp("&lt;","g");
+        var xreg = new RegExp("&gt;","g");
+        var tableTemphtml = $("#tableTemp").val().replace(dreg,"<");
+        tableTemphtml = tableTemphtml.replace(xreg,">");
+        $("#table_codeText").val(tableTemphtml);
+        try{
+            var text = $("#fields").val();
+            if(text == ""){
+                alert("请输入字段");
+                return;
+            }
+            //元素
+            var htmlContent = $("#tableJSTemp").html();
+
+            var objs = text.split("\n");
+            if(objs[objs.length-1] == ""){
+                objs.pop();
+            }
+
+            var groupTemp = $($("#groupTemp").html());
+            var colNames = "";
+            var colModel = "";
+            for (var i=0;i<objs.length;i++ )
+            {
+
+                var a = objs[i].replace(" ","").split("	");
+                var name = a[0];//中文名称
+                var	code = a[1];//name
+                var type = a[2];//类型
+                var key = a[5];//是否主键
+                colNames += ",'"+name+"'";
+
+                //%name属性下划线转驼峰
+                if(code.split("_").length > 1){
+                	var codes = code.split("_");
+                	var tempcode = "";
+                	for(var ci=0;ci<codes.length;ci++){
+                		//alert(codes[ci])
+                		if(ci == 0){
+	                		tempcode += codes[ci];
+                		}else{
+                			tempcode += (codes[ci]+"").substring(0,1).toUpperCase() + (codes[ci]+"").substring(1);
+                		}
+                	}
+                	code = tempcode;
+                }
+                
+                if(key == "TRUE"){
+                    colModel += ","+"{name : '"+code+"',index:'"+code+"',hidden:true}";
+                }else {
+                    colModel += "," + "{name : '" + code + "',editable: true,index:'" + code + "',width : 100}";
+                }
+            }
+
+            colNames = "["+colNames.substring(1)+"]";
+            colModel = "["+colModel.substring(1)+"]";
+
+            //%name% 字段 中文名
+            //%name  字段 name
+            var reg = new RegExp("%colNames%","g");
+            var reg1 = new RegExp("%colModel%","g");
+            var stringObj = htmlContent;
+            var newstr = htmlContent.replace(reg,colNames);
+            newstr = newstr.replace(reg1,colModel);
+            $("#js_codeText").val(newstr);
+        }catch(e){
+            alert("生成js代码异常"+e);
+        }
+    }
+</script>
+
+<script type="text/html" id="groupTemp">
+    <div class="form-group">
+    </div>
+</script>
+<script type="text/html" id="btTemp">
+    <label class="col-sm-2 control-label"><span class="text-danger pr5">*</span>%name%</label>
+    <div class="col-sm-4">
+        <input type="text" class="form-control" name="%name" placeholder="请输入%name%" %maxlength%>
+    </div>
+</script>
+<script type="text/html" id="bbtTemp">
+    <label class="col-sm-2 control-label">%name%</label>
+    <div class="col-sm-4">
+        <input type="text" class="form-control" name="%name" placeholder="请输入%name%" %maxlength%>
+    </div>
+</script>
+<script type="text/html" id="xzxTemp">
+    <label class="col-sm-2 control-label">%name%</label>
+    <div class="col-sm-4">
+        <select class="form-control" name="currencyId">
+            <option value="">-请选择-</option>
+        </select>
+    </div>
+</script>
+<script type="text/html" id="jeTemp">
+    <label class="col-sm-2 control-label">%name%</label>
+    <div class="col-sm-4">
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control" name="%name" placeholder="请输入%name%" %maxlength%>
+            <span class="input-group-addon">RMB</span>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="timeTemp">
+    <label class="col-sm-2 control-label">%name%</label>
+    <div class="col-sm-4">
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control hasDatepicker" name="%name" placeholder="请输入%name%" %maxlength%>
+            <span class="input-group-addon">RMB</span>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="inputTemp">
+    <label class="col-sm-2 control-label">%name%</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" name="%name" value="" %maxlength%>
+    </div>
+</script>
+<script type="text/html" id="textTemp">
+    <label class="col-sm-2 control-label">%name%</label>
+    <div class="col-sm-10">
+        <textarea class="form-control" rows="3" name="%name" %maxlength%></textarea>
+    </div>
+</script>
+<script type="text/html" id="formTemp">
+    <form class="form-horizontal form-bordered clearfix min" action="" method="post">
+	<div class="panel panel-default">
+	    <div class="panel-body pt0 pb0">
+		<div class="form-horizontal form-bordered min" id="contentDiv">
+		</div>
+	    </div>
+	</div>
+    </form>
+</script>
+
+
+
+<textarea id="tableTemp"><%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ include file="/resources/platform/inc.jsp"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <script src="${ctx.path}/resources/platform/js/common_grid.js"></script>
+    <script src="${ctx.path}/resources/platform/js/common_format.js"></script>
+    <script src="${ctx.path}/resources/script/XXXXXXXXXXXXXXXXXX.js"></script>
+    <link type="text/javascript" href="${ctx.path}/resources/platform/css/new.css" rel="stylesheet">
+</head>
+<body>
+<div class="animated fadeInRight">
+    <div id="serachDiv" class="row form-group-sm">
+        <div class="col-sm-12">
+            <div class="ibox-content" style="padding: 5px 10px;padding-bottom: 0px;">
+                <form id="pageForm" method="post">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label>条件1：</label> <input type="text" class="form-control input-small"  maxlength="50" />
+                            <label>条件2：</label> <input type="text" class="form-control input-small" maxlength="50" />
+                            <div class="form-group clearfix">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="common.search();">查询</button>
+                                <button type="button" class="btn btn-white btn-sm" onclick="common.clear();">重置</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="buttonDiv" class="row wrapper ">
+        <div class="col-sm-12">
+            <div class="form-inline" style="margin: 5px;margin-top:0px;">
+                <div class="form-group">
+                    <button class="btn btn-primary btn-sm" type="button" onclick="openAddPage();">新增</button>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-sm" type="button" id="userEditBtn" onclick="editPage();">编辑</button>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-sm" type="button" id="userDel" onclick="del();">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jqGrid_wrapper white-bg">
+            <table id="jqGrid"></table>
+            <!-- 显示table -->
+            <div id="jqGridPager"></div>
+            <!-- 显示分页 -->
+        </div>
+    </div>
+</div>
+<!-- 新增 -->
+<div id="dataAdd" class="white-bg" style="display:none;">
+	<form method="post" class="form-horizontal" id="dataForm"
+			action="${ctx.path}/">
+	</form>
+</div>
+</body>
+</html>
+</textarea>
+
+<script type="text/html" id="tableJSTemp">
+    var grid = {};
+    var parentIndex = null;
+    $(document).ready(function(){
+    $.jgrid.defaults.styleUI = 'Bootstrap';
+    grid = $("#jqGrid").jqGrid({
+    url : ctx.path +'/platform/pm/querydatas.do',
+    mtype:"POST",
+    datatype : "json",
+    height: top.getFrameHeight() - $("#buttonDiv").outerHeight() - $("#serachDiv").outerHeight() - 75,
+    colNames : %colNames%,
+    colModel : %colModel%,
+    multiselect:true,
+    autowidth: true,//自适应宽度
+    shrinkToFit: true,
+    rowNum : 20,
+    rowList: [10, 20, 50],
+    rownumbers:true,//添加左侧行号
+    altRows:true,//设置为交替行表格,默认为false
+    pager : '#jqGridPager',
+    viewrecords: true, //是否在浏览导航栏显示记录总数
+    hidegrid: false,
+    jsonReader: {
+    root: "data.data",// Json数据
+    records: "data.totalRows",// 总记录数
+    total:"data.totalPages",
+    page:"data.page",
+    repeatitems: false
+    }
+    });
+
+    // 设置按钮
+    grid.jqGrid('navGrid', '#jqGridPager', {
+    edit: false,
+    add: false,
+    del: false,
+    search: false
+    }, {
+    height: 200,
+    reloadAfterSubmit: true
+    });
+
+    //屏幕发生变化的时候计算表格高度
+    $(window).bind('resize', function () {
+    var width = $('.jqGrid_wrapper').width();
+    $('#jqGrid').setGridWidth(width);
+    var newHeight=top.getFrameHeight() - $("#buttonDiv").outerHeight() - $("#serachDiv").outerHeight() - 75;
+    $("#jqGrid").jqGrid('setGridHeight',newHeight);
+    });
+
+    //刷新表单
+    function refreshGrid(){
+    grid.trigger("reloadGrid");
+    }
+
+    //校验新增表单
+    $("#dataForm").validate({
+    submitHandler: function(form){
+    $(form).ajaxSubmit({
+    //表单提交成功后的回调
+    success: function(responseText, statusText, xhr, $form){
+    if(responseText.rs == -1){
+    return false;
+    }
+    refreshGrid();//重新加载grid
+    top.toastr.success("新增数据成功");
+    FormUtil.resetForm("dataForm");
+    layer.close(parentIndex); //再执行关闭
+    }
+    });
+    }
+    });
+
+    //编辑数据
+    $("#dataEditForm").validate({
+    submitHandler: function(form){
+    $(form).ajaxSubmit({
+    //表单提交成功后的回调
+    success: function(responseText, statusText, xhr, $form){
+    if(responseText.rs == -1){
+    return false;
+    }
+    refreshGrid();//重新加载grid
+    top.toastr.success("编辑数据成功");
+    layer.close(parentIndex); //再执行关闭
+    FormUtil.resetForm("dataEditForm");
+    }
+    });
+    }
+    });
+
+    });
+
+    //打开新增页面
+    function openAddPage(){
+    parentIndex = layer.open({
+    title:'新增数据',
+    type: 1,
+    area: ['90%', '90%'],
+    fix: true,
+    maxmin: true,
+    btn:['提交','取消'],
+    yes:function(index, layero){
+    $("#dataForm").submit();
+    },
+    content: $('#dataAdd'),
+    cancel:function(index){
+    FormUtil.resetForm("dataForm");
+    }
+    });
+    }
+
+    //打开编辑页面
+    function editPage(){
+    var selRows = grid.jqGrid('getGridParam', 'selarrrow');
+    if(selRows.length != 1){
+    top.toastr.warning("请选择一行进行编辑！");
+    return;
+    }
+    var row = $("#jqGrid").jqGrid("getRowData",selRows[0]);
+    $.ajax({
+    url:  ctx.path +'/platform/pm/getdata.json',
+    async: true,
+    dataType: 'json',
+    type: 'POST',
+    data: {dataId:row.dataId},
+    success: function(data ){
+    if(data.rs == -1 ){
+    top.toastr.error("操作失败");
+    return false;
+    }
+    $("#dataEditForm").fill(data.data);//表单数据填充
+    $("#dataEditForm").find("#dataId").val(row.dataId);
+    parentIndex = layer.open({
+    title:'编辑数据',
+    type: 1,
+    area: ['90%', '90%'],
+    fix: true,
+    maxmin: true,
+    btn:['提交','取消'],
+    yes:function(index, layero){
+    $("#dataEditForm").submit();
+    },
+    content: $('#dataEdit'),
+    cancel:function(index){
+    FormUtil.resetForm("dataEditForm");
+    }
+    });
+    },
+    error: function(jqXHR , textStatus , errorThrown){
+    top.toastr.error("操作失败");
+    }
+    });
+    }
+
+    //删除
+    function del(){
+    var selRows = grid.jqGrid('getGridParam', 'selarrrow');  //选中行id数组
+    if(selRows.length <= 0){
+    top.toastr.warning("请选择数据删除");
+    return false;
+    }
+    var ids=new Array();
+    var len = selRows.length;
+    var rowData = new Object();
+    var delContext = "您确定删除";
+    var rowData = new Object();
+    if(selRows.length == 1){  //删除单条数据
+    rowData = grid.jqGrid('getRowData',selRows[0]);
+    delContext += "登录名【" + rowData.loginName + "】吗？<br>";
+    delContext += "删除成功之后，该操作将无法恢复。";
+    } else {
+    delContext += "选中的" + selRows.length + "条数据吗？<br>";
+    delContext += "删除成功之后，该操作将无法恢复。";
+    }
+    for(var i = 0;i < len ;i ++) {
+    var tempId = selRows[i];
+    var row = grid.jqGrid("getRowData",tempId);
+    var id = row.dataId;//获取选择行数据id
+    ids.push(id);
+    }
+    layer.confirm(delContext, {icon: 3, title:"提示"},
+    function(index){
+    $.get( ctx.path +"/platform/pm/deldatas.json?dataIds="+ids.join(","),
+    function(result){
+    if(result.rs==1){
+    grid.trigger("reloadGrid");//刷新表单
+    top.toastr.success("删除数据成功！");
+    }else{
+    top.toastr.warning("删除数据失败！");
+    }
+    },"json");
+    layer.close(index);
+    });
+    }
+
+</script>
+</body>
+<!--/ END Body -->
+</html>

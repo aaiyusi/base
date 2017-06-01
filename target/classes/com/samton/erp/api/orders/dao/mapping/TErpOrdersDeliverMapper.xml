@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samton.erp.api.orders.dao.TErpOrdersDeliverMapper" >
+  <resultMap id="BaseResultMap" type="com.samton.erp.api.orders.bean.entity.TErpOrdersDeliver" >
+    <id column="deliver_id" property="deliverId" jdbcType="BIGINT" />
+    <result column="orders_id" property="ordersId" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="deduct_storage" property="deductStorage" jdbcType="SMALLINT" />
+    <result column="deliver_user_id" property="deliverUserId" jdbcType="BIGINT" />
+    <result column="deliver_time" property="deliverTime" jdbcType="TIMESTAMP" />
+    <result column="deliver_result" property="deliverResult" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="BaseDeliverResultMap" type="com.samton.erp.api.orders.bean.entity.vo.OrdersDeliverVo" >
+    <id column="deliver_id" property="deliverId" jdbcType="BIGINT" />
+    <result column="orders_id" property="ordersId" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="deduct_storage" property="deductStorage" jdbcType="SMALLINT" />
+    <result column="deliver_user_id" property="deliverUserId" jdbcType="BIGINT" />
+    <result column="deliver_time" property="deliverTime" jdbcType="TIMESTAMP" />
+    <result column="deliver_result" property="deliverResult" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="bills" property="bills" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    deliver_id, orders_id, remark, deduct_storage, deliver_user_id, deliver_time, deliver_result, 
+    state, enterprise_id, create_user_id, create_user_name, create_date, modify_user_id, 
+    modify_user_name, modify_date, last_modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.t_erp_orders_deliver
+    where deliver_id = #{deliverId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from public.t_erp_orders_deliver
+    where deliver_id = #{deliverId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrdersDeliver" >
+    insert into public.t_erp_orders_deliver (deliver_id, orders_id, remark, 
+      deduct_storage, deliver_user_id, deliver_time, 
+      deliver_result, state, enterprise_id, 
+      create_user_id, create_user_name, create_date, 
+      modify_user_id, modify_user_name, modify_date, 
+      last_modify_date)
+    values (#{deliverId,jdbcType=BIGINT}, #{ordersId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, 
+      #{deductStorage,jdbcType=SMALLINT}, #{deliverUserId,jdbcType=BIGINT}, #{deliverTime,jdbcType=TIMESTAMP}, 
+      #{deliverResult,jdbcType=VARCHAR}, #{state,jdbcType=SMALLINT}, #{enterpriseId,jdbcType=BIGINT}, 
+      #{createUserId,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyUserId,jdbcType=BIGINT}, #{modifyUserName,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{lastModifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrdersDeliver" >
+    insert into public.t_erp_orders_deliver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deliverId != null" >
+        deliver_id,
+      </if>
+      <if test="ordersId != null" >
+        orders_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="deductStorage != null" >
+        deduct_storage,
+      </if>
+      <if test="deliverUserId != null" >
+        deliver_user_id,
+      </if>
+      <if test="deliverTime != null" >
+        deliver_time,
+      </if>
+      <if test="deliverResult != null" >
+        deliver_result,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deliverId != null" >
+        #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="ordersId != null" >
+        #{ordersId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deductStorage != null" >
+        #{deductStorage,jdbcType=SMALLINT},
+      </if>
+      <if test="deliverUserId != null" >
+        #{deliverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deliverTime != null" >
+        #{deliverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverResult != null" >
+        #{deliverResult,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrdersDeliver" >
+    update public.t_erp_orders_deliver
+    <set >
+      <if test="ordersId != null" >
+        orders_id = #{ordersId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deductStorage != null" >
+        deduct_storage = #{deductStorage,jdbcType=SMALLINT},
+      </if>
+      <if test="deliverUserId != null" >
+        deliver_user_id = #{deliverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deliverTime != null" >
+        deliver_time = #{deliverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverResult != null" >
+        deliver_result = #{deliverResult,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserName != null" >
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where deliver_id = #{deliverId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.samton.erp.api.orders.bean.entity.TErpOrdersDeliver" >
+    update public.t_erp_orders_deliver
+    set orders_id = #{ordersId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      deduct_storage = #{deductStorage,jdbcType=SMALLINT},
+      deliver_user_id = #{deliverUserId,jdbcType=BIGINT},
+      deliver_time = #{deliverTime,jdbcType=TIMESTAMP},
+      deliver_result = #{deliverResult,jdbcType=VARCHAR},
+      state = #{state,jdbcType=SMALLINT},
+      enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where deliver_id = #{deliverId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryOrdersDeliverList" resultMap="BaseDeliverResultMap" parameterType="com.samton.platform.common.bean.param.JqParamBean">
+  	select a.deliver_id, a.orders_id, a.remark, a.deduct_storage, a.deliver_user_id, a.deliver_time, a.deliver_result, 
+	  a.create_user_name, a.create_date,b.name,b.bills,c.shop_name
+	from t_erp_orders_deliver a
+	inner join t_erp_orders b on a.orders_id = b.orders_id and a.enterprise_id = b.enterprise_id and b.state = 1
+	inner join t_erp_shop c on b.shop_id = c.shop_id and b.enterprise_id = c.enterprise_id and c.state = 1
+	where a.state = 1 and a.enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+		<if test="search != null">
+		 <if test="search.deliverResult != null and search.deliverResult != ''">
+		 	and a.deliver_result = #{search.deliverResult,jdbcType=VARCHAR}
+	     </if>
+	      <if test="search.startDate != null and search.startDate != ''">
+	      	and <![CDATA[a.deliver_time>= #{search.startDate,jdbcType=VARCHAR}::timestamp]]>
+	     </if>
+	      <if test="search.endDate != null and search.endDate != ''">
+	      	and <![CDATA[a.deliver_time<= #{search.endDate,jdbcType=VARCHAR}::timestamp]]>
+	     </if>
+	     <if test="search.platformType != null">
+		 	and c.platform_type = #{search.platformType,jdbcType=SMALLINT}
+	     </if>
+	     <if test="search.shopId != null">
+		 	and b.shop_id = #{search.shopId,jdbcType=BIGINT}
+	     </if>
+	     <if test="search.userId != null">
+		 	and a.deliver_user_id = #{search.userId,jdbcType=BIGINT}
+	     </if>
+	     <if test="search.name != null and search.name != ''">
+		 	and b.name like '%'||#{search.name,jdbcType=VARCHAR}||'%'
+	     </if>
+	     <if test="search.bills != null and search.bills != ''">
+		 	and b.bills like '%'||#{search.bills,jdbcType=VARCHAR}||'%'
+	     </if>
+	     <if test="search.remark != null and search.remark != ''">
+		 	and a.remark like '%'||#{search.remark,jdbcType=VARCHAR}||'%'
+	     </if>
+	</if>
+	order by a.create_date desc
+  </select>
+</mapper>

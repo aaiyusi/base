@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<project name="Squirrel" default="compress" basedir=".">
+    <description>Squirrel Build</description>
+    <!--属性的定义-->
+    <property name="web.dir" location="../../main/webapp/" />
+    <property name="yuicompressor.jar" location="${web.dir}/WEB-INF/lib/yuicompressor.jar" />
+    <property name="css.dev.dir" location="${web.dir}/resources/" />
+    <property name="css.bulid.dir" location="${web.dir}/resources/css/" />
+    <property name="css.merge.name" value="css/all.css" />
+    <property name="css.bulid.name" value="all-min.css" />
+
+    <property name="js.dev.dir" location="${web.dir}/resources/" />
+    <property name="js.bulid.dir" location="${web.dir}/resources/" />
+    <property name="js.merge.name" value="script/total/all.js" />
+    <property name="js.bulid.name" value="script/total/all-min.js" />	
+	<property name="charset" value="utf-8"/>
+    
+    <target name="compress" depends="css.compress,js.compress" />
+
+    <!-- CSS Merge -->
+    <target name="css.merge">
+        <echo message="开始合并CSS" />
+        <concat destfile="${css.dev.dir}/${css.merge.name}">
+        	<path path="${css.dev.dir}/components/hplus/css/plugins/jqgrid/ui.jqgrid.css" /> 
+        	<path path="${css.dev.dir}/components/jquery/jqueryUI/jquery-ui.min.css" /> 
+        	<path path="${css.dev.dir}/components/hplus/css/bootstrap.min.css" /> 
+        	<path path="${css.dev.dir}/components/hplus/css/font-awesome.css" /> 
+        	<path path="${css.dev.dir}/components/hplus/css/plugins/sweetalert/sweetalert.css" /> 
+        	<path path="${css.dev.dir}/components/hplus/css/style.css" /> 
+        	<path path="${css.dev.dir}/css/custom.css" /> 
+        	<path path="${css.dev.dir}/css/library.min.css" /> 
+        	<path path="${css.dev.dir}/components/hplus/switch/bootstrap-switch.min.css" /> 
+        </concat>
+    </target>
+
+    <!-- CSS Compress -->
+    <target name="css.compress" depends="css.merge">
+        <!-- 删除 Bulid 下的 css -->
+        <delete>
+            <fileset dir="${css.bulid.dir}" includes="${css.bulid.name}" />
+        </delete>
+    	<echo message="开始压缩CSS" />
+        <apply executable="java" parallel="false" verbose="true" dest="${css.bulid.dir}">
+            <!-- 引入 css 文件并执行 yuicompressor 压缩 -->
+            <fileset dir="${css.dev.dir}" includes="${css.merge.name}" />
+            <arg line="-jar" />
+            <arg path="${yuicompressor.jar}" />
+            <arg line="--charset ${charset}" />
+            <arg value="-o" />
+            <targetfile />
+            <mapper type="glob" from="*.css" to="${css.bulid.name}" />
+        </apply>
+    	 <!-- 删除合并的临时 css -->
+    	<!--
+        <delete>
+            <fileset dir="${css.dev.dir}" includes="${css.merge.name}" />
+        </delete>
+    	<echo message="删除合并的临时 css" />
+    	-->
+    </target>
+	
+	
+	<target name="js.merge">
+		<echo message="开始合并js" />
+        <concat destfile="${js.dev.dir}/${js.merge.name}"  encoding="${charset}" outputencoding="${charset}">
+        	<!-- 全局js -->
+        	<path path="${js.dev.dir}/components/jquery/jquery.min.js" />  
+        	<path path="${js.dev.dir}/components/jquery/jqueryUI/jquery-ui.min.js" />  
+        	<path path="${js.dev.dir}/components/jquery/jquery.form.js" />  
+        	<path path="${js.dev.dir}/components/jquery/jquery.formFill.js" />  
+        	<path path="${js.dev.dir}/components/hplus/plugins/jqgrid/i18n/grid.locale-cn.js" />  
+        	<path path="${js.dev.dir}/components/hplus/plugins/jqgrid/jquery.jqGrid.min.js" />  
+        	<path path="${js.dev.dir}/components/hplus/bootstrap.min.js" />  
+        	<path path="${js.dev.dir}/components/hplus/content.js" />  
+        	<!--<path path="${js.dev.dir}/components/hplus/plugins/layer/layer.min.js" />  
+        	<path path="${js.dev.dir}/components/hplus/plugins/layer/extend/layer.ext.js" />  -->
+        	<path path="${js.dev.dir}/components/hplus/plugins/sweetalert/sweetalert.min.js" />  
+        	<path path="${js.dev.dir}/components/hplus/switch/bootstrap-switch.min.js" />  
+			<!-- 验证插件 -->
+			<path path="${js.dev.dir}/components/validation/jquery.validate.js" />  
+			<path path="${js.dev.dir}/components/validation/additional-methods.js" />  
+			<path path="${js.dev.dir}/platform/js/common_validate.js" />  
+			<path path="${js.dev.dir}/platform/js/common_check.js" />  
+			<path path="${js.dev.dir}/platform/js/platform.js" />  
+			<path path="${js.dev.dir}/js/common/common.js" /> 
+        </concat>
+	</target>
+	
+	<target name="js.compress" depends="js.merge">
+		<!-- 删除 Bulid 下的 js -->
+        <delete>
+            <fileset dir="${js.bulid.dir}" includes="${js.bulid.name}" />
+        </delete>
+    	<echo message="开始压缩js" />
+        <apply executable="java" parallel="false" verbose="true" dest="${js.bulid.dir}">
+            <!-- 引入 js 文件并执行 yuicompressor 压缩 -->
+            <fileset dir="${js.dev.dir}" includes="${js.merge.name}" />
+            <arg line="-jar" />
+            <arg path="${yuicompressor.jar}" />
+        	<arg line="--nomunge --charset ${charset}" />
+            <arg value="-o" />
+            <targetfile />
+            <mapper type="glob" from="*.js" to="${js.bulid.name}" />
+        </apply>
+	</target>
+</project>

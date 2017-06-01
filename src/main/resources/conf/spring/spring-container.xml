@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="spring-mybatis.xml" /><!--数据源-->
+	<import resource="spring-jdbc.xml" /><!--jdbc支持-->
+	<import resource="spring-cache.xml" /><!--缓存-->
+
+    <bean id="platformPmFilter" class="com.samton.platform.pm.filter.PmFilter" /> 
+	<!-- 
+	<bean id="rmiPmFilter" class="com.samton.eoc.rmi.filter.RmiPmFilter"> 
+	    <property name="ssoCache" ref="ssoCache" />
+	</bean>
+	 -->
+	
+	<bean id="goodsLockCache" class="com.samton.erp.api.orders.cache.GoodsLockCache">
+		<property name="goodsService">
+			<bean class="com.samton.erp.api.goods.service.impl.GoodsServiceImpl"></bean>
+		</property>
+	</bean>
+  	<bean id="initTask" class="com.samton.erp.api.orders.task.InitTask" init-method="init">
+  		<property name="shopService">
+  			<bean class="com.samton.erp.api.shop.service.impl.ShopServiceImpl"></bean>
+ 		</property>
+ 		<property name="sysService">
+   			<bean class="com.samton.erp.api.sys.service.impl.SysServiceImpl"></bean>
+   		</property>
+  	</bean>
+   	<bean id="dataTransTask" class="com.samton.erp.api.orders.task.DataTransTask" init-method="init" destroy-method="close">
+   		<property name="syncService">
+  			<bean class="com.samton.erp.api.orders.service.impl.SyncServiceImpl"></bean>
+   		</property>
+   		<property name="sysService">
+   			<bean class="com.samton.erp.api.sys.service.impl.SysServiceImpl"></bean>
+   		</property>
+   	</bean>
+   	
+   	<bean id="dataDictCache" class="com.samton.erp.api.sys.cache.DataDictCache" init-method="init">
+   		<property name="sysService">
+   			<bean class="com.samton.erp.api.sys.service.impl.SysServiceImpl"></bean>
+   		</property>
+   		<property name="cacheName" value="DataDictCache"></property>
+   	</bean>
+</beans>
