@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-	    <title>电商ERP服务平台</title>
+	    <title>project</title>
 	    <meta name="keywords" content="">
 	    <meta name="description" content="">
 	    <link href="${ctx.path}/resources/css/reset.css?v=${ctx.versions}" rel="stylesheet">

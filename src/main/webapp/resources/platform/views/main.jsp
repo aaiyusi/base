@@ -16,7 +16,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
 
-    <title>电商ERP服务平台</title>
+    <title>project</title>
 
 
     <!--[if lt IE 9]>
